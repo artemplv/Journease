@@ -33,8 +33,12 @@ export default function ItineraryModal() {
         setOpenDate(!openDate)
     }
 
+    const handleSubmit = () => {
+        dispatch()
+    }
+
     return(
-        <form className="itinerary-form">
+        <form className="itinerary-form" onSubmit={handleSubmit}>
             <div>
                 Image Upload
             </div>
