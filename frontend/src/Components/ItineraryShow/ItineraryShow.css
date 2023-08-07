@@ -1,0 +1,21 @@
+.itinerary-show-headers {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+.itinerary-show-img-container {
+    border: 1px solid red;
+    width: 50%;
+}
+
+.itinerary-show-img-container img {
+    object-fit: contain;
+}
+
+.itinerary-users {
+    border: 1px solid green;
+    width: 50%;
+}

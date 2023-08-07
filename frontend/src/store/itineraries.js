@@ -75,7 +75,7 @@ export default function itinerariesReducer (state = {}, action) {
         case RECEIVE_ITINERARIES:
             return {...newState, ...action.itineraries};
         case RECEIVE_ITINERARY:
-            return {...newState, ...action.itinerary};
+            return {...newState, [action.itinerary._id]: action.itinerary};
         case REMOVE_ITINERARY:
             delete newState[action.itineraryId];
             return newState;
