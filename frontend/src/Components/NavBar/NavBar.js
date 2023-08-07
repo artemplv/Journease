@@ -1,11 +1,11 @@
 
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { useState } from 'react';
 import './NavBar.css';
 import LoginForm from '../SessionForms/LoginForm';
 import SignupForm from '../SessionForms/SignupForm';
+import { Modal } from '../../context/Modal';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -39,10 +39,14 @@ function NavBar () {
       <h1>Journease</h1>
       { getLinks() }
       {(modalType === "signup") && (
-        <SignupForm/>
+        <Modal onClose={()=> setModalType("")}>
+          <SignupForm/>
+        </Modal>
       )}
       {(modalType === "login") && (
-        <LoginForm/>
+        <Modal onClose={()=> setModalType("")}>
+            <LoginForm/>
+        </Modal>
       )}
     </div>
   );

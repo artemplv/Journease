@@ -1,11 +1,4 @@
 /* TODO Add site wide styles */
-form .errors {
-    color: red;
-    font-size: 0.875em;
-    height: 15px;
-    display: flex;
-    align-items: center;
-}
 
 /* CSS RESET */
 
@@ -51,4 +44,18 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+body * {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+form .errors {
+    color: red;
+    font-size: 0.875em;
+    height: 15px;
+    display: flex;
+    align-items: center;
 }
