@@ -6,3 +6,9 @@ form > .errors {
     display: flex;
     align-items: center;
 }
+
+* {
+    font-family: roc-grotesk, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+}

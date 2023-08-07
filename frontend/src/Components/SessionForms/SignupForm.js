@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import './SessionForm.css';
+import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
 function SignupForm () {
@@ -53,11 +53,11 @@ function SignupForm () {
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
+    <form className="session-form" id="signup" onSubmit={handleSubmit}>
       <h2>Sign Up </h2>
       <div className="errors">{errors?.email}</div>
       <label>
-        <span>Email</span>
+        <div className='label'>Email</div>
         <input type="text"
           value={email}
           onChange={update('email')}
@@ -66,7 +66,7 @@ function SignupForm () {
       </label>
       <div className="errors">{errors?.username}</div>
       <label>
-        <span>Username</span>
+        <div className='label'>Username</div>
         <input type="text"
           value={username}
           onChange={update('username')}
@@ -75,7 +75,7 @@ function SignupForm () {
       </label>
       <div className="errors">{errors?.password}</div>
       <label>
-        <span>Password</span>
+        <div className='label'>Password</div>
         <input type="password"
           value={password}
           onChange={update('password')}
@@ -86,13 +86,14 @@ function SignupForm () {
         {password !== password2 && 'Confirm Password field must match'}
       </div>
       <label>
-        <span>Confirm Password</span>
+        <div className='label'>Confirm Password</div>
         <input type="password"
           value={password2}
           onChange={update('password2')}
           placeholder="Confirm Password"
         />
       </label>
+      <br/>
       <input
         type="submit"
         value="Sign Up"
