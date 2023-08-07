@@ -1,7 +1,7 @@
 import './ItineraryIndex.css';
 import { Link } from "react-router-dom";
 
-export default function ItineraryIndexItem(itinerary) {
+export default function ItineraryIndexItem({itinerary}) {
 
     return (
         <li className="itinerary-index-item">

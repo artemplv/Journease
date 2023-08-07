@@ -19,6 +19,7 @@ function ItineraryIndex() {
   // {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
  
   const ItineraryList = itineraries.map(itinerary => {
+    // console.log(itinerary)
     return (
       <ItineraryIndexItem itinerary={itinerary} />
     );
