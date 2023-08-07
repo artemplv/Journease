@@ -6,8 +6,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
+import insertGMapApiScript from './utils/insertGMapApiScript';
 
 let store = configureStore({});
+
+insertGMapApiScript();
 
 function Root() {
   return (
@@ -27,4 +30,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
