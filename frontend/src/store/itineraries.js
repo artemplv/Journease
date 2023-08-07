@@ -3,6 +3,7 @@ import jwtFetch from './jwt';
 
 const RECEIVE_ITINERARIES = "itineraries/RECEIVE_ITINERARIES";
 const RECEIVE_ITINERARY = "itineraries/RECEIVE_ITINERARY";
+const REMOVE_ITINERARY = "itineraries/REMOVE_ITINERARY";
 
 
 const receiveItineraries = (itineraries) => ({
@@ -14,6 +15,11 @@ const receiveItineraries = (itineraries) => ({
 const receiveItinerary = (itinerary) => ({
     type: RECEIVE_ITINERARY,
     itinerary
+})
+
+const removeItinerary = (itineraryId) => ({
+    type: REMOVE_ITINERARY,
+    itineraryId
 })
 
 
@@ -29,6 +35,23 @@ export const fetchItinerary = (itineraryId) => async dispatch => {
     dispatch(receiveItinerary(data.itinerary));
 }
 
+export const deleteItinerary = (itineraryId) => async dispatch => {
+    await jwtFetch(`/api/itineraries/${itineraryId}`, {
+        method: 'DELETE'
+    });
+    dispatch(removeItinerary(itineraryId));
+}
+
+export const createItinerary = (itinerary) => async dispatch => {
+    const res = await jwtFetch('/api/itineraries', {
+        method: 'POST',
+        body: JSON.stringify(itinerary)
+    });
+
+    const data = await res.json();
+    dispatch(receiveItinerary(data.itinerary));
+}
+
 export default function itinerariesReducer (state = {}, action) {
     const newState = {...state};
 
@@ -37,6 +60,9 @@ export default function itinerariesReducer (state = {}, action) {
             return {...newState, ...action.itineraries};
         case RECEIVE_ITINERARY:
             return {...newState, ...action.itinerary};
+        case REMOVE_ITINERARY:
+            delete newState[action.itineraryId];
+            return newState;
         default:
             return state;
     };

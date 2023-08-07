@@ -21,6 +21,10 @@ function App() {
       <Switch>
         <AuthRoute exact path="/" component={ItineraryIndex} />
       </Switch>
+
+      <Switch>
+        <AuthRoute exact path="/itineraries" component={ItineraryIndex} />
+      </Switch>
     </>
   );
 }
