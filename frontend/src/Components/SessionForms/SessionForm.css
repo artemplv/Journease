@@ -4,6 +4,7 @@
     padding-bottom: 6vh;
     width: 40vw;
     text-align: left;
+    color: rgb(100, 100, 100);
 }
 
 .session-form input[type="text"], .session-form input[type="password"]{
@@ -33,4 +34,5 @@
 
 .session-form .label {
     margin-bottom: 1vh;
+    font-size: 17px;
 }
