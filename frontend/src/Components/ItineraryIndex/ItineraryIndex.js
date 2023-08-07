@@ -5,21 +5,22 @@ import ItineraryIndexItem from "./ItineraryIndexItem";
 import './ItineraryIndex.css';
 
 function ItineraryIndex() {
-  // const dispatch = useDispatch();
-  // const itineraries = useSelector(state => Object.values(state.itineraries));
+  const dispatch = useDispatch();
+  const itineraries = useSelector(state => Object.values(state.itineraries));
 
-  // useEffect(() => {
-  //   dispatch(fetchItineraries())
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchItineraries())
+  }, []);
 
-  const itineraries = [{itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/Users/vczaran/Desktop/Journease/frontend/public/blep.jpeg", title: "Blep2", owner: "Doge2"}}, 
-  {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}},
-  {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
+  // Placeholder/Tester code:
+
+  // const itineraries = [{itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/Users/vczaran/Desktop/Journease/frontend/public/blep.jpeg", title: "Blep2", owner: "Doge2"}}, 
+  // {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}},
+  // {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
  
   const ItineraryList = itineraries.map(itinerary => {
     return (
-      // <ItineraryIndexItem itinerary={itinerary} />
-      <ItineraryIndexItem />
+      <ItineraryIndexItem itinerary={itinerary} />
     );
 
   });
