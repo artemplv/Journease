@@ -1,0 +1,53 @@
+.itineraries-index {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.itinerary-index-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    width: 250px;
+    background-color: #E0E2ED;
+    margin: 15px;
+}
+
+#itinerary-card-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#itinerary-card-info h1 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+#itinerary-card-info p {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+
+#itinerary-card-subinfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.itinerary-index-item img {
+    object-fit: cover;
+    height: 80%;
+    width: 100%;
+}
+
+#itinerary-index-page-title {
+    text-align: center;
+    font-size: 32px;
+    padding: 20px;
+}
