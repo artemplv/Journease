@@ -1,0 +1,111 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const { requireUser, restoreUser } = require('../../config/passport');
+const User = mongoose.model('User');
+const Itinerary = mongoose.model('Itinerary');
+const router = express.Router();
+
+
+// CREATE ITINERARY
+router.post('/', restoreUser, async (req, res, next) => {
+    try {
+        const newItinerary = new Itinerary({
+            owner: req.user.username,
+            ownerId: req.user._id,
+            title: req.body.title,
+            description: req.body.description,
+            dateStart: req.body.dateStart,
+            dateEnd: req.body.dateEnd,
+            collaborators: req.body.collaborators,
+            coverImage: req.body.coverImage,
+            activities: req.body.activities
+        })
+        const itinerary = await newItinerary.save();
+        return res.json({
+            itinerary: itinerary
+        });
+    } catch (err) {
+        next(err);
+    };
+});
+
+// INDEX ITINERARY
+router.get('/', async (req, res) => {
+    try {
+        const allItineraries = (await Itinerary.find()).reverse();
+        let itineraries = {};
+        allItineraries.forEach((itinerary) => {
+            itineraries[itinerary._id] = itinerary;
+        });
+        return res.json(
+            itineraries = {itineraries}
+        );
+    } catch(err) {
+        return res.json([]);
+    };
+});
+
+// SHOW ITINERARY
+router.get('/:id', async(req, res, next) => {
+    try {
+        const foundItinerary = await Itinerary.findById(req.params.id);
+        return res.json({
+            itinerary: foundItinerary
+        });
+    } catch(err) {
+        const error = new Error('Itinerary does not exist');
+        error.statusCode = 404;
+        error.errors = { message: 'Itinerary with specified Id does not exist.'};
+        return next(error);
+    };
+});
+
+// UPDATE ITINERARY 
+router.patch('/:id', requireUser, async(req, res, next) => {
+    try {
+        const itinerary = await Itinerary.findById(req.params.id);
+        if (!itinerary) {
+            const err = new Error("Itinerary does not exist.");
+            err.statusCode = 404;
+            err.errors = { itinerary: "Itinerary does not exist."};
+            return next(err);
+        }
+        itinerary.owner = itinerary.owner;
+        itinerary.ownerId = itinerary.ownerId;
+        itinerary.title = req.body.title || itinerary.title;
+        itinerary.description = req.body.description || itinerary.description;
+        itinerary.dateStart = req.body.dateStart || itinerary.dateStart;
+        itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
+        itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
+        itinerary.coverImage = req.body.coverImage || itinerary.coverImage;
+        itinerary.activities = req.body.activities || itinerary.activities;
+        const updatedItinerary = await itinerary.save();
+        return res.json({
+            itinerary: updatedItinerary
+        }) 
+    } catch(err) {
+        next(err);
+    };
+})
+
+// DELETE ITINERARY
+router.delete('/:id', requireUser, async(req, res, next) => {
+    try {
+        const itinerary = await Itinerary.findById(req.params.id);
+        if (itinerary) {
+            // && req.user._id.toString() === itinerary.ownerId.toString()
+            itinerary.deleteOne();
+            return res.json({message: "Itinerary has been deleted."})
+        } else {
+            return res.json({message: "Itinerary cannot be deleted."})
+        }
+    } catch(err) {
+        const error = new Error('Itinerary does not exist.')
+        error.statusCode = 404;
+        error.errors = { message: 'Itinerary with specified Id does not exist.'};
+        return next(error);
+    };
+});
+
+
+module.exports = router;
