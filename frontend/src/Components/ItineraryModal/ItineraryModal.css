@@ -1,0 +1,74 @@
+#calendar {
+    position: absolute;
+    margin-top: 0px;
+    border: 1px solid rgb(234, 232, 232);
+    border-radius: 15px;
+    transform: translateX(-13vw);
+    background-color: white;
+}
+
+#calendarDone{
+    text-align: right;
+    margin-right: 1vw;
+    font-size: 17px;
+    color: #5C95FF; 
+    cursor: pointer;
+    padding: 2px;
+}
+
+.itinerary-form {
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 17px;
+    padding: 2vw;
+}
+
+.itinerary-form input, .itinerary-form textarea {
+    margin-top: 2vh;
+    border-radius: 3px;
+    border: 1px solid grey;
+    margin-top: 0px;
+    margin-bottom: 2vh;
+    font-size: 15px;
+}
+
+.itinerary-form input[type="text"]{
+    width: 23vw;
+    height: 5vh;
+}
+
+.itinerary-form textarea {
+    width: 23vw;
+    height: 8vh;
+    overflow-y: scroll;
+}
+
+#dates input[type="text"]{
+    width: 10.5vw;
+    height: 5vh;
+} 
+
+.itinerary-form input[type="submit"] {
+    border-radius: 30px;
+    color: white;
+    background-color: #5C95FF;
+    border: none;
+    width: 8vw;
+    height: 5vh;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.rdrDateDisplayWrapper {
+    display: none;
+}
+
+.rdrCalendarWrapper {
+    width: 35vw;
+}
+
+.rdrMonthAndYearWrapper {
+    height: 30px;
+}
