@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itinerarySchema = new Schema ({
-    owner: {
-        type: String,
-        required: true
-    },
     ownerId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -33,9 +29,8 @@ const itinerarySchema = new Schema ({
             ref: 'User'
         }
     }],
-    coverImage: {
+    coverImageUrl: {
         type: String,
-        default: "defaultCoverImageUrl",
         required: true,
     },
     activities: {
