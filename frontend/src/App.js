@@ -7,6 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 
 import { getCurrentUser } from './store/session';
 import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
+import ItineraryShow from './components/ItineraryShow/ItineraryShow';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,6 +25,10 @@ function App() {
 
       <Switch>
         <AuthRoute exact path="/itineraries" component={ItineraryIndex} />
+      </Switch>
+
+      <Switch>
+        <AuthRoute exact path="/itineraries/:itineraryId" component={ItineraryShow} />
       </Switch>
     </>
   );

@@ -4,6 +4,7 @@ import jwtFetch from './jwt';
 const RECEIVE_ITINERARIES = "itineraries/RECEIVE_ITINERARIES";
 const RECEIVE_ITINERARY = "itineraries/RECEIVE_ITINERARY";
 const REMOVE_ITINERARY = "itineraries/REMOVE_ITINERARY";
+const UPDATE_ITINERARY = "itineraries/UPDATE_ITINERARY";
 
 
 const receiveItineraries = (itineraries) => ({
@@ -20,6 +21,12 @@ const receiveItinerary = (itinerary) => ({
 const removeItinerary = (itineraryId) => ({
     type: REMOVE_ITINERARY,
     itineraryId
+})
+
+const updateItinerary = (itineraryId, itinerary) =>({
+    type: UPDATE_ITINERARY,
+    itineraryId,
+    itinerary
 })
 
 
@@ -52,6 +59,15 @@ export const createItinerary = (itinerary) => async dispatch => {
     dispatch(receiveItinerary(data.itinerary));
 }
 
+export const editItinerary = (itineraryId, itinerary) => async dispatch => {
+    const res = await jwtFetch(`/api/itineraries/${itineraryId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(itinerary)
+    })
+
+    dispatch(updateItinerary(itineraryId, itinerary));
+}
+
 export default function itinerariesReducer (state = {}, action) {
     const newState = {...state};
 
@@ -62,6 +78,9 @@ export default function itinerariesReducer (state = {}, action) {
             return {...newState, ...action.itinerary};
         case REMOVE_ITINERARY:
             delete newState[action.itineraryId];
+            return newState;
+        case UPDATE_ITINERARY:
+            newState[action.itineraryId] = action.itinerary;
             return newState;
         default:
             return state;

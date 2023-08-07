@@ -12,7 +12,9 @@ function ItineraryIndex() {
   //   dispatch(fetchItineraries())
   // }, []);
 
-  const itineraries = [{itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/Users/vczaran/Desktop/Journease/frontend/public/blep.jpeg", title: "Blep2", owner: "Doge2"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
+  const itineraries = [{itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/Users/vczaran/Desktop/Journease/frontend/public/blep.jpeg", title: "Blep2", owner: "Doge2"}}, 
+  {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}},
+  {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
  
   const ItineraryList = itineraries.map(itinerary => {
     return (
@@ -25,7 +27,7 @@ function ItineraryIndex() {
     return (
       <>
         <div>
-          <h1 id="itinerary-index-page-title">All Trips</h1>
+          <h1 id="itinerary-index-page-title">ALL TRIPS</h1>
           <ul className="itineraries-index">
             {ItineraryList}
           </ul>
