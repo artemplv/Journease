@@ -12,14 +12,8 @@ function ItineraryIndex() {
     dispatch(fetchItineraries())
   }, []);
 
-  // Placeholder/Tester code:
 
-  // const itineraries = [{itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/Users/vczaran/Desktop/Journease/frontend/public/blep.jpeg", title: "Blep2", owner: "Doge2"}}, 
-  // {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}},
-  // {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}, {itinerary: {coverImage: "/public/blep.jpeg", title: "Blep", owner: "Doge"}}]
- 
   const ItineraryList = itineraries.map(itinerary => {
-    // console.log(itinerary)
     return (
       <ItineraryIndexItem itinerary={itinerary} />
     );
