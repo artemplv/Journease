@@ -21,7 +21,6 @@
 
 .session-form input[type="submit"] {
     margin-left: 40%;
-    margin-top: 3vh;
     height: 5vh;
     width: 15vh;
     border-radius: 20px;
@@ -30,6 +29,10 @@
     font-size: 15px;
     color: white;
     cursor: pointer;
+}
+
+#login input[type="submit"] {
+    margin-top: 3vh;
 }
 
 .session-form .label {

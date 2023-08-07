@@ -3,7 +3,7 @@
     justify-content: space-between;
 }
 
-.links-auth button{
+.links-auth button, .links-nav button{
     width: 10vw;
     height: 3vw;
     border-radius: 30px;
