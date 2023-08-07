@@ -23,11 +23,11 @@ const removeItinerary = (itineraryId) => ({
     itineraryId
 })
 
-const updateItinerary = (itineraryId, itinerary) =>({
-    type: UPDATE_ITINERARY,
-    itineraryId,
-    itinerary
-})
+// const updateItinerary = (itineraryId, itinerary) =>({
+//     type: UPDATE_ITINERARY,
+//     itineraryId,
+//     itinerary
+// })
 
 
 export const fetchItineraries = () => async dispatch => {
@@ -59,13 +59,13 @@ export const createItinerary = (itinerary) => async dispatch => {
     dispatch(receiveItinerary(data.itinerary));
 }
 
-export const editItinerary = (itineraryId, itinerary) => async dispatch => {
-    const res = await jwtFetch(`/api/itineraries/${itineraryId}`, {
+export const editItinerary = (itinerary) => async dispatch => {
+    const res = await jwtFetch(`/api/itineraries/${itinerary.id}`, {
         method: 'PATCH',
         body: JSON.stringify(itinerary)
     })
-
-    dispatch(updateItinerary(itineraryId, itinerary));
+    const data = await res.json()
+    dispatch(receiveItinerary(data.itinerary));
 }
 
 export default function itinerariesReducer (state = {}, action) {

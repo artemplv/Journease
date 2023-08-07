@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SessionForm.css';
 
 import { login, clearSessionErrors } from '../../store/session';
-import { Modal } from '../../context/Modal';
 
 function LoginForm () {
   const [email, setEmail] = useState('');

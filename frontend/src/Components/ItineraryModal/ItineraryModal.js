@@ -1,14 +1,28 @@
-import { useDispatch } from "react-redux"
-import { Modal } from "../../context/Modal";
+import { useDispatch, useSelector } from "react-redux"
 import { DateRange } from 'react-date-range';
 import { useState } from "react";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './ItineraryModal.css'
+import { createItinerary, editItinerary } from "../../store/itineraries";
+import { useEffect } from "react";
 
-export default function ItineraryModal() {
+export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
     const [openDate, setOpenDate] = useState(false)
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const owner = useSelector(state => state.session.user)
+    const [type, setType] = useState('Create')
+
+    useEffect(()=> {
+        if (itinerary) {
+            setType('Edit')
+            setTitle(itinerary.title)
+            setDescription(itinerary.description)
+            setDates([{startDate: new Date(itinerary.dateStart), endDate: new Date(itinerary.dateEnd), key: 'selection'}])
+        }
+    }, [])
 
     const [dates, setDates] = useState([
         {
@@ -33,8 +47,12 @@ export default function ItineraryModal() {
         setOpenDate(!openDate)
     }
 
-    const handleSubmit = () => {
-        dispatch()
+    const handleSubmit = (e) => {
+        if (type === "Create") {
+            dispatch(createItinerary({owner: owner.username, ownerId: owner._id, title: title, description: description, dateStart: dates[0].startDate, dateEnd: dates[0].endDate}))
+        } else {
+            dispatch(editItinerary({id: itinerary._id, owner: owner.username, ownerId: owner._id, title: title, description: description, dateStart: dates[0].startDate, dateEnd: dates[0].endDate}))
+        }
     }
 
     return(
@@ -44,9 +62,9 @@ export default function ItineraryModal() {
             </div>
             <div id="inputs">
                 <div>Title</div>
-                    <input type="text"/>
+                    <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
                 <div>Description</div>
-                    <textarea/>
+                    <textarea value={description} onChange={(e) => {setDescription(e.target.value)}}/>
                 <div id="dates" onClick={toggleOpenDate}>Dates
                     <br/>
                     <input type="text" value={dateConvert(dates[0].startDate.toLocaleDateString())}/>

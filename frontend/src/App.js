@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
-
-import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+import { Route } from 'react-router-dom';
+// import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 
 import { getCurrentUser } from './store/session';
@@ -20,15 +20,11 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <AuthRoute exact path="/" component={ItineraryIndex} />
-      </Switch>
+        <Route exact path="/" component={ItineraryIndex} />
 
-      <Switch>
-        <AuthRoute exact path="/itineraries" component={ItineraryIndex} />
-      </Switch>
+        <Route exact path="/itineraries" component={ItineraryIndex} />
 
-      <Switch>
-        <AuthRoute exact path="/itineraries/:itineraryId" component={ItineraryShow} />
+        <Route exact path="/itineraries/:itineraryId" component={ItineraryShow} />
       </Switch>
     </>
   );

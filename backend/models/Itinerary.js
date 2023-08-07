@@ -35,8 +35,8 @@ const itinerarySchema = new Schema ({
     }],
     coverImage: {
         type: String,
-        default: "defaultCoverImageUrl",
-        required: true,
+        // default: "defaultCoverImageUrl",
+        required: false,
     },
     activities: {
         // type: [activitySchema]
