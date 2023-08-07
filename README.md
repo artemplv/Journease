@@ -47,6 +47,9 @@ It's used for searching for places for itinerary activities and displaying them 
 - ### AWS S3 Storage
 It allows users to upload images for their itineraries.
 
+## Wireframe
+
+![Journease](https://github.com/artemplv/Journease/assets/132113558/14b9fd47-0a99-40c8-8ce9-26fa4b8ba720)
 
 ## Group Members and Work Breakdown
 Team Leader: Artem Polevoy
