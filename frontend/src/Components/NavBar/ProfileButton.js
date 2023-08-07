@@ -16,7 +16,7 @@ export default function ProfileButton() {
     }
     return (
         <div className="links-nav">
-            <button onClick={showPage}></button>
+            <button onClick={showPage}>My Profile</button>
             <button onClick={logoutUser}>Logout</button>
         </div>
     )
