@@ -5,6 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
+import { ModalProvider } from './context/Modal';
 
 let store = configureStore({});
 
@@ -12,7 +13,9 @@ function Root() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </BrowserRouter>
     </Provider>
   );
@@ -24,3 +27,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+

@@ -5,11 +5,8 @@ import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 
-import LoginForm from './components/SessionForms/LoginForm';
-import SignupForm from './components/SessionForms/SignupForm';
-
 import { getCurrentUser } from './store/session';
-import ItineraryIndex from './Components/ItineraryIndex/ItineraryIndex';
+import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,8 +20,6 @@ function App() {
       <NavBar />
       <Switch>
         <AuthRoute exact path="/" component={ItineraryIndex} />
-        <AuthRoute exact path="/login" component={LoginForm} />
-        <AuthRoute exact path="/signup" component={SignupForm} />
       </Switch>
     </>
   );
