@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { useState } from 'react';
-import { Modal } from '../../context/Modal';
 import './NavBar.css';
 import LoginForm from '../SessionForms/LoginForm';
 import SignupForm from '../SessionForms/SignupForm';
@@ -18,10 +17,6 @@ function NavBar () {
 
   const login = () => {
     setModalType("login")
-  }
-
-  const closeModal = () => {
-    setModalType("")
   }
 
   const getLinks = () => {
@@ -44,14 +39,10 @@ function NavBar () {
       <h1>Journease</h1>
       { getLinks() }
       {(modalType === "signup") && (
-        <Modal onClose={closeModal}>
-          <SignupForm/>
-        </Modal>
+        <SignupForm/>
       )}
       {(modalType === "login") && (
-        <Modal onClose={closeModal}>
-          <LoginForm/>
-        </Modal>
+        <LoginForm/>
       )}
     </div>
   );

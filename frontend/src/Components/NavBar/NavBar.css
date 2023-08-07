@@ -1,4 +1,21 @@
 .nav-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.links-auth button, .links-nav button{
+    width: 10vw;
+    height: 3vw;
+    border-radius: 30px;
+    background-color: #5C95FF;
+    border: none;
+    color: white;
+    margin-right: 2vw;
+    cursor: pointer;
+    margin-top: 2vh;
+}
+
+.links-auth button:hover {
+    color: #5C95FF;
+    background-color: white;
 }
