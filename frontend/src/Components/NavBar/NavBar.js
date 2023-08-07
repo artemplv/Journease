@@ -2,11 +2,11 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginForm from './components/SessionForms/LoginForm';
-import SignupForm from './components/SessionForms/SignupForm';
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import './NavBar.css';
+import LoginForm from '../SessionForms/LoginForm';
+import SignupForm from '../SessionForms/SignupForm';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
