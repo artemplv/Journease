@@ -29,7 +29,8 @@ export default function ItineraryIndexItem({itinerary}) {
 
     return (
         <li className="itinerary-index-item">
-            <Link to={`/itineraries/${itinerary._id}`}><img src={`${itinerary.coverImage}`}/></Link>
+            {/* <img src={currentUser.profileImageUrl}/> */}
+            <Link to={`/itineraries/${itinerary._id}`}><img src={itinerary.coverImageUrl}/></Link>
             <div id="itinerary-card-info">
                 <Link to={`/itineraries/${itinerary._id}`}><h1>{itinerary.title}</h1></Link>
                 <div id="itinerary-card-subinfo">

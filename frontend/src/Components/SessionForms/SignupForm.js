@@ -9,6 +9,8 @@ function SignupForm () {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
 
@@ -46,15 +48,42 @@ function SignupForm () {
     const user = {
       email,
       username,
-      password
+      password,
+      image
     };
 
     dispatch(signup(user)); 
   }
 
+  const handleFile = ({currentTarget}) => {
+    const file = currentTarget.files[0];
+    setImage(file);
+    if (file) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => 
+            setImageUrl(fileReader.result);
+    } else {
+        setImageUrl(null);
+    }
+};
+
+  let preview = null;
+  if (imageUrl) {
+      preview = <img src={imageUrl}/>;
+  }
+
   return (      
       <form className="session-form" id="signup" onSubmit={handleSubmit}>
         <h2>Sign Up </h2>
+        <br/>
+        <div className='label'>Profile Image</div>
+        <div className='photo-container'>
+          <div className='photo-preview'>{preview}</div>
+          <input type="file" 
+            accept=".jpg, .jpeg, .png" 
+            onChange={handleFile} />
+        </div>
         <label>
           <div className='label'>Email</div>
           <input type="text"

@@ -9,18 +9,25 @@ import { useEffect } from "react";
 
 export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
-    const [openDate, setOpenDate] = useState(false)
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const owner = useSelector(state => state.session.user)
-    const [type, setType] = useState('Create')
+    const [openDate, setOpenDate] = useState(false);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const owner = useSelector(state => state.session.user);
+    const [type, setType] = useState('Create');
+    const [cover, setCover] = useState(null);
+    const [coverUrl, setCoverUrl] = useState(null);
 
     useEffect(()=> {
         if (itinerary) {
-            setType('Edit')
-            setTitle(itinerary.title)
-            setDescription(itinerary.description)
-            setDates([{startDate: new Date(itinerary.dateStart), endDate: new Date(itinerary.dateEnd), key: 'selection'}])
+            setType('Edit');
+            setTitle(itinerary.title);
+            setDescription(itinerary.description);
+            setDates([{
+                startDate: new Date(itinerary.dateStart), 
+                endDate: new Date(itinerary.dateEnd), 
+                key: 'selection'
+            }]);
+            setCoverUrl(itinerary.coverImageUrl);
         }
     }, [])
 
@@ -49,16 +56,55 @@ export default function ItineraryModal({itinerary}) {
 
     const handleSubmit = (e) => {
         if (type === "Create") {
-            dispatch(createItinerary({owner: owner.username, ownerId: owner._id, title: title, description: description, dateStart: dates[0].startDate, dateEnd: dates[0].endDate}))
+            dispatch(createItinerary({
+                // owner: owner.username, 
+                // ownerId: owner._id, 
+                title: title, 
+                description: description, 
+                dateStart: dates[0].startDate, 
+                dateEnd: dates[0].endDate,
+                cover
+            }))
         } else {
-            dispatch(editItinerary({id: itinerary._id, owner: owner.username, ownerId: owner._id, title: title, description: description, dateStart: dates[0].startDate, dateEnd: dates[0].endDate}))
+            dispatch(editItinerary({
+                // owner: owner.username, 
+                id: itinerary._id, 
+                // ownerId: owner._id, 
+                title: title, 
+                description: description, 
+                dateStart: dates[0].startDate, 
+                dateEnd: dates[0].endDate,
+                cover
+            }))
         }
     }
 
+    const handleFile = ({currentTarget}) => {
+        const file = currentTarget.files[0];
+        setCover(file);
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => 
+                setCoverUrl(fileReader.result);
+        } else {
+            setCoverUrl(null);
+        }
+    };
+    
+      let preview = null;
+      if (coverUrl) {
+          preview = <img src={coverUrl}/>;
+      }
+
     return(
         <form className="itinerary-form" onSubmit={handleSubmit}>
-            <div>
-                Image Upload
+            <div className="it-photo-container">
+            <div className='label'>Image Upload</div>
+                <div className='it-photo-preview'>{preview}</div>
+                <input type="file" 
+                    accept=".jpg, .jpeg, .png" 
+                    onChange={handleFile} />
             </div>
             <div id="inputs">
                 <div>Title</div>
