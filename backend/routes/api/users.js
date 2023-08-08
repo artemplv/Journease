@@ -44,6 +44,28 @@ router.get('/:id', async(req, res, next) => {
   }
 })
 
+router.patch('/:id', singleMulterUpload("image"), async(req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const profileImageUrl = await singleFileUpload({ file: req.file, public: true });
+
+    user.profileImageUrl = profileImageUrl;
+
+    const updatedUser = await user.save();
+    
+    return res.json({
+      user: updatedUser
+    })
+      
+  } catch(err) {
+    const error = new Error('An error occured');
+    error.statusCode = 404;
+    error.errors = { message: 'Unable to update photo'};
+    return next(error);
+  }
+})
+
 
 
 router.post(
