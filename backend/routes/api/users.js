@@ -27,6 +27,20 @@ router.get('/current', restoreUser, (req, res) => {
   });
 })
 
+router.get('/:id', async(req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.json({
+      user
+    });
+  } catch(err) {
+    const error = new Error('User does not exist');
+    error.statusCode = 404;
+    error.errors = { message: 'User with provided Id does not exist'};
+    return next(error);
+  }
+})
+
 
 router.post(
   '/register', 
