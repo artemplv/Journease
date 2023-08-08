@@ -92,7 +92,6 @@ export const editItinerary = (itinerary) => async dispatch => {
         body: formData
     })
     const data = await res.json()
-
     dispatch(receiveItinerary(data.itinerary));
 }
 

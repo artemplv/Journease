@@ -120,7 +120,6 @@ router.post(
 
 router.post(
   '/login', 
-  singleMulterUpload(""), 
   validateLoginInput, 
   async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
