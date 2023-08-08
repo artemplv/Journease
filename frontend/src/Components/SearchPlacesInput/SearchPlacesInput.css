@@ -1,17 +1,17 @@
 .pac-container {
   background-color: #fff;
- }
+}
  
- .pac-item,
- .pac-item-query {
+.pac-item,
+.pac-item-query {
   color: inherit;
   cursor: pointer;
- }
- 
- .pac-item:hover {
-  background: #bab9b966;
- }
+}
 
- .pac-logo:after {
+.pac-item:hover {
+  background: #bab9b966;
+}
+
+.pac-logo:after {
   display: none;
- }
+}

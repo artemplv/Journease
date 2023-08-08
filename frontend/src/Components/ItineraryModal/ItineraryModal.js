@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { DateRange } from 'react-date-range';
-import { useState } from "react";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './ItineraryModal.css'
 import { createItinerary, editItinerary } from "../../store/itineraries";
-import { useEffect } from "react";
+
+import SearchUserInput from "../SearchUsersInput/SearchUsersInput";
 
 export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
@@ -127,7 +128,7 @@ export default function ItineraryModal({itinerary}) {
                 }
                 <div>Collaborators
                     <br/>
-                    <input type="text"/>
+                    <SearchUserInput />
                 </div>
                 <input type="submit" value="Create"/>
             </div>

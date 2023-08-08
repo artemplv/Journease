@@ -24,6 +24,7 @@
     font-size: 17px;
     padding: 2vw;
     color: grey;
+    gap: 15px;
 }
 
 .itinerary-form input, .itinerary-form textarea {
