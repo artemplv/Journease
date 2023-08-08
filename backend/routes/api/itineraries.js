@@ -27,8 +27,8 @@ router.post(
             dateEnd: req.body.dateEnd,
             collaborators: req.body.collaborators,
             activities: req.body.activities,
-            coverImageUrl: coverImageUrl
-        })
+            coverImageUrl
+        });
         const itinerary = await newItinerary.save();
         return res.json({
             itinerary: itinerary
@@ -73,7 +73,7 @@ router.get('/:id', async(req, res, next) => {
 // UPDATE ITINERARY 
 router.patch(
     '/:id', 
-    singleMulterUpload(""),
+    singleMulterUpload("cover"),
     requireUser, 
     async(req, res, next) => {
     try {
@@ -94,7 +94,7 @@ router.patch(
         itinerary.dateStart = req.body.dateStart || itinerary.dateStart;
         itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
         itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
-        itinerary.coverImageUrl = coverImageUrl || itinerary.coverImageUrl;
+        itinerary.coverImageUrl = coverImageUrl
         itinerary.activities = req.body.activities || itinerary.activities;
         const updatedItinerary = await itinerary.save();
         return res.json({

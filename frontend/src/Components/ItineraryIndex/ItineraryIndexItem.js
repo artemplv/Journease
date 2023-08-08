@@ -6,33 +6,38 @@ import { useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import { deleteItinerary } from '../../store/itineraries';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function ItineraryIndexItem({itinerary}) {
     const currentUser = useSelector(state => state.session.user)
     const [showUpdate, setShowUpdate] = useState(false) 
     const [openModal, setOpenModal] = useState(false)
+    const history = useHistory()
     const dispatch = useDispatch();
 
     useEffect(()=> {
-        if (currentUser) {
-            if (itinerary.ownerId === currentUser._id) {
+        if (currentUser && itinerary.ownerId === currentUser._id) {
                 setShowUpdate(true)
-            } 
-        } else {
+        }  else {
             setShowUpdate(false)
         }
-    }, [currentUser?._id])
+    }, [itinerary])
 
     const remove = () => {
         dispatch(deleteItinerary(itinerary._id))
     }
 
+    const redirectShow = () => {
+        history.push(`/itineraries/${itinerary._id}`)
+    }
+
     return (
-        <li className="itinerary-index-item">
-            {/* <img src={currentUser.profileImageUrl}/> */}
-            <Link to={`/itineraries/${itinerary._id}`}><img src={itinerary.coverImageUrl}/></Link>
+        <li className="itinerary-index-item" onClick={redirectShow}>
             <div id="itinerary-card-info">
-                <Link to={`/itineraries/${itinerary._id}`}><h1>{itinerary.title}</h1></Link>
+                <div id="index-thumbnail">
+                    <img src={`${itinerary.coverImageUrl}`}/>
+                </div>
+                <h1>{itinerary.title}</h1>
                 <div id="itinerary-card-subinfo">
                     <p>{itinerary.owner}</p>
                     <p>💕Likes</p>
