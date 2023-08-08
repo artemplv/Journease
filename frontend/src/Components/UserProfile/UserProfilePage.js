@@ -14,7 +14,8 @@ export default function UserProfilePage () {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
-    const userItineraries = useSelector(state => state.users.userItineraries);
+    const user = useSelector(state => state.users[currentUser?._id]);
+
     const [modalType, setModalType] = useState("")
 
     const editImage = () => {
@@ -30,7 +31,7 @@ export default function UserProfilePage () {
     }, [currentUser, userItineraries?.length]);
 
 
-    const ItineraryList = userItineraries?.map(itinerary => {
+    const ItineraryList = user.itineraries?.map(itineraryId => {
         return (
             <ItineraryIndexItem itinerary={itinerary} />
         );

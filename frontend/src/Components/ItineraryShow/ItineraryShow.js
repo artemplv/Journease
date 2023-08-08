@@ -40,7 +40,7 @@ export default function ItineraryShow () {
                     <div id="itinerary-show-image-container">
                         <img src={`${itinerary.coverImageUrl}`}/>
                     </div>
-                    <div class="itinerary-show-description">
+                    <div className="itinerary-show-description">
                         <h1>{itinerary.title}</h1>
                         <div>        
                             <i className="fa-solid fa-user-pen" style={{color: "#F87575",}}/>

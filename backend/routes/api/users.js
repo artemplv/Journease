@@ -32,9 +32,17 @@ router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     const userItineraries = await Itinerary.find({ownerId: req.params.id});
+    const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
+    const data = {};
+
+    userItineraries.forEach((itinerary) => {
+      data[itinerary.id] = itinerary
+    })
+
     return res.json({
       user,
-      userItineraries
+      userItineraries: data,
+      itinerariesIds
     });
   } catch(err) {
     const error = new Error('User does not exist');
@@ -119,7 +127,8 @@ router.post(
 
 
 router.post(
-  '/login', 
+  '/login',
+  singleMulterUpload(""), 
   validateLoginInput, 
   async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
