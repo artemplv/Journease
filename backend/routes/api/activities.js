@@ -3,22 +3,24 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Itinerary = mongoose.model('Itinerary');
 const Activity = require("../../models/Activity");
+const validateActivityInput = require('../../validation/activity');
 
 //CREATE ACTIVITY ROUTE 
-router.post('/:itineraryId/activities', async (req, res, next) => {
+router.post(
+    '/:itineraryId/activities', 
+    validateActivityInput,
+    async (req, res, next) => {
     try {
         const itinerary = await Itinerary.findById(req.params.itineraryId);
         const newActivity = new Activity({
            itineraryId: itinerary._id,
            title: req.body.title,
            date: req.body.date,
-           place: req.body.place,
-           category: req.body.category
+           place: req.body.place
      });
      const activity = await newActivity.save();
      itinerary.activities.push(activity._id)
      itinerary.save();
-    //  const newItinerary = await itinerary.save();
      return res.json({
         activity: newActivity
      })

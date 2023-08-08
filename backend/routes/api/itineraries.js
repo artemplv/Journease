@@ -3,14 +3,17 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const { requireUser, restoreUser } = require('../../config/passport');
 const { singleFileUpload, singleMulterUpload } = require('../../awsS3');
+const handleValidationErrors = require('../../validation/handleValidationErrors');
+const validateItineraryInput = require('../../validation/itinerary');
 const Itinerary = mongoose.model('Itinerary');
 const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
 // CREATE ITINERARY
 router.post(
     '/', 
-    singleMulterUpload("image"), 
+    singleMulterUpload("cover"), 
     restoreUser, 
+    validateItineraryInput,
     async (req, res, next) => {
     try {
         const coverImageUrl = req.file ? 
@@ -31,14 +34,15 @@ router.post(
             itinerary: itinerary
         });
     } catch (err) {
-        next(err);
+        return next(err);
     };
 });
 
 // INDEX ITINERARY
 router.get('/', async (req, res) => {
     try {
-        const allItineraries = (await Itinerary.find()).reverse()
+        const allItineraries = (await Itinerary.find()
+                                                .sort({ createdAt: -1 }));
         let itineraries = {};
         allItineraries.forEach((itinerary) => {
             itineraries[itinerary._id] = itinerary;
