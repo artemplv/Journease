@@ -45,6 +45,7 @@ router.get('/:id', async(req, res, next) => {
 })
 
 router.patch('/:id', singleMulterUpload("image"), async(req, res, next) => {
+  debugger
   try {
     const user = await User.findById(req.params.id);
 
@@ -53,7 +54,7 @@ router.patch('/:id', singleMulterUpload("image"), async(req, res, next) => {
     user.profileImageUrl = profileImageUrl;
 
     const updatedUser = await user.save();
-    
+
     return res.json({
       user: updatedUser
     })

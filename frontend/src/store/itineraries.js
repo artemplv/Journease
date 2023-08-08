@@ -92,7 +92,7 @@ export const editItinerary = (itinerary) => async dispatch => {
         body: formData
     })
     const data = await res.json()
-    debugger
+
     dispatch(receiveItinerary(data.itinerary));
 }
 

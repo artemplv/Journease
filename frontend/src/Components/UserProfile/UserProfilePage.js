@@ -42,7 +42,7 @@ export default function UserProfilePage () {
             <button onClick={editImage}>Change Profile Picture</button>
             {(modalType === 'edit-profile') && (
                 <Modal onClose={() => setModalType("")}>
-                    <ProfileEditForm/>
+                    <ProfileEditForm currentUserId={currentUser._id}/>
                 </Modal>
             )}
             <h1>My Itineraries</h1>
