@@ -33,6 +33,8 @@ export default function ItineraryIndexItem({itinerary}) {
 
     return (
         <li className="itinerary-index-item" onClick={redirectShow}>
+            {/* <img src={currentUser.profileImageUrl}/> */}
+            <img src={itinerary.coverImageUrl}/>
             <div id="itinerary-card-info">
                 <div id="index-thumbnail">
                     <img src={`${itinerary.coverImageUrl}`}/>
