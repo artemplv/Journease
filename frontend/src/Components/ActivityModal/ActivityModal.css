@@ -1,0 +1,68 @@
+.activity-modal-container {
+    display: flex;
+}
+
+.activity-form-title {
+    height: 50px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.activity-preview-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.activity-preview-header img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 20px 20px 20px;
+}
+
+.activity-header {
+    height: 65px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-details {
+    display: flex;
+    flex-direction: column;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.activity-modal-container input {
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    font-size: 15px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    width: 23vw;
+    height: 3vh;
+    margin-top: 10px;
+}
+
+.activity-modal-container button {
+    border-radius: 5px;
+    width: 23vw;
+    height: 3.5vh;
+    margin: 20px 0 20px 0;
+    border: 1px solid #aaaaaa;
+}
+
+.activity-modal-container label {
+    text-align: left;
+    margin: 10px;
+}
+
+

@@ -3,13 +3,16 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import itinerariesReducer from './itineraries';
+import activitiesReducer from './activities';
 
 const rootReducer = combineReducers({
   session,
   errors,
-  itineraries: itinerariesReducer
+  itineraries: itinerariesReducer,
+  activities: activitiesReducer
 });
 let enhancer;
+
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
