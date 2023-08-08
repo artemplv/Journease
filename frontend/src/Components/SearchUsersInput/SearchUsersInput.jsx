@@ -1,7 +1,13 @@
 import {
   useState,
-  useEffect,
+  useRef,
 } from 'react';
+
+import {
+  useDispatch,
+} from 'react-redux';
+
+import { searchUsersDebounced } from '../../store/users';
 
 import SearchResultItem from './SearchResultItem';
 
@@ -11,6 +17,9 @@ function SearchUserInput(props) {
   const {
     onChange,
   } = props;
+
+  const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
   const [inputValue, setInputValue] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
@@ -26,6 +35,20 @@ function SearchUserInput(props) {
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
+    if (e.target.value.trim()) {
+      dispatch(searchUsersDebounced(e.target.value, 5, setUserIds));
+    }
+  }
+
+  const handleSelect = (userId) => {
+    onChange(userId);
+    setInputValue('');
+    setUserIds([]);
+
+    // TODO: fix this workaround for restoring input focus after blur event
+    setTimeout(() => {
+      inputRef.current.focus();
+    }, 0);
   }
 
   return (
@@ -33,9 +56,11 @@ function SearchUserInput(props) {
       <input
         type="text"
         placeholder="Search for users by username"
+        value={inputValue}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
+        ref={inputRef}
       />
       {
         (inputFocused && inputValue) && (
@@ -46,7 +71,10 @@ function SearchUserInput(props) {
                   {
                     userIds.map((id) => (
                       <li key={id}>
-                        <SearchResultItem userId={id} />
+                        <SearchResultItem
+                          userId={id}
+                          onSelect={handleSelect}
+                        />
                       </li>
                     ))
                   }

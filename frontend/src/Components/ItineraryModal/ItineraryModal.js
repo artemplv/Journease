@@ -4,9 +4,10 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './ItineraryModal.css'
-import { createItinerary, editItinerary } from "../../store/itineraries";
+import { createItinerary, editItinerary } from '../../store/itineraries';
 
-import SearchUserInput from "../SearchUsersInput/SearchUsersInput";
+import SearchUserInput from '../SearchUsersInput/SearchUsersInput';
+import Collaborator from "./Collaborator";
 
 export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function ItineraryModal({itinerary}) {
     const [type, setType] = useState('Create');
     const [cover, setCover] = useState(null);
     const [coverUrl, setCoverUrl] = useState(null);
+    const [collaboratorsIds, setCollaboratorsIds] = useState([]);
 
     useEffect(()=> {
         if (itinerary) {
@@ -55,6 +57,12 @@ export default function ItineraryModal({itinerary}) {
         setOpenDate(!openDate)
     }
 
+    const addCollaborator = (userId) => {
+        if (!collaboratorsIds.includes(userId)) {
+            setCollaboratorsIds((value) => [ ...value, userId ]);
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (type === "Create") {
@@ -65,6 +73,7 @@ export default function ItineraryModal({itinerary}) {
                 description: description, 
                 dateStart: dates[0].startDate, 
                 dateEnd: dates[0].endDate,
+                collaborators: collaboratorsIds,
                 cover
             }))
         } else {
@@ -126,9 +135,21 @@ export default function ItineraryModal({itinerary}) {
                         <DateRange months={2} direction="horizontal" color="#D33756" minDate={new Date()} editableDateInputs={true} onChange={item => setDates([item.selection])} moveRangeOnFirstSelection={false} ranges={dates}/> 
                     </div>
                 }
-                <div>Collaborators
+                <div className="collaborators">Collaborators
                     <br/>
-                    <SearchUserInput />
+                    <SearchUserInput
+                        onChange={addCollaborator}
+                    />
+                    {
+                        collaboratorsIds.length > 0 && (
+                            <p className="collaborators-subtitle">Users to be added as collaborators:</p>
+                        )
+                    }
+                    {
+                        collaboratorsIds.map((userId) => (
+                            <Collaborator userId={userId} />
+                        ))
+                    }
                 </div>
                 <input type="submit" value="Create"/>
             </div>

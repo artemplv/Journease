@@ -18,15 +18,20 @@
   padding: 0;
 }
 
-.users-search-dropdown li {
-  cursor: pointer;
-  padding: 2px;
-}
-
 .users-search-dropdown li:hover {
   background: #bab9b966;
 }
 
+.users-search-dropdown li button {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
 .users-search-dropdown li:not(:last-child) {
+  border-bottom: 1px solid #bab9b966;
   margin-bottom: 7px;
 }

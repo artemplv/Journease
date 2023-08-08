@@ -8,10 +8,9 @@ import {
 
 import { fetchUser } from '../../store/users';
 
-function SearchResultItem(props) {
+function Collaborator(props) {
   const {
     userId,
-    onSelect,
   } = props;
 
   const dispatch = useDispatch();
@@ -23,18 +22,9 @@ function SearchResultItem(props) {
     }
   }, [user]);
 
-  const handleClick = () => {
-    onSelect(userId);
-  }
-
   return (
-    <button
-      type="button"
-      onMouseDown={handleClick}
-    >
-      <span>{user?.username}</span>
-    </button>
+    <p className='collaborator-username'>{user.username}</p>
   );
 };
 
-export default SearchResultItem;
+export default Collaborator;

@@ -101,3 +101,19 @@
     height: 100%;
     object-fit: cover;
 }
+
+.itinerary-form .collaborators {
+    margin-bottom: 20px;
+ }
+
+.itinerary-form .collaborators .collaborators-subtitle {
+   margin-bottom: 10px;
+}
+
+.itinerary-form .collaborators .collaborator-username {
+    color: black;
+}
+
+.itinerary-form .collaborators .collaborator-username:not(:last-child) {
+    margin-bottom: 5px;
+}
