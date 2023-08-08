@@ -1,25 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { requireUser, restoreUser } = require('../../config/passport');
-const User = mongoose.model('User');
+const { singleFileUpload, singleMulterUpload } = require('../../awsS3');
 const Itinerary = mongoose.model('Itinerary');
 const router = express.Router();
-
+const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
 // CREATE ITINERARY
-router.post('/', restoreUser, async (req, res, next) => {
+router.post(
+    '/', 
+    singleMulterUpload("cover"), 
+    restoreUser, 
+    async (req, res, next) => {
     try {
+        const coverImageUrl = req.file ? 
+            await singleFileUpload({ file: req.file, public: true }) :
+            DEFAULT_COVER_IMAGE_URL;
         const newItinerary = new Itinerary({
-            owner: req.user.username,
+            // owner: req.user.username,
             ownerId: req.user._id,
             title: req.body.title,
             description: req.body.description,
             dateStart: req.body.dateStart,
             dateEnd: req.body.dateEnd,
             collaborators: req.body.collaborators,
-            coverImage: req.body.coverImage,
-            activities: req.body.activities
-        })
+            activities: req.body.activities,
+            coverImageUrl
+        });
         const itinerary = await newItinerary.save();
         return res.json({
             itinerary: itinerary
@@ -32,7 +39,7 @@ router.post('/', restoreUser, async (req, res, next) => {
 // INDEX ITINERARY
 router.get('/', async (req, res) => {
     try {
-        const allItineraries = (await Itinerary.find()).reverse();
+        const allItineraries = (await Itinerary.find()).reverse()
         let itineraries = {};
         allItineraries.forEach((itinerary) => {
             itineraries[itinerary._id] = itinerary;
@@ -61,7 +68,11 @@ router.get('/:id', async(req, res, next) => {
 });
 
 // UPDATE ITINERARY 
-router.patch('/:id', requireUser, async(req, res, next) => {
+router.patch(
+    '/:id', 
+    singleMulterUpload("cover"),
+    requireUser, 
+    async(req, res, next) => {
     try {
         const itinerary = await Itinerary.findById(req.params.id);
         if (!itinerary) {
@@ -70,14 +81,18 @@ router.patch('/:id', requireUser, async(req, res, next) => {
             err.errors = { itinerary: "Itinerary does not exist."};
             return next(err);
         }
-        itinerary.owner = itinerary.owner;
+        const coverImageUrl = req.file ? 
+        await singleFileUpload({ file: req.file, public: true }) :
+        DEFAULT_COVER_IMAGE_URL;
+
+        // itinerary.owner = itinerary.owner;
         itinerary.ownerId = itinerary.ownerId;
         itinerary.title = req.body.title || itinerary.title;
         itinerary.description = req.body.description || itinerary.description;
         itinerary.dateStart = req.body.dateStart || itinerary.dateStart;
         itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
         itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
-        itinerary.coverImage = req.body.coverImage || itinerary.coverImage;
+        itinerary.coverImageUrl = coverImageUrl
         itinerary.activities = req.body.activities || itinerary.activities;
         const updatedItinerary = await itinerary.save();
         return res.json({

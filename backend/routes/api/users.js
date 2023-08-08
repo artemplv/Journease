@@ -4,8 +4,9 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { loginUser, restoreUser } = require('../../config/passport');
-
+const DEFAULT_PROFILE_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/blank-profile-picture-973460_1280.webp'; 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -21,6 +22,7 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
+    profileImageUrl: req.user.profileImageUrl,
     email: req.user.email
   });
 })
@@ -28,6 +30,7 @@ router.get('/current', restoreUser, (req, res) => {
 
 router.post(
   '/register', 
+  singleMulterUpload("image"),
   validateRegisterInput, 
   async (req, res, next) => {
     const user = await User.findOne({
@@ -47,10 +50,14 @@ router.post(
       err.errors = errors;
       return next(err);
     }
+    const profileImageUrl = req.file ?
+      await singleFileUpload({ file: req.file, public: true }) :
+      DEFAULT_PROFILE_IMAGE_URL;
 
     const newUser = new User({
       username: req.body.username,
-      email: req.body.email
+      email: req.body.email,
+      profileImageUrl
     });
 
     bcrypt.genSalt(10, (err, salt) => {
@@ -71,7 +78,11 @@ router.post(
 );
 
 
-router.post('/login', validateLoginInput, async (req, res, next) => {
+router.post(
+  '/login', 
+  singleMulterUpload(""), 
+  validateLoginInput, 
+  async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
     if (err) return next(err);
     if (!user) {

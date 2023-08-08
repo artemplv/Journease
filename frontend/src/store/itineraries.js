@@ -50,21 +50,51 @@ export const deleteItinerary = (itineraryId) => async dispatch => {
 }
 
 export const createItinerary = (itinerary) => async dispatch => {
-    const res = await jwtFetch('/api/itineraries', {
-        method: 'POST',
-        body: JSON.stringify(itinerary)
-    });
-
-    const data = await res.json();
-    dispatch(receiveItinerary(data.itinerary));
+    // debugger
+    const { cover, title, description, dateStart, dateEnd } = itinerary;
+    const formData = new FormData();
+    // formData.append("ownerId", ownerId);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("dateStart", dateStart);
+    formData.append("dateEnd", dateEnd);
+    // formData.append("collaborators", collaborators);
+    // formData.append("activities", activities)
+    if (cover) formData.append("cover", cover);
+    try {
+        const res = await jwtFetch('/api/itineraries', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        debugger
+        dispatch(receiveItinerary(data.itinerary));
+    } catch(err) {
+      const res = await err.json();
+      if (res.statusCode === 500) {
+        console.log(res.json())
+        return res.json();
+      }
+    }
 }
 
 export const editItinerary = (itinerary) => async dispatch => {
+    const { cover, title, description, dateStart, dateEnd } = itinerary;
+    const formData = new FormData();
+    // formData.append("ownerId", ownerId);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("dateStart", dateStart);
+    formData.append("dateEnd", dateEnd);
+    // formData.append("collaborators", collaborators);
+    // formData.append("activities", activities)
+    if (cover) formData.append("cover", cover);
     const res = await jwtFetch(`/api/itineraries/${itinerary.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(itinerary)
+        body: formData
     })
     const data = await res.json()
+    debugger
     dispatch(receiveItinerary(data.itinerary));
 }
 
