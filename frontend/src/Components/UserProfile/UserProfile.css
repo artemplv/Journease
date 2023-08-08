@@ -1,0 +1,60 @@
+.user-profile-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile-page h1 {
+    font-size: 28px;
+    padding: 20px;
+}
+
+
+.user-profile-page button {
+    width: fit-content;
+}
+
+.user-info {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.user-info img {
+    height: 10%;
+    width: 10%;
+    border-radius: 50%;
+}
+
+.user-itineraries {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    border: 2px solid red;
+    margin: auto;
+    padding: 20px;
+    width: 80vw;
+}
+
+.user-wishlist {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        border: 2px solid green;
+        margin: auto;
+        padding: 20px;
+        width: 80vw;
+}
+
+.itinerary-index-item {
+    align-items: center;
+    height: 65vh;
+    width: 25vw;
+    background-color: rgb(240, 240, 240);
+    margin: 15px;
+    outline: 1px solid white;
+    outline-offset: -10px;
+}

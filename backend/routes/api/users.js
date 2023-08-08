@@ -31,8 +31,10 @@ router.get('/current', restoreUser, (req, res) => {
 router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
+    const userItineraries = await Itinerary.find({ownerId: req.params.id});
     return res.json({
-      user
+      user,
+      userItineraries
     });
   } catch(err) {
     const error = new Error('User does not exist');
@@ -42,25 +44,6 @@ router.get('/:id', async(req, res, next) => {
   }
 })
 
-router.get('/:id/itineraries', async(req, res, next) => {
-  try {
-    const userItineraries = await Itinerary.find( {ownerId: req.params.id});
-    if (userItineraries.length) {
-      return res.json({
-        userItineraries
-      });
-    } else {
-      return res.json({
-        userItineraries: []
-      })
-    }
-  } catch(err) {
-    const error = new Error('No itineraries for this user');
-    error.statusCode = 404;
-    error.errors = { message: 'User with provided Id does not exist'};
-    return next(error);
-  }
-})
 
 
 router.post(

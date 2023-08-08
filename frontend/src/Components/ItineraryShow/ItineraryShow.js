@@ -19,7 +19,7 @@ export default function ItineraryShow () {
         <div className="itinerary-show-page">
             <div className="itinerary-show-header">
                 <div id="itinerary-show-image-container">
-                    <img src={`${itinerary.coverImageUrl}`}/>
+                    <img src={`${itinerary?.coverImageUrl}`}/>
                 </div>
                 <h1>{itinerary?.title}</h1>
                 <div className="itinerary-users">
