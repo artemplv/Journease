@@ -35,11 +35,11 @@ export default function ItineraryIndexItem({itinerary}) {
         <li className="itinerary-index-item" onClick={redirectShow}>
             <div id="itinerary-card-info">
                 <div id="index-thumbnail">
-                    <img src={`${itinerary.coverImageUrl}`}/>
+                    <img src={`${itinerary?.coverImageUrl}`}/>
                 </div>
-                <h1>{itinerary.title}</h1>
+                <h1>{itinerary?.title}</h1>
                 <div id="itinerary-card-subinfo">
-                    <p>{itinerary.owner}</p>
+                    <p>{itinerary?.owner}</p>
                     <p>💕Likes</p>
                 </div>
                 {showUpdate && 

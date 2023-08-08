@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Itinerary = mongoose.model('Itinerary');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { loginUser, restoreUser, requireUser } = require('../../config/passport');
 const DEFAULT_PROFILE_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/blank-profile-picture-973460_1280.webp'; 
@@ -25,6 +26,40 @@ router.get('/current', restoreUser, (req, res) => {
     profileImageUrl: req.user.profileImageUrl,
     email: req.user.email
   });
+})
+
+router.get('/:id', async(req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.json({
+      user
+    });
+  } catch(err) {
+    const error = new Error('User does not exist');
+    error.statusCode = 404;
+    error.errors = { message: 'User with provided Id does not exist'};
+    return next(error);
+  }
+})
+
+router.get('/:id/itineraries', async(req, res, next) => {
+  try {
+    const userItineraries = await Itinerary.find( {ownerId: req.params.id});
+    if (userItineraries.length) {
+      return res.json({
+        userItineraries
+      });
+    } else {
+      return res.json({
+        userItineraries: []
+      })
+    }
+  } catch(err) {
+    const error = new Error('No itineraries for this user');
+    error.statusCode = 404;
+    error.errors = { message: 'User with provided Id does not exist'};
+    return next(error);
+  }
 })
 
 
