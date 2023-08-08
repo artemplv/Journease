@@ -19,10 +19,6 @@ const activitySchema = new Schema ({
         type: Object,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    }
 }, {
     timestamps: true
 });
