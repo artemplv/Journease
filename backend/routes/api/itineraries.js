@@ -9,7 +9,7 @@ const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/pho
 // CREATE ITINERARY
 router.post(
     '/', 
-    singleMulterUpload("image"), 
+    singleMulterUpload("cover"), 
     restoreUser, 
     async (req, res, next) => {
     try {
@@ -17,7 +17,7 @@ router.post(
             await singleFileUpload({ file: req.file, public: true }) :
             DEFAULT_COVER_IMAGE_URL;
         const newItinerary = new Itinerary({
-            owner: req.user.username,
+            // owner: req.user.username,
             ownerId: req.user._id,
             title: req.body.title,
             description: req.body.description,
@@ -25,8 +25,8 @@ router.post(
             dateEnd: req.body.dateEnd,
             collaborators: req.body.collaborators,
             activities: req.body.activities,
-            coverImageUrl: coverImageUrl
-        })
+            coverImageUrl
+        });
         const itinerary = await newItinerary.save();
         return res.json({
             itinerary: itinerary
@@ -70,7 +70,7 @@ router.get('/:id', async(req, res, next) => {
 // UPDATE ITINERARY 
 router.patch(
     '/:id', 
-    singleMulterUpload(""),
+    singleMulterUpload("cover"),
     requireUser, 
     async(req, res, next) => {
     try {
@@ -85,14 +85,14 @@ router.patch(
         await singleFileUpload({ file: req.file, public: true }) :
         DEFAULT_COVER_IMAGE_URL;
 
-        itinerary.owner = itinerary.owner;
+        // itinerary.owner = itinerary.owner;
         itinerary.ownerId = itinerary.ownerId;
         itinerary.title = req.body.title || itinerary.title;
         itinerary.description = req.body.description || itinerary.description;
         itinerary.dateStart = req.body.dateStart || itinerary.dateStart;
         itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
         itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
-        itinerary.coverImageUrl = coverImageUrl || itinerary.coverImageUrl;
+        itinerary.coverImageUrl = coverImageUrl
         itinerary.activities = req.body.activities || itinerary.activities;
         const updatedItinerary = await itinerary.save();
         return res.json({
