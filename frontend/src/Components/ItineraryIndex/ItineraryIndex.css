@@ -1,32 +1,47 @@
 .itineraries-index {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 4.5vw;
+    /* display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 
 .itinerary-index-item {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
     align-items: center;
-    justify-content: center;
-    height: 350px;
-    width: 250px;
-    background-color: #E0E2ED;
+    /* justify-content: center; */
+    height: 65vh;
+    width: 25vw;
+    background-color: rgb(240, 240, 240);
     margin: 15px;
+    outline: 1px solid white;
+    outline-offset: -10px;
 }
 
 #itinerary-card-info {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     width: 100%;
 }
 
 #itinerary-card-info h1 {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
+    color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
     text-align: center;
+    width: 15vw;
+    height: 5vh;
+    background-color: #B9E6FF;
+    /* background-color: rgb(195, 185, 168); */
+    transform: translateY(-3vh);
+    outline: 1px solid #5C95FF;
+    outline-offset: -5px;
+    padding: 5px;
 }
 
 #itinerary-card-info p {
@@ -40,10 +55,11 @@
     justify-content: space-between;
 }
 
-.itinerary-index-item img {
+#index-thumbnail img {
     object-fit: cover;
-    height: 80%;
-    width: 100%;
+    width: 25vw;
+    height: 50vh;
+    cursor: pointer;
 }
 
 #itinerary-index-page-title {

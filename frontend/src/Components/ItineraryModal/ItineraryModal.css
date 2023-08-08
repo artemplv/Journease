@@ -23,15 +23,19 @@
     text-align: left;
     font-size: 17px;
     padding: 2vw;
+    color: grey;
 }
 
 .itinerary-form input, .itinerary-form textarea {
     margin-top: 2vh;
-    border-radius: 3px;
-    border: 1px solid grey;
+    border-radius: 5px;
+    border: 1px solid #B9E6FF;
     margin-top: 0px;
     margin-bottom: 2vh;
     font-size: 15px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
 }
 
 .itinerary-form input[type="text"]{
@@ -44,6 +48,11 @@
     height: 8vh;
     overflow-y: scroll;
 }
+
+.itinerary-form input[type=text]:focus, .itinerary-form textarea:focus {
+    border: 2px solid #0982df;
+}
+
 
 #dates input[type="text"]{
     width: 10.5vw;

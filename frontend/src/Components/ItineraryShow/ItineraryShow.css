@@ -1,21 +1,19 @@
-.itinerary-show-headers {
+.itinerary-show-header {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 10px;
-    border: 1px solid blue;
+    height: 15vh;
 }
 
-.itinerary-show-img-container {
-    border: 1px solid red;
-    width: 50%;
+.itinerary-show-image-container {
+    height: 50px;
 }
 
-.itinerary-show-img-container img {
-    object-fit: contain;
+#itinerary-show-img-container > img {
+    object-fit: cover;
+    max-height: 30%;
+    overflow: hidden;
 }
 
-.itinerary-users {
-    border: 1px solid green;
-    width: 50%;
-}
+
+

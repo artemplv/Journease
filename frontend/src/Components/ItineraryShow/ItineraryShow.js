@@ -17,17 +17,17 @@ export default function ItineraryShow () {
         
     return (
         <div className="itinerary-show-page">
-            <div className="itinerary-show-headers">
-                <div className="itinerary-show-img-container">
+            <div className="itinerary-show-header">
+                <div id="itinerary-show-image-container">
                     <img src={`${itinerary.coverImageUrl}`}/>
-                    <h1>{itinerary?.title}</h1>
                 </div>
+                <h1>{itinerary?.title}</h1>
                 <div className="itinerary-users">
                     <p>{itinerary?.owner}</p>
                     <p>{itinerary?.collaborators}</p>
                 </div>
+                <div>{itinerary?.description}</div>
             </div>
-            <p>{itinerary?.description}</p>
         </div>
     )
 }
