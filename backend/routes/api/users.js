@@ -28,6 +28,37 @@ router.get('/current', restoreUser, (req, res) => {
   });
 })
 
+router.get('/search', requireUser, async (req, res, next) => {
+  const {
+    username,
+    limit = 10,
+  } = req.query;
+  
+  try {
+    const users = await User.find(
+      {
+        username: { $regex : new RegExp(username, "i") }
+      },
+      'username email profileImageUrl'
+    ).limit(limit);
+
+    const data = {
+      byId: {},
+      allIds: []
+    };
+
+    users.forEach((user) => {
+      data.byId[user.id] = user;
+      data.allIds.push(user.id);
+    });
+
+    res.json({ users: data });
+  }
+  catch(err) {
+    next(err);
+  }
+});
+
 router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -128,37 +159,6 @@ router.post(
     }
     return res.json(await loginUser(user));
   })(req, res, next);
-});
-
-router.get('/search', requireUser, async (req, res, next) => {
-  const {
-    username,
-    limit = 10,
-  } = req.query;
-  
-  try {
-    const users = await User.find(
-      {
-        username: { $regex : new RegExp(username, "i") }
-      },
-      'username email profileImageUrl'
-    ).limit(limit);
-
-    const data = {
-      byId: {},
-      allIds: []
-    };
-
-    users.forEach((user) => {
-      data.byId[user.id] = user;
-      data.allIds.push(user.id);
-    });
-
-    res.json({ users: data });
-  }
-  catch(err) {
-    next(err);
-  }
 });
 
 module.exports = router;
