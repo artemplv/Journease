@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../store/users';
 import ItineraryIndexItem from '../ItineraryIndex/ItineraryIndexItem';
 import { useHistory, Link } from 'react-router-dom';
 import UserInfo from './UserInfo';
 import './UserProfile.css';
+import { Modal } from '../../context/Modal';
+import ProfileEditForm from './ProfileEditForm';
 
 
 
@@ -13,6 +15,11 @@ export default function UserProfilePage () {
     const history = useHistory();
     const currentUser = useSelector(state => state.session.user);
     const userItineraries = useSelector(state => state.users.userItineraries);
+    const [modalType, setModalType] = useState("")
+
+    const editImage = () => {
+        setModalType("edit-profile")
+    }
 
     useEffect(() => {
         if (!currentUser) {
@@ -32,8 +39,12 @@ export default function UserProfilePage () {
     return (
         <div className='user-profile-page'>
             <UserInfo currentUser={currentUser} />
-            <button>Change Profile Picture</button>
-
+            <button onClick={editImage}>Change Profile Picture</button>
+            {(modalType === 'edit-profile') && (
+                <Modal onClose={() => setModalType("")}>
+                    <ProfileEditForm/>
+                </Modal>
+            )}
             <h1>My Itineraries</h1>
             <div className='user-itineraries'>
                 {userItineraries && ItineraryList}
