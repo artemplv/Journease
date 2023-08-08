@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
-
-import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+import { Route } from 'react-router-dom';
+// import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 
 import { getCurrentUser } from './store/session';
 import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
+import ItineraryShow from './components/ItineraryShow/ItineraryShow';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +20,11 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <AuthRoute exact path="/" component={ItineraryIndex} />
+        <Route exact path="/" component={ItineraryIndex} />
+
+        <Route exact path="/itineraries" component={ItineraryIndex} />
+
+        <Route exact path="/itineraries/:itineraryId" component={ItineraryShow} />
       </Switch>
     </>
   );
