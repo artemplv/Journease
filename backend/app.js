@@ -8,6 +8,7 @@ const csurf = require('csurf');
 require('./models/User');
 require('./config/passport'); 
 require('./models/Itinerary');
+require('./models/Activity');
 const passport = require('passport');
 
 const { isProduction } = require('./config/keys');
@@ -15,6 +16,7 @@ const { isProduction } = require('./config/keys');
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
 const itinerariesRouter = require('./routes/api/itineraries');
+const activitiesRouter = require('./routes/api/activities');
 
 const app = express();
 
@@ -45,6 +47,7 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/itineraries', itinerariesRouter);
+app.use('/api/itineraries', activitiesRouter);
 
 
 if (isProduction) {

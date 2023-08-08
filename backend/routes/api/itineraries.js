@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = express.Router();
 const { requireUser, restoreUser } = require('../../config/passport');
 const { singleFileUpload, singleMulterUpload } = require('../../awsS3');
 const Itinerary = mongoose.model('Itinerary');
-const router = express.Router();
 const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
 // CREATE ITINERARY
@@ -17,7 +17,6 @@ router.post(
             await singleFileUpload({ file: req.file, public: true }) :
             DEFAULT_COVER_IMAGE_URL;
         const newItinerary = new Itinerary({
-            owner: req.user.username,
             ownerId: req.user._id,
             title: req.body.title,
             description: req.body.description,
@@ -85,7 +84,6 @@ router.patch(
         await singleFileUpload({ file: req.file, public: true }) :
         DEFAULT_COVER_IMAGE_URL;
 
-        itinerary.owner = itinerary.owner;
         itinerary.ownerId = itinerary.ownerId;
         itinerary.title = req.body.title || itinerary.title;
         itinerary.description = req.body.description || itinerary.description;
