@@ -55,6 +55,7 @@ export default function ItineraryModal({itinerary}) {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (type === "Create") {
             dispatch(createItinerary({
                 // owner: owner.username, 

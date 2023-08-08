@@ -50,7 +50,6 @@ export const deleteItinerary = (itineraryId) => async dispatch => {
 }
 
 export const createItinerary = (itinerary) => async dispatch => {
-    // debugger
     const { cover, title, description, dateStart, dateEnd } = itinerary;
     const formData = new FormData();
     // formData.append("ownerId", ownerId);
@@ -67,7 +66,6 @@ export const createItinerary = (itinerary) => async dispatch => {
             body: formData
         });
         const data = await res.json();
-        debugger
         dispatch(receiveItinerary(data.itinerary));
     } catch(err) {
       const res = await err.json();
@@ -94,7 +92,6 @@ export const editItinerary = (itinerary) => async dispatch => {
         body: formData
     })
     const data = await res.json()
-    debugger
     dispatch(receiveItinerary(data.itinerary));
 }
 
