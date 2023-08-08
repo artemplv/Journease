@@ -5,7 +5,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
-const { loginUser, restoreUser } = require('../../config/passport');
+const { loginUser, restoreUser, requireUser } = require('../../config/passport');
 const DEFAULT_PROFILE_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/blank-profile-picture-973460_1280.webp'; 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
@@ -93,6 +93,37 @@ router.post(
     }
     return res.json(await loginUser(user));
   })(req, res, next);
+});
+
+router.get('/search', requireUser, async (req, res, next) => {
+  const {
+    username,
+    limit = 10,
+  } = req.query;
+  
+  try {
+    const users = await User.find(
+      {
+        username: { $regex : new RegExp(username, "i") }
+      },
+      'username email profileImageUrl'
+    ).limit(limit);
+
+    const data = {
+      byId: {},
+      allIds: []
+    };
+
+    users.forEach((user) => {
+      data.byId[user.id] = user;
+      data.allIds.push(user.id);
+    });
+
+    res.json({ users: data });
+  }
+  catch(err) {
+    next(err);
+  }
 });
 
 module.exports = router;
