@@ -1,18 +1,12 @@
 import jwtFetch from "./jwt";
 
 const RECEIVE_USER = "users/RECEIVE_USER";
-const UPDATE_USER = "users/UPDATE_USER";
  
 
 const receiveUser = (user, userItineraries) => ({
     type: RECEIVE_USER,
     user,
     userItineraries
-})
-
-const updateUserImage = (image) => ({
-    type: UPDATE_USER,
-    image
 })
 
 export const fetchUser = (userId) => async dispatch => {
@@ -32,7 +26,7 @@ export const updateUser = (image, currentUserId) => async dispatch => {
     })
   
     const data = await res.json();
-    // dispatch(updateUserImage(image));
+  
     dispatch(receiveUser(data.user));
 }
 
@@ -43,8 +37,6 @@ export default function usersReducer (state = {}, action) {
     switch(action.type) {
         case RECEIVE_USER:
             return {...newState, [action.user._id]: action.user, userItineraries: action.userItineraries};
-        case UPDATE_USER:
-            newState[action.userId].profileImageUrl = action.image;
         default:
             return state;
     }

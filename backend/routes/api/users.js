@@ -45,7 +45,6 @@ router.get('/:id', async(req, res, next) => {
 })
 
 router.patch('/:id', singleMulterUpload("image"), async(req, res, next) => {
-  debugger
   try {
     const user = await User.findById(req.params.id);
 
