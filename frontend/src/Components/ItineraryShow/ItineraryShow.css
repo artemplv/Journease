@@ -6,10 +6,10 @@
 }
 
 .itinerary-show-image-container {
-    height: 50px;
+    height: 30px;
 }
 
-#itinerary-show-img-container > img {
+#itinerary-show-header img {
     object-fit: cover;
     max-height: 30%;
     overflow: hidden;
