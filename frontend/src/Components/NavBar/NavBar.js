@@ -6,10 +6,12 @@ import './NavBar.css';
 import LoginForm from '../SessionForms/LoginForm';
 import SignupForm from '../SessionForms/SignupForm';
 import { Modal } from '../../context/Modal';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
   const [modalType, setModalType] = useState("")
+  const history = useHistory();
 
   const signup = () => {
     setModalType("signup")
@@ -34,9 +36,13 @@ function NavBar () {
     }
   }
 
+  const redirectHome = () => {
+    history.push('/')
+  }
+
   return (
     <div className='nav-bar'>
-      <h1>Journease</h1>
+      <h1 onClick={redirectHome}>Journease</h1>
       { getLinks() }
       {(modalType === "signup") && (
         <Modal onClose={()=> setModalType("")}>

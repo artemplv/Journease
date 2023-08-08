@@ -114,7 +114,8 @@ export default function ItineraryModal({itinerary}) {
                 <div id="dates" onClick={toggleOpenDate}>Dates
                     <br/>
                     <input type="text" value={dateConvert(dates[0].startDate.toLocaleDateString())}/>
-                    <label> → 
+                    <label> 
+                        <i className="fa-solid fa-plane" style={{color: "#F87575",}}/>
                         <input type="text" value={dateConvert(dates[0].endDate.toLocaleDateString())}/>
                     </label>
                 </div>
