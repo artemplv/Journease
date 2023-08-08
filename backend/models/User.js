@@ -15,6 +15,10 @@ const userSchema = new Schema({
   hashedPassword: {
     type: String,
     required: true
+  },
+  profileImageUrl: {
+    type: String, 
+    required: true
   }
 }, {
   timestamps: true

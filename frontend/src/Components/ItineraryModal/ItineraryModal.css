@@ -81,3 +81,22 @@
 .rdrMonthAndYearWrapper {
     height: 30px;
 }
+
+.it-photo-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.it-photo-preview {
+    width: 250px;
+    height: auto;
+}
+
+.it-photo-preview img {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
