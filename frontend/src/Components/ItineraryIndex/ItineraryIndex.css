@@ -28,18 +28,22 @@
 }
 
 #itinerary-card-info h1 {
-    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
     font-weight: 500;
+    line-height: 1.2;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: auto;
     text-align: center;
-    width: 15vw;
+    width: 16.5vw;
     height: 5vh;
-    background-color: #B9E6FF;
+    background-color: #FFA9A3;
     /* background-color: rgb(195, 185, 168); */
     transform: translateY(-3vh);
-    outline: 1px solid #5C95FF;
+    outline: 1px solid white;
     outline-offset: -5px;
     padding: 5px;
 }
@@ -66,4 +70,12 @@
     text-align: center;
     font-size: 32px;
     padding: 20px;
+}
+
+.update-itinerary-buttons button {
+    margin-left: 1vw;
+    width: 2.5vw;
+    background-color: none;
+    border: none;
+    cursor: pointer;
 }

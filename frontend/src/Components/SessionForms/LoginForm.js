@@ -25,6 +25,7 @@ function LoginForm () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password })); 
+    document.elementFromPoint(10, 10).click();
   }
   
   return (
