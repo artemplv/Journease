@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = express.Router();
 const { requireUser, restoreUser } = require('../../config/passport');
 const { singleFileUpload, singleMulterUpload } = require('../../awsS3');
+const handleValidationErrors = require('../../validation/handleValidationErrors');
+const validateItineraryInput = require('../../validation/itinerary');
 const Itinerary = mongoose.model('Itinerary');
-const router = express.Router();
 const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
 // CREATE ITINERARY
@@ -11,13 +13,13 @@ router.post(
     '/', 
     singleMulterUpload("cover"), 
     restoreUser, 
+    validateItineraryInput,
     async (req, res, next) => {
     try {
         const coverImageUrl = req.file ? 
             await singleFileUpload({ file: req.file, public: true }) :
             DEFAULT_COVER_IMAGE_URL;
         const newItinerary = new Itinerary({
-            // owner: req.user.username,
             ownerId: req.user._id,
             title: req.body.title,
             description: req.body.description,
@@ -32,14 +34,15 @@ router.post(
             itinerary: itinerary
         });
     } catch (err) {
-        next(err);
+        return next(err);
     };
 });
 
 // INDEX ITINERARY
 router.get('/', async (req, res) => {
     try {
-        const allItineraries = (await Itinerary.find()).reverse()
+        const allItineraries = (await Itinerary.find()
+                                                .sort({ createdAt: -1 }));
         let itineraries = {};
         allItineraries.forEach((itinerary) => {
             itineraries[itinerary._id] = itinerary;
@@ -85,7 +88,6 @@ router.patch(
         await singleFileUpload({ file: req.file, public: true }) :
         DEFAULT_COVER_IMAGE_URL;
 
-        // itinerary.owner = itinerary.owner;
         itinerary.ownerId = itinerary.ownerId;
         itinerary.title = req.body.title || itinerary.title;
         itinerary.description = req.body.description || itinerary.description;
