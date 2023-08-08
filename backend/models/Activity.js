@@ -7,21 +7,21 @@ const activitySchema = new Schema ({
         ref: 'Itinerary',
         required: true
     },
-    name: {
+    title: {
         type: String,
-        // required: true
+        required: true
     },
     date: {
         type: Date,
-        // required: true
+        required: true
     },
     place: {
         type: Object,
-        // required: true
+        required: true
     },
     category: {
         type: String,
-        // required: true
+        required: true
     }
 }, {
     timestamps: true

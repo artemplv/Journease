@@ -4,38 +4,60 @@ const router = express.Router();
 const Itinerary = mongoose.model('Itinerary');
 const Activity = require("../../models/Activity");
 
-//CREATE ACTIVITY, ADD TO ITINERARY - WILL RETURN ENTIRE ITINERARY
-router.post('/:id/activities', async (req, res) => {
+//CREATE ACTIVITY ROUTE 
+router.post('/:itineraryId/activities', async (req, res, next) => {
     try {
-        const itinerary = await Itinerary.findById(req.params.id);
+        const itinerary = await Itinerary.findById(req.params.itineraryId);
         const newActivity = new Activity({
            itineraryId: itinerary._id,
-           name: req.body.name,
+           title: req.body.title,
            date: req.body.date,
            place: req.body.place,
            category: req.body.category
      });
      const activity = await newActivity.save();
-     itinerary.activities.push(activity);
-     const newItinerary = await itinerary.save();
+     itinerary.activities.push(activity._id)
+     itinerary.save();
+    //  const newItinerary = await itinerary.save();
      return res.json({
-        itinerary: newItinerary
+        activity: newActivity
      })
     } catch(err) {
         next(err);
     }
 });
 
-//SHOW ACTIVITY
-router.get('/:id/activities/:activityId', async (req, res) => {
+// GET ALL ACTIVITIES FOR ITINERARY ID 
+
+router.get('/:itineraryId/activities', async (req, res, next) => {
     try {
-        // const foundItinerary = await Itinerary.findById(req.params.id);
-        const foundActivity = await Activity.findById(req.params.activityId);
+        const foundItinerary = await Itinerary.findById(req.params.itineraryId);
+        const activities = await Activity
+                                    .find()
+                                    .where({'_id': { $in: foundItinerary.activities }})
+        let allActivities = {};
+        activities.forEach((activity) => {
+            allActivities[activity._id] = activity
+        })
         return res.json({
-            activity: foundActivity
+            activities: allActivities
         });
     } catch(err) {
         next(err);
+    };
+});
+
+router.delete('/:itineraryId/activities/:id', async (req, res, next) => {
+    try {
+        const foundActivity = await Activity.findById(req.params.id);
+        if (foundActivity) {
+            foundActivity.deleteOne();
+            return res.json({message: "Activity has been deleted."})
+        } else {
+            return res.json({message: "Activity cannot be deleted."})
+        }
+    } catch(err) {
+        return next(err);
     };
 });
 
