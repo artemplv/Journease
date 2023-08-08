@@ -14,7 +14,8 @@ const ActivityModal = ({itineraryId}) => {
         e.preventDefault();
         dispatch(createActivity(itineraryId, {
             title,
-            date: "2023 Aug 03",
+            //pass date in as a prop, remove next line 
+            date: null,
             place
         }))
     }
