@@ -10,39 +10,56 @@ export default function AboutPage () {
                     featuring a social media-esque blend of likes, collaborators, and innovative use of the Google Maps Api, Journease can ease your travel woes!</p>
             </div>
 
+            <h1>About the Team</h1>
+
             <div className="team-info">
-                <h1>About the Team</h1>
 
                 <div id="individual-info">
                     <img className="tim" src="/tim.png"/>
-                    <p>Artem Polevoy</p>
-                    <p>Team Lead 👑</p>
-                    <a href="https://github.com/artemplv"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
-                    <a href="https://www.linkedin.com/in/artemplv/"><i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i></a>
+                    <div id="individual-subinfo">
+                        <h2>Artem Polevoy</h2>
+                        <p>Team Lead 👑</p>
+                        <div id="social-links">
+                            <a href="https://github.com/artemplv"><i class="fa-brands fa-github fa-2xl" style={{color: "#919397"}}></i></a>
+                            <a href="https://www.linkedin.com/in/artemplv/"><i class="fa-brands fa-linkedin fa-2xl" style={{color: "#919397"}}></i></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="individual-info">
                     <img className="ashley" src="/ashley.png"/>
-                    <p>Ashley Kim</p>
-                    <p>Backend Lead 👩‍💻</p>
-                    <a href="https://github.com/ashleyjek"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
-                    <i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i>
+                    <div id="individual-subinfo">
+                        <h2>Ashley Kim</h2>
+                        <p>Backend Lead 👩‍💻</p>
+                        <div id="social-links">
+                            <a href="https://github.com/ashleyjek"><i class="fa-brands fa-github fa-2xl" style={{color: "#919397"}}></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin fa-2xl" style={{color: "#919397"}}></i></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="individual-info">
                     <img className="michelle" src=""/>
-                    <p>Michelle Li</p>
-                    <p>Frontend Lead 👩‍💻</p>
-                    <a href="https://github.com/michelleeli"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
-                    <i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i>
+                    <div id="individual-subinfo">
+                        <h2>Michelle Li</h2>
+                        <p>Frontend Lead 👩‍💻</p>
+                        <div id="social-links">
+                            <a href="https://github.com/michelleeli"><i class="fa-brands fa-github fa-2xl" style={{color: "#919397"}}></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin fa-2xl" style={{color: "#919397"}}></i></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="individual-info">
                     <img className="viktoria" src="/viktoria.png"/>
-                    <p>Viktoria Czaran</p>
-                    <p>Flex Lead 👩‍💻</p>
-                    <a href="https://github.com/vczaran"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
-                    <a href="https://www.linkedin.com/in/viktoria-czaran-4688ab284/"><i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i></a>
+                    <div id="individual-subinfo">
+                        <h2>Viktoria Czaran</h2>
+                        <p>Flex Lead 👩‍💻</p>
+                        <div id="social-links">
+                            <a href="https://github.com/vczaran"><i class="fa-brands fa-github fa-2xl" style={{color: "#919397"}}></i></a>
+                            <a href="https://www.linkedin.com/in/viktoria-czaran-4688ab284/"><i class="fa-brands fa-linkedin fa-2xl" style={{color: "#919397"}}></i></a>
+                        </div>
+                    </div>
                 </div>
 
             </div>

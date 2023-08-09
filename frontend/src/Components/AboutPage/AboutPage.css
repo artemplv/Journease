@@ -1,10 +1,7 @@
 .team-info {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    margin: auto;
 }
 
 .app-info {
@@ -13,24 +10,54 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    margin: auto;
     width: 70vw;
     text-align: center;
     line-height: 2;
     font-size: 14px;
+    margin: auto;
 }
 
 .about-page h1 {
     font-size: 32px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: gray;
     padding: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#individual-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#individual-subinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+}
+
+#individual-subinfo p, a, h2 {
+    padding: 10px;
+}
+
+#individual-subinfo h2 {
+    font-size: 22px;
 }
 
 #individual-info img {
     width: 20vw;
     height: 20vw;
     border-radius: 50%;
+}
+
+#individual-subinfo p {
+    font-size: 16px;
+}
+
+#social-links {
+    padding: 10px;
 }
 
 .tim {
