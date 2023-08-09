@@ -4,7 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
-function SignupForm () {
+import InputField from '../InputField/InputField';
+
+function SignupForm (props) {
+  const {
+    openSignInForm,
+    closeModal,
+  } = props;
+
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -43,7 +50,7 @@ function SignupForm () {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
       email,
@@ -52,7 +59,8 @@ function SignupForm () {
       image
     };
 
-    dispatch(signup(user)); 
+    await dispatch(signup(user));
+    closeModal();
   }
 
   const handleFile = ({currentTarget}) => {
@@ -66,7 +74,7 @@ function SignupForm () {
     } else {
         setImageUrl(null);
     }
-};
+  };
 
   let preview = null;
   if (imageUrl) {
@@ -76,58 +84,71 @@ function SignupForm () {
   return (      
       <form className="session-form" id="signup" onSubmit={handleSubmit}>
         <h2>Sign Up </h2>
-        <br/>
-        <div className='label'>Profile Image</div>
+                
         <div className='photo-container'>
-          <div className='photo-preview'>{preview}</div>
-          <input type="file" 
-            accept=".jpg, .jpeg, .png" 
-            onChange={handleFile} />
+          {
+            preview && (
+              <div className="photo-preview">
+                {preview}
+              </div>
+            )
+          }
         </div>
-        <label>
-          <div className='label'>Email</div>
-          <input type="text"
-            value={email}
-            onChange={update('email')}
-            placeholder="Email"
-          />
-          <div className="errors">{errors?.email}</div>
-        </label>
-        <label>
-          <div className='label'>Username</div>
-          <input type="text"
-            value={username}
-            onChange={update('username')}
-            placeholder="Username"
-          />
-          <div className="errors">{errors?.username}</div>
-        </label>
-        <label>
-          <div className='label'>Password</div>
-          <input type="password"
-            value={password}
-            onChange={update('password')}
-            placeholder="Password"
-          />
-          <div className="errors">{errors?.password}</div>
-        </label>
-        <label>
-          <div className='label'>Confirm Password</div>
-          <input type="password"
-            value={password2}
-            onChange={update('password2')}
-            placeholder="Confirm Password"
-          />
-        <div className="errors">
-          {password !== password2 && 'Confirm Password field must match'}
+        
+        <InputField
+          type="email"
+          value={email}
+          onChange={update('email')}
+          placeholder="Email"
+          error={errors?.email}
+        />
+        
+        <InputField
+          value={username}
+          onChange={update('username')}
+          placeholder="Username"
+          error={errors?.username}
+        />
+
+        <InputField
+          type="password"
+          value={password}
+          onChange={update('password')}
+          placeholder="Password"
+          error={errors?.password}
+        />
+
+        <InputField
+          type="password"
+          value={password2}
+          onChange={update('password2')}
+          placeholder="Confirm Password"
+          error={password !== password2 && 'Confirm Password field must match'}
+        />
+
+        <div className="file-upload-container">
+          <label className="file-upload">
+            <i className="fa-solid fa-file-image file-icon" />
+            Upload profile picture
+            <input type="file" 
+              accept=".jpg, .jpeg, .png" 
+              onChange={handleFile}
+            />
+          </label>
         </div>
-        </label>
-        <br/>
+
         <input
           type="submit"
           value="Sign Up"
           disabled={!email || !username || !password || password !== password2}
         />
+
+        <p className="auth-change-message">
+          Already have an account?
+          <button onClick={openSignInForm}>
+            Log In
+          </button>
+        </p>
       </form>
   );
 }

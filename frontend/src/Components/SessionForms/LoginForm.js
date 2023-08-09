@@ -5,7 +5,14 @@ import './SessionForm.css';
 
 import { login, clearSessionErrors } from '../../store/session';
 
-function LoginForm () {
+import InputField from '../InputField/InputField';
+
+function LoginForm(props) {
+  const {
+    openSignUpForm,
+    closeModal,
+  } = props;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
@@ -23,38 +30,44 @@ function LoginForm () {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }))
+    await dispatch(login({ email, password }));
+    closeModal();
   }
-    
+
   return (
       <form className="session-form" id="login" onSubmit={handleSubmit}>
         <h2>Log In </h2>
-        <label>
-          <div className='label'>Email</div>
-          <input type="text"
-            value={email}
-            onChange={update('email')}
-            placeholder="Email"
-          />
-        <div className="errors">{errors?.email}</div>
-        </label>
-        <div className="errors">{errors?.password}</div>
-        <label>
-          <div className='label'>Password</div>
-          <input type="password"
-            value={password}
-            onChange={update('password')}
-            placeholder="Password"
-          />
-        </label>
-        <br/>
+
+        <InputField
+          type="email"
+          value={email}
+          onChange={update('email')}
+          placeholder="Email"
+          error={errors?.email}
+        />
+
+        <InputField
+          type="password"
+          value={password}
+          onChange={update('password')}
+          placeholder="Password"
+          error={errors?.password}
+        />
+
         <input
           type="submit"
           value="Log In"
           disabled={!email || !password}
         />
+
+        <p className="auth-change-message">
+          Don't have an account?
+          <button onClick={openSignUpForm}>
+            Sign Up
+          </button>
+        </p>
       </form>
   );
 }
