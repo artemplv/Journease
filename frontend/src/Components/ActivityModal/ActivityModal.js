@@ -9,6 +9,7 @@ const ActivityModal = ({itineraryId}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [place, setPlace] = useState(null);
+    const [description, setDescription] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +17,8 @@ const ActivityModal = ({itineraryId}) => {
             title,
             //pass date in as a prop, remove next line 
             date: null,
-            place
+            place,
+            description
         }))
     }
 
@@ -45,6 +47,9 @@ const ActivityModal = ({itineraryId}) => {
                 </label>
                 <label>Place<br></br>
                     <SearchPlacesInput onChange={setPlace}/>
+                </label>
+                <label>Description<br></br>
+                    <input type="text" onChange={(e) => setDescription(e.target.value)}/>
                 </label>
                 <button onClick={handleSubmit}>Submit</button>
             </div>

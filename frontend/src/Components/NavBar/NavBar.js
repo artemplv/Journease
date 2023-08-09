@@ -36,7 +36,7 @@ function NavBar () {
 
   return (
     <div className='nav-bar'>
-      <h1>Journease</h1>
+      <h1><img id="logo" src="https://coffeebook-dev.s3.amazonaws.com/travel_4040290.png"/></h1>
       { getLinks() }
       {(modalType === "signup") && (
         <Modal onClose={()=> setModalType("")}>
