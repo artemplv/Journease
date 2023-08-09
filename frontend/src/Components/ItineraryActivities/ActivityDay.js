@@ -8,12 +8,20 @@ import ActivityItem from "./ActivityItem";
 export default function ActivityDay({itinerary, date}) {
     const [modalType, setModalType] = useState("");
     const dispatch = useDispatch()
-    const allActivities = useSelector(state => Object.values(state.activities))
-    const activities = allActivities.filter(activity => new Date(activity.date).toString() === new Date(date).toString())
-
+    const activities = useSelector(state => Object.values(state.activities).filter(activity => new Date(activity.date).toString() === new Date(date).toString()))
+    const currentUser = useSelector(state => state.session.user)
+    const [canEdit, setCanEdit] = useState(false)
+    useEffect(()=> {
+        if (currentUser) {
+            if (currentUser._id === itinerary.ownerId) {
+                setCanEdit(true)
+            }
+        }
+    }, [])
+    
     useEffect(()=> {
         dispatch(fetchActivities(itinerary._id))
-    }, [])
+    }, [itinerary.activities])
 
     const createActivity = () => {
         setModalType("create-activity")
@@ -24,13 +32,14 @@ export default function ActivityDay({itinerary, date}) {
             {activities && activities.map(activity => 
                 <ActivityItem activity={activity}/>
             )}
-
-            <div>
-                <button id="create-activity-button" onClick={createActivity}> 
-                    <i className="fa-solid fa-plus" style={{color: "#FFA9A3",}}/>
-                </button>
-                Create Activity
-            </div>
+            {canEdit && 
+                    <div>
+                    <button id="create-activity-button" onClick={createActivity}> 
+                        <i className="fa-solid fa-plus" style={{color: "#FFA9A3",}}/>
+                    </button>
+                    Create Activity
+                </div>
+            }
             {modalType === "create-activity" && 
             <Modal onClose={()=> setModalType("")}>
                 <ActivityModal itineraryId={itinerary._id} date={date}/>

@@ -1,21 +1,100 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
+import { useDispatch, useSelector } from 'react-redux';
+import './Map.css'
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-function Map({ activities, mapOptions }) {
+function Map({itinerary, mapOptions }) {
+  const dispatch = useDispatch()
   const mapRef = useRef(null);
   const markersRef = useRef({});
+  const activityIds = useSelector(state => state.itineraries[itinerary._id].activities)
+  const activities = useSelector(state => Object.values(state.activities).filter(activity => activityIds.includes(activity._id)))
+  let currentWindow = null
+   
+  const allDates = activities.map(activity => activity.date);
+
+  const allColors = () => {
+    let colors = []
+    let times = allDates.length;
+    for(let i = 0; i < times; i++){
+      colors.push(Math.floor(Math.random()*16777215).toString(16))
+    }
+    return colors
+  }
+
+  const uniqueDates = () => {
+    let unique = [];
+    allDates.forEach(date => {
+      if (!unique.includes(date)) {
+        unique.push(date)
+      }
+    })
+    return unique
+  }
+  const colors = allColors();
+  const dates = uniqueDates();
 
   useEffect(() => {
     if (mapRef.current === null) return;
 
-    const map = new window.google.maps.Map(mapRef.current, {
-      center: { lat: 44, lng: 44}, 
-      zoom: 13,
-      ...mapOptions, 
-    });
+    if (activities.length < 1) {
+      const map = new window.google.maps.Map(mapRef.current, {
+        center: { lat: 40.71427, lng: -74.00597}, 
+        zoom: 1,
+        ...mapOptions, 
+      });
+    } else if (activities.length >= 1){
+      const map = new window.google.maps.Map(mapRef.current, {
+        center: { lat: activities[0].place.location.lat, lng: activities[0].place.location.lng}, 
+        zoom: 10,
+        ...mapOptions, 
+      });
 
+      for (const activity of activities) {
+
+        let contentString = document.createElement('div')
+        contentString.innerHTML = `<img id="infowindow-image" src=${activity.place.photo}></img>
+        <h3> ${activity.title} </h3>`
+
+        const infowindow = new window.google.maps.InfoWindow({
+          content: contentString,
+        });
+
+        const marker = new window.google.maps.Marker({
+          position: { lat: activity.place.location.lat, lng: activity.place.location.lng },
+          map,
+          title: activity.title,
+          icon: {
+            path: faLocationDot.icon[4],
+            fillColor: `#${colors[dates.indexOf(activity.date)]}`,
+            fillOpacity: 1,
+            strokeWeight: 1,
+            strokeColor: "#ffffff",
+            scale: 0.06,
+          },
+        }
+      );
+
+      marker.addListener("click", () => {
+        if (currentWindow != null) {
+          currentWindow.close()
+        }
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+        currentWindow = infowindow;
+      })
+
+      marker.addListener("click", () => {
+        infowindow.open(map, marker);
+      });
+      }
+    }
+    
     return () => {
       markersRef.current = {};
     };
@@ -27,8 +106,6 @@ function Map({ activities, mapOptions }) {
     </>
   )
 }
-
-console.log(process.env)
 
 export default function MapWrapper(props) {
   return (

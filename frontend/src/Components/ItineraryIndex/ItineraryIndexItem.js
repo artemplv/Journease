@@ -46,7 +46,7 @@ export default function ItineraryIndexItem({itinerary}) {
                 </div>
                 {showUpdate && 
                 <>
-                    <div class="update-itinerary-buttons">
+                    <div className="update-itinerary-buttons">
                         <button onClick={()=> setOpenModal(true)}>
                             <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
                         </button> 

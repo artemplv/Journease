@@ -35,3 +35,8 @@
     width: 12vh;
     border-radius: 15px;
 }
+
+.itinerary-show-activity-container {
+    height: 110vh;
+    overflow-y: scroll;
+}
