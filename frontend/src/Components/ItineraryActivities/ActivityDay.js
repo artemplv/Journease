@@ -9,17 +9,15 @@ export default function ActivityDay({itinerary, date}) {
     const [modalType, setModalType] = useState("");
     const dispatch = useDispatch()
     const allActivities = useSelector(state => Object.values(state.activities))
-
-    
     const activities = allActivities.filter(activity => new Date(activity.date).toString() === new Date(date).toString())
-
-    const createActivity = () => {
-        setModalType("create-activity")
-    }
 
     useEffect(()=> {
         dispatch(fetchActivities(itinerary._id))
     }, [])
+
+    const createActivity = () => {
+        setModalType("create-activity")
+    }
 
     return (
         <div>
