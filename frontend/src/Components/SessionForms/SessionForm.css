@@ -19,8 +19,20 @@
     font-size: 30px;
 }
 
+.session-form button {
+    width: fit-content;
+    border-radius: 30px;
+    background-color: #F87575;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
 .session-form input[type="submit"] {
-    margin-left: 40%;
+    /* margin-left: 40%;
     height: 5vh;
     width: 15vh;
     border-radius: 30px;
@@ -28,7 +40,16 @@
     background-color: #5C95FF;
     font-size: 15px;
     color: white;
+    cursor: pointer; */
+    width: fit-content;
+    border-radius: 30px;
+    background-color: #F87575;
+    border: none;
+    color: white;
     cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 30%;
 }
 
 #login input[type="submit"] {

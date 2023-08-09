@@ -1,0 +1,18 @@
+#user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-info img {
+    width: 2vw;
+    height: 2vw;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#user-info h1 {
+    width: 2vw;
+    margin-left: 10px;
+}

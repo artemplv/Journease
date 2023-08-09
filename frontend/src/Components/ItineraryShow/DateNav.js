@@ -19,7 +19,7 @@ export default function DateNav({itinerary}) {
     return (
         <>
         {itinerary && 
-            <div class="itinerary-show-dates-container">
+            <div className="itinerary-show-dates-container">
                 {/* <div id="dates-header">
                     <h2>{numDays} Days </h2>
                 </div> */}
