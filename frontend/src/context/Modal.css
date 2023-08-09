@@ -38,5 +38,7 @@
     border-radius: 20px;
     text-align: center;
     padding: 20px;
+    max-height: 98vh;
+    overflow-y: auto;
   }
 

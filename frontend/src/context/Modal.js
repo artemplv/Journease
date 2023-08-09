@@ -24,6 +24,15 @@ export function ModalProvider({ children }) {
 
 export function Modal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    }
+  }, []);
+
   if (!modalNode) return null;
 
   return ReactDOM.createPortal(
