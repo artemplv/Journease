@@ -31,10 +31,10 @@ const itinerarySchema = new Schema ({
         type: String,
         required: true,
     },
-    activities: {
-        // type: [activitySchema]
-        type: []
-    },
+    activities: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Activity'
+    }],
 }, {
     // likes TBD;
     timestamps: true

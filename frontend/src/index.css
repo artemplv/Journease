@@ -60,3 +60,7 @@ form .errors {
     display: flex;
     align-items: center;
 }
+
+body {
+	background-color: rgb(254, 249, 242);
+}
