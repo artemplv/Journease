@@ -1,15 +1,17 @@
 import jwtFetch from "./jwt";
 import { debounceThunkAction } from '../utils';
 
-const RECEIVE_USER = "users/RECEIVE_USER";
+export const RECEIVE_USER = "users/RECEIVE_USER";
 // const RECEIVE_USER_ITINERARIES = "users/RECEIVE_USER_ITINERARIES";
 const RECEIVE_USERS = "users/RECEIVE_USERS";
 
-
-const receiveUser = (user, userItineraries) => ({
+// ADD LIKED ITINERARIES TO ARGS!!!
+const receiveUser = (user, userItineraries, itinerariesIds) => ({
     type: RECEIVE_USER,
     user,
-    userItineraries
+    userItineraries,
+    itinerariesIds
+    // likedItineraries
 })
 
 // const receiveUserItineraries = userItineraries => ({
@@ -17,7 +19,7 @@ const receiveUser = (user, userItineraries) => ({
 //     userItineraries
 // })
 
-const receieUsers = (users) => ({
+const receiveUsers = (users) => ({
     type: RECEIVE_USERS,
     users,
 });
@@ -25,19 +27,28 @@ const receieUsers = (users) => ({
 export const fetchUser = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`);
     const data = await res.json();
-    dispatch(receiveUser(data.user, data.userItineraries));
+    dispatch(receiveUser(data.user, data.userItineraries, data.itinerariesIds));
 }
 
-// export const fetchUserItineraries = (userId) => async dispatch => {
-//     const res = await jwtFetch(`/api/users/${userId}/itineraries`);
-//     const data = await res.json();
-//     dispatch(receiveUserItineraries(data.userItineraries));
-// }
+export const updateUser = (image, currentUserId) => async dispatch => {
+   const formData = new FormData();
+
+   formData.append("image", image);
+
+    const res = await jwtFetch(`/api/users/${currentUserId}`, {
+        method: 'PATCH',
+        body: formData
+    })
+  
+    const data = await res.json();
+  
+    dispatch(receiveUser(data.user));
+}
 
 export const searchUsers = (searchQuery, limit = 5, callback = () => {}) => async (dispatch) => {
     const res = await jwtFetch(`/api/users/search?username=${searchQuery}&limit=${limit}`);
     const data = await res.json();
-    dispatch(receieUsers(data.users.byId));
+    dispatch(receiveUsers(data.users.byId));
     callback(data.users.allIds);
 }
 
@@ -48,7 +59,7 @@ export default function usersReducer (state = {}, action) {
 
     switch(action.type) {
         case RECEIVE_USER:
-            return {...newState, [action.user._id]: action.user, userItineraries: action.userItineraries};
+            return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
         // case RECEIVE_USER_ITINERARIES:
         //     return {...newState, userItineraries: action.userItineraries};
         case RECEIVE_USERS:

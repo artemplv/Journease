@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+// const Like = mongoose.model('Like');
 const Itinerary = mongoose.model('Itinerary');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { loginUser, restoreUser, requireUser } = require('../../config/passport');
@@ -62,8 +63,22 @@ router.get('/search', requireUser, async (req, res, next) => {
 router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
+    const userItineraries = await Itinerary.find({ownerId: req.params.id});
+    // const likes = await Like.find({likerId: req.params.id});
+    // const likedItineraries = likes.map(like => (like.itineraryId));
+
+    const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
+    const data = {};
+
+    userItineraries.forEach((itinerary) => {
+      data[itinerary.id] = itinerary
+    })
+
     return res.json({
-      user
+      user,
+      userItineraries: data,
+      itinerariesIds
+      // likedItineraries
     });
   } catch(err) {
     const error = new Error('User does not exist');
@@ -73,25 +88,28 @@ router.get('/:id', async(req, res, next) => {
   }
 })
 
-router.get('/:id/itineraries', async(req, res, next) => {
+router.patch('/:id', singleMulterUpload("image"), async(req, res, next) => {
   try {
-    const userItineraries = await Itinerary.find({ownerId: req.params.id});
-    if (userItineraries.length) {
-      return res.json({
-        userItineraries
-      });
-    } else {
-      return res.json({
-        userItineraries: []
-      })
-    }
+    const user = await User.findById(req.params.id);
+
+    const profileImageUrl = await singleFileUpload({ file: req.file, public: true });
+
+    user.profileImageUrl = profileImageUrl;
+
+    const updatedUser = await user.save();
+
+    return res.json({
+      user: updatedUser
+    })
+      
   } catch(err) {
-    const error = new Error('No itineraries for this user');
+    const error = new Error('An error occured');
     error.statusCode = 404;
-    error.errors = { message: 'User with provided Id does not exist'};
+    error.errors = { message: 'Unable to update photo'};
     return next(error);
   }
 })
+
 
 
 router.post(
