@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import { deleteItinerary } from '../../store/itineraries';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
+import UserInfo from '../UserProfile/UserInfo';
 
 export default function ItineraryIndexItem({itinerary}) {
     const currentUser = useSelector(state => state.session.user)
@@ -32,14 +33,13 @@ export default function ItineraryIndexItem({itinerary}) {
 
     return (
         <li className="itinerary-index-item">
-            {/* <img src={currentUser.profileImageUrl}/> */}
-            <div id="itinerary-card-info">
+            <div className="itinerary-card-info">
                 <div id="index-thumbnail" onClick={redirectShow}>
-                    <img src={`${itinerary.coverImageUrl}`} alt="" />
+                    <img src={`${itinerary.coverImageUrl}`}/>
                 </div>
                 <h1>{itinerary?.title}</h1>
-                <div id="itinerary-card-subinfo">
-                    <p>{itinerary.ownerId}</p>
+                <div className="itinerary-card-subinfo">
+                    <UserInfo userId={itinerary.ownerId}/>
                     <p>                            
                         <i className="fa-solid fa-heart fa-2xl" style={{color: "#FFA9A3",}}/>
                     </p>

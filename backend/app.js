@@ -9,6 +9,8 @@ require('./models/User');
 require('./config/passport'); 
 require('./models/Itinerary');
 require('./models/Activity');
+require('./models/Like');
+
 const passport = require('passport');
 
 const { isProduction } = require('./config/keys');
@@ -18,6 +20,7 @@ const csrfRouter = require('./routes/api/csrf');
 const itinerariesRouter = require('./routes/api/itineraries');
 const itineraryActivitiesRouter = require('./routes/api/itineraryActivities')
 const activitiesRouter = require('./routes/api/activities');
+const likesRouter = require('./routes/api/likes');
 
 const app = express();
 
@@ -50,6 +53,7 @@ app.use('/api/csrf', csrfRouter);
 app.use('/api/itineraries', itinerariesRouter);
 app.use('/api/itineraries', itineraryActivitiesRouter);
 app.use('/api/activities', activitiesRouter);
+app.use('/api/likes', likesRouter);
 
 
 if (isProduction) {

@@ -8,6 +8,7 @@ import NavBar from './components/NavBar/NavBar';
 import { getCurrentUser } from './store/session';
 import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
 import ItineraryShow from './components/ItineraryShow/ItineraryShow';
+import SplashPage from './components/SplashPage/SplashPage'; 
 import UserProfilePage from './components/UserProfile/UserProfilePage';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <Route exact path="/" component={ItineraryIndex} />
+        <Route exact path="/" component={SplashPage}/>
 
         <Route exact path="/profile" component={UserProfilePage} />
 

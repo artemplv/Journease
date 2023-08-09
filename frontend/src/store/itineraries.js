@@ -1,5 +1,8 @@
 import jwtFetch from './jwt';
+
 import { RECEIVE_ACTIVITY } from './activities';
+import { RECEIVE_USER } from './users';
+
 
 const RECEIVE_ITINERARIES = "itineraries/RECEIVE_ITINERARIES";
 const RECEIVE_ITINERARY = "itineraries/RECEIVE_ITINERARY";
@@ -121,6 +124,8 @@ export default function itinerariesReducer (state = {}, action) {
                     activities: [...newState[action.activity.itineraryId].activities, action.activity._id],
                 },
             }
+        case RECEIVE_USER:
+            return {...state, ...action.userItineraries};
         default:
             return state;
     };

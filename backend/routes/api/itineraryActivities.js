@@ -16,7 +16,8 @@ router.post(
            itineraryId: itinerary._id,
            title: req.body.title,
            date: req.body.date,
-           place: req.body.place
+           place: req.body.place,
+           description: req.body.description
      });
      const activity = await newActivity.save();
      itinerary.activities.push(activity._id)
@@ -36,11 +37,12 @@ router.get('/:itineraryId/activities', async (req, res, next) => {
         const foundItinerary = await Itinerary.findById(req.params.itineraryId);
         const activities = await Activity
                                     .find()
-                                    .where({'_id': { $in: foundItinerary.activities }})
+                                    .where({ '_id': { $in: foundItinerary.activities }});
         let allActivities = {};
         activities.forEach((activity) => {
             allActivities[activity._id] = activity
         })
+        
         return res.json({
             activities: allActivities
         });

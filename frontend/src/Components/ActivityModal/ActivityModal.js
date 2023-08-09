@@ -9,10 +9,12 @@ const ActivityModal = ({itineraryId, date}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [place, setPlace] = useState(null);
+    const [description, setDescription] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createActivity(itineraryId, {
             title,
+            description,
             date,
             place
         }))
@@ -44,6 +46,9 @@ const ActivityModal = ({itineraryId, date}) => {
                     <label>Place<br></br>
                         <SearchPlacesInput onChange={setPlace}/>
                     </label>
+                    <label>Description<br></br>
+                      <input type="text" onChange={(e) => setDescription(e.target.value)}/>
+                </label>
                     <button onClick={handleSubmit}>Submit</button>
                 </div>
             </form>
