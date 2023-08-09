@@ -5,6 +5,7 @@
     border-radius: 15px;
     transform: translateX(-13vw);
     background-color: white;
+    z-index: 99;
 }
 
 #calendarDone{
@@ -24,6 +25,7 @@
     font-size: 17px;
     padding: 2vw;
     color: grey;
+    gap: 15px;
 }
 
 .itinerary-form input, .itinerary-form textarea {
@@ -99,4 +101,46 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.itinerary-form .collaborators {
+    margin-bottom: 20px;
+ }
+
+.itinerary-form .collaborators .collaborators-subtitle {
+   margin-bottom: 10px;
+}
+
+.itinerary-form .collaborators .collaborator-username {
+    color: black;
+}
+
+.itinerary-form .collaborators .collaborator-username:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.itinerary-form .collaborator-item {
+    width: 100%;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itinerary-form .collaborator-item:hover {
+    background: #bab9b966;
+}
+
+.itinerary-form .remove-collaborator-button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #F87575;
+    padding: 2px 6px;
+    font-weight: 600;
+    display: none;
+}
+
+.itinerary-form .collaborator-item:hover .remove-collaborator-button {
+   display: block;
 }
