@@ -33,8 +33,8 @@ const SplashPage = () => {
             }
             <div className="entire-splash-container">
                 <div className="splash-search-container">
-                    <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/>
-                    {/* <img src="https://coffeebook-dev.s3.amazonaws.com/Logo.png"/> */}
+                    {/* <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/> */}
+                    <img src="https://coffeebook-dev.s3.amazonaws.com/JOURNEASElogo.png"/>
                     <h1 id="search-label">Type to search for itineraries</h1>
                     <input className="splash-search"/>
                     <button 
