@@ -12,7 +12,7 @@ export default function UserProfilePage () {
  
     useEffect(() => {
         dispatch(fetchUser(currentUser?._id));
-        dispatch(fetchUserItineraries(currentUser?._id))
+        // dispatch(fetchUserItineraries(currentUser?._id))
     }, [currentUser, userItineraries.length]);
 
     const ItineraryList = userItineraries?.map(itinerary => {
