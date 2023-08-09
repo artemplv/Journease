@@ -5,6 +5,7 @@ export const RECEIVE_USER = "users/RECEIVE_USER";
 // const RECEIVE_USER_ITINERARIES = "users/RECEIVE_USER_ITINERARIES";
 const RECEIVE_USERS = "users/RECEIVE_USERS";
 
+// ADD LIKED ITINERARIES TO ARGS!!!
 const receiveUser = (user, userItineraries, itinerariesIds) => ({
     type: RECEIVE_USER,
     user,
@@ -58,7 +59,7 @@ export default function usersReducer (state = {}, action) {
 
     switch(action.type) {
         case RECEIVE_USER:
-            return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds} };
+            return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
         // case RECEIVE_USER_ITINERARIES:
         //     return {...newState, userItineraries: action.userItineraries};
         case RECEIVE_USERS:
