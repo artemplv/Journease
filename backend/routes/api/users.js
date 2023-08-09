@@ -75,7 +75,7 @@ router.get('/:id', async(req, res, next) => {
 
 router.get('/:id/itineraries', async(req, res, next) => {
   try {
-    const userItineraries = await Itinerary.find( {ownerId: req.params.id});
+    const userItineraries = await Itinerary.find({ownerId: req.params.id});
     if (userItineraries.length) {
       return res.json({
         userItineraries
