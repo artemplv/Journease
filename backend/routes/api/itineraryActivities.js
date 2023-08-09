@@ -16,7 +16,8 @@ router.post(
            itineraryId: itinerary._id,
            title: req.body.title,
            date: req.body.date,
-           place: req.body.place
+           place: req.body.place,
+           description: req.body.description
      });
      const activity = await newActivity.save();
      itinerary.activities.push(activity._id)

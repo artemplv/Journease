@@ -1,0 +1,81 @@
+.entire-splash-container {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(216, 219, 232);
+}
+
+.splash-img-container {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    background-color: rgb(216, 219, 232);
+}
+
+.splash-search {
+    margin-top: 10px;
+    width: 450px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 20px;
+    border: 1px solid rgb(216, 219, 232);
+}
+
+.splash-search-container button {
+    background-color: #fdbea3;
+    color: white;
+    font-family: 'Schibsted Grotesk', sans-serif;
+    height: 70px;
+    width: 270px;
+    border-radius: 40px;
+    border: transparent;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.splash-search-container button:hover {
+    background-color: #fecab3;
+    /* color: #646466; */
+}
+
+
+.splash-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* margin-top: 70px; */
+}
+
+.splash-search-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 90%;
+    /* margin-top: 25px; */
+}
+
+.splash-search-container img {
+    font-size: 40px;
+    width: 500px;
+    height: auto;
+    margin-top: 100px;
+    padding-right: 45px;
+    color: #484955;
+    font-family: gopher, sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-family: 'Schibsted Grotesk', sans-serif;
+}
+
+#search-label {
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: 20px;
+    margin-top: 150px;
+    color: #484955;
+}
