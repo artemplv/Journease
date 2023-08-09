@@ -53,7 +53,7 @@ export default function ItineraryShow () {
                         <ActivityIndex itinerary={itinerary}/>
                     </div>
                     <div>
-                        <MapWrapper/>
+                        <MapWrapper itinerary={itinerary}/>
                     </div>
                 </div>
             </div>

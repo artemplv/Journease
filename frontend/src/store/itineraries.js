@@ -1,4 +1,6 @@
 import jwtFetch from './jwt';
+
+import { RECEIVE_ACTIVITY } from './activities';
 import { RECEIVE_USER } from './users';
 
 
@@ -114,6 +116,14 @@ export default function itinerariesReducer (state = {}, action) {
         case UPDATE_ITINERARY:
             newState[action.itineraryId] = action.itinerary;
             return newState;
+        case RECEIVE_ACTIVITY:
+            return {
+                ...newState,
+                [action.activity.itineraryId]: {
+                    ...newState[action.activity.itineraryId],
+                    activities: [...newState[action.activity.itineraryId].activities, action.activity._id],
+                },
+            }
         case RECEIVE_USER:
             return {...state, ...action.userItineraries};
         default:
