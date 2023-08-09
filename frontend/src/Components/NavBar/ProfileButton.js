@@ -14,6 +14,10 @@ export default function ProfileButton() {
         history.push('/profile')
     }
 
+    const aboutPage = () => {
+        history.push('/about')
+    }
+
     const logoutUser = e => {
         e.preventDefault();
         dispatch(logout());
@@ -33,6 +37,7 @@ export default function ProfileButton() {
                 </Modal>
             }
             <button onClick={logoutUser}>Logout</button>
+            <button onClick={aboutPage}>About</button>
         </div>
     )
 }

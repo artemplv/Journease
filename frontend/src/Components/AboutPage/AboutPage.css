@@ -1,0 +1,47 @@
+.team-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+    width: 70vw;
+    text-align: center;
+    line-height: 2;
+    font-size: 14px;
+}
+
+.about-page h1 {
+    font-size: 32px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: gray;
+    padding: 20px;
+}
+
+#individual-info img {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+}
+
+.tim {
+    background-color: rgb(198, 232, 221);
+}
+
+.ashley {
+    background-color: rgb(246, 246, 158);
+}
+
+.viktoria {
+    background-color: pink;
+}
+
