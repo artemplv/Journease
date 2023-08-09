@@ -2,15 +2,15 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../store/users";
 
-export default function ProfileEditForm ({currentUserId}) {
+export default function ProfileEditForm ({currentUserId, setModalType}) {
     const [imageUrl, setImageUrl] = useState(null);
     const [image, setImage] = useState(null);
     const dispatch = useDispatch();
-
+    
     function handleSubmit (e) {
         e.preventDefault();
         dispatch(updateUser(image, currentUserId));
-        debugger
+        setModalType("");
     }
 
     const handleFile = ({currentTarget}) => {

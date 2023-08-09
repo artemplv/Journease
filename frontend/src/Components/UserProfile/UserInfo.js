@@ -1,10 +1,23 @@
+import { useDispatch, useSelector } from "react-redux"
+import { fetchUser } from "../../store/users";
+import { useEffect } from "react";
+import './UserInfo.css';
 
-export default function UserInfo ({currentUser}) {
 
+export default function UserInfo ({userId}) {
+    const dispatch = useDispatch();
+
+    
+   useEffect(() => {
+    dispatch(fetchUser(userId));
+   }, [userId])
+
+    const user = useSelector(state => state.users[userId]);
+   
     return (
-        <div className="user-info">
-            <img src={currentUser?.profileImageUrl}/>
-            <h1>{currentUser?.username}</h1>
+        <div id="user-info">
+            <img src={user?.profileImageUrl}/>
+            <h1>{user?.username}</h1>
         </div>
     )
 }
