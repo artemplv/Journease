@@ -31,6 +31,7 @@ export default function ItineraryModal({itinerary}) {
                 key: 'selection'
             }]);
             setCoverUrl(itinerary.coverImageUrl);
+            setCollaboratorsIds(itinerary.collaborators);
         }
     }, [])
 
@@ -67,8 +68,6 @@ export default function ItineraryModal({itinerary}) {
         e.preventDefault();
         if (type === "Create") {
             dispatch(createItinerary({
-                // owner: owner.username, 
-                // ownerId: owner._id, 
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
@@ -78,13 +77,12 @@ export default function ItineraryModal({itinerary}) {
             }))
         } else {
             dispatch(editItinerary({
-                // owner: owner.username, 
                 id: itinerary._id, 
-                // ownerId: owner._id, 
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
                 dateEnd: dates[0].endDate,
+                collaborators: collaboratorsIds,
                 cover
             }))
         }
