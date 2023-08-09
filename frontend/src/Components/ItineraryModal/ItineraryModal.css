@@ -5,6 +5,7 @@
     border-radius: 15px;
     transform: translateX(-13vw);
     background-color: white;
+    z-index: 99;
 }
 
 #calendarDone{
