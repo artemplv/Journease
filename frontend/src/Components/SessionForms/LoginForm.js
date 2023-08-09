@@ -10,6 +10,7 @@ function LoginForm () {
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     return () => {
@@ -24,9 +25,9 @@ function LoginForm () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email, password })); 
+    dispatch(login({ email, password }))
   }
-  
+    
   return (
       <form className="session-form" id="login" onSubmit={handleSubmit}>
         <h2>Log In </h2>

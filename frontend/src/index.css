@@ -50,8 +50,8 @@ body * {
     /* font-family: 'Open Sans', sans-serif; */
     font-style: normal;
     font-weight: 400;
-	font-family: 'Schibsted Grotesk', sans-serif;
-
+	  font-family: 'Schibsted Grotesk', sans-serif;
+		box-sizing: border-box;
 }
 
 form .errors {
@@ -60,4 +60,8 @@ form .errors {
     height: 15px;
     display: flex;
     align-items: center;
+}
+
+body {
+	background-color: rgb(254, 249, 242);
 }

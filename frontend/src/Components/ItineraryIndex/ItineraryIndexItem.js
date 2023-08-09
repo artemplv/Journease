@@ -1,5 +1,4 @@
 import './ItineraryIndex.css';
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -21,7 +20,7 @@ export default function ItineraryIndexItem({itinerary}) {
         }  else {
             setShowUpdate(false)
         }
-    }, [itinerary])
+    }, [itinerary, itinerary.photoUrl])
 
     const remove = () => {
         dispatch(deleteItinerary(itinerary._id))
@@ -32,25 +31,34 @@ export default function ItineraryIndexItem({itinerary}) {
     }
 
     return (
-        <li className="itinerary-index-item" onClick={redirectShow}>
+        <li className="itinerary-index-item">
+            {/* <img src={currentUser.profileImageUrl}/> */}
             <div id="itinerary-card-info">
-                <div id="index-thumbnail">
-                    <img src={`${itinerary.coverImageUrl}`}/>
+                <div id="index-thumbnail" onClick={redirectShow}>
+                    <img src={`${itinerary.coverImageUrl}`} alt="" />
                 </div>
-                <h1>{itinerary.title}</h1>
+                <h1>{itinerary?.title}</h1>
                 <div id="itinerary-card-subinfo">
-                    <p>{itinerary.owner}</p>
-                    <p>💕Likes</p>
+                    <p>{itinerary.ownerId}</p>
+                    <p>                            
+                        <i className="fa-solid fa-heart fa-2xl" style={{color: "#FFA9A3",}}/>
+                    </p>
                 </div>
                 {showUpdate && 
                 <>
-                    <button onClick={()=> setOpenModal(true)}>Edit</button> 
-                    {openModal && 
-                        <Modal onClose={()=> setOpenModal(false)}>
-                            <ItineraryModal itinerary={itinerary}/>
-                        </Modal>
-                    }
-                    <button onClick={remove}>Delete</button>
+                    <div class="update-itinerary-buttons">
+                        <button onClick={()=> setOpenModal(true)}>
+                            <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
+                        </button> 
+                        {openModal && 
+                            <Modal onClose={()=> setOpenModal(false)}>
+                                <ItineraryModal itinerary={itinerary}/>
+                            </Modal>
+                        }
+                        <button onClick={remove}>
+                            <i className="fa-solid fa-trash fa-xl" style={{color: "#FFA9A3",}}/>
+                        </button>
+                    </div>
                 </>
                 }
             </div>

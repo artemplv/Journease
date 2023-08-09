@@ -23,12 +23,10 @@ const itinerarySchema = new Schema ({
         type: Date,
         required: true,
     },
-    collaborators: [{
-        collaboratorId: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    }],
+    collaborators: {
+        type: [Schema.Types.ObjectId],
+        ref: 'User'
+    },
     coverImageUrl: {
         type: String,
         required: true,

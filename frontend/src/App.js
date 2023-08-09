@@ -9,6 +9,7 @@ import { getCurrentUser } from './store/session';
 import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
 import ItineraryShow from './components/ItineraryShow/ItineraryShow';
 import SplashPage from './components/SplashPage/SplashPage'; 
+import UserProfilePage from './components/UserProfile/UserProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +23,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={SplashPage}/>
+
+        <Route exact path="/profile" component={UserProfilePage} />
 
         <Route exact path="/itineraries" component={ItineraryIndex} />
 

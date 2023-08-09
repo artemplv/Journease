@@ -26,7 +26,7 @@ export default function ProfileButton() {
     return (
         <div className="links-nav">
             <button onClick={showPage}>My Profile</button>
-            <button onClick={openModal}>Create New Itinerary</button>
+            <button onClick={openModal}>Plan a Trip</button>
             {openCreate && 
                 <Modal onClose={()=> setOpenCreate(false)}>
                     <ItineraryModal/>

@@ -7,10 +7,11 @@ import './ItineraryIndex.css';
 function ItineraryIndex() {
   const dispatch = useDispatch();
   const itineraries = useSelector(state => Object.values(state.itineraries));
+  const currentUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     dispatch(fetchItineraries())
-  }, []);
+  }, [currentUser]);
 
 
   const ItineraryList = itineraries.map(itinerary => {
