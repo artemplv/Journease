@@ -17,24 +17,32 @@ export default function AboutPage () {
                     <img className="tim" src="/tim.png"/>
                     <p>Artem Polevoy</p>
                     <p>Team Lead 👑</p>
+                    <a href="https://github.com/artemplv"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
+                    <a href="https://www.linkedin.com/in/artemplv/"><i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i></a>
                 </div>
 
                 <div id="individual-info">
                     <img className="ashley" src="/ashley.png"/>
                     <p>Ashley Kim</p>
                     <p>Backend Lead 👩‍💻</p>
+                    <a href="https://github.com/ashleyjek"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
+                    <i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i>
                 </div>
 
                 <div id="individual-info">
                     <img className="michelle" src=""/>
                     <p>Michelle Li</p>
                     <p>Frontend Lead 👩‍💻</p>
+                    <a href="https://github.com/michelleeli"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
+                    <i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i>
                 </div>
 
                 <div id="individual-info">
                     <img className="viktoria" src="/viktoria.png"/>
                     <p>Viktoria Czaran</p>
                     <p>Flex Lead 👩‍💻</p>
+                    <a href="https://github.com/vczaran"><i class="fa-brands fa-github fa-xl" style={{color: "#919397"}}></i></a>
+                    <a href="https://www.linkedin.com/in/viktoria-czaran-4688ab284/"><i class="fa-brands fa-linkedin fa-xl" style={{color: "#919397"}}></i></a>
                 </div>
 
             </div>
