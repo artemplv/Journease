@@ -18,6 +18,10 @@
   outline: none;
 }
 
+textarea.input-field {
+  padding-top: 7px;
+}
+
 .input-field.error {
   border-color: red;
 }

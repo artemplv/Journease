@@ -22,7 +22,7 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal({ onClose, children }) {
+export function Modal({ onClose, children, ignoreOverflow }) {
   const modalNode = useContext(ModalContext);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export function Modal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
-      <div id="modal-content">
+      <div id="modal-content" className={ignoreOverflow ? 'ignoreOverflow' : ''}>
         {children}
       </div>
     </div>,
