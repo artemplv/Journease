@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
 
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 function Map({ activities, mapOptions }) {
   const mapRef = useRef(null);
   const markersRef = useRef({});
@@ -31,7 +33,7 @@ console.log(process.env)
 export default function MapWrapper(props) {
   return (
     <div id='mapcontainer'>
-    <Wrapper apiKey="AIzaSyBW_sogcJ5F1unTzYJ427uMoL3Vbxroxvo">
+    <Wrapper apiKey={apiKey}>
       <Map {...props} />
     </Wrapper>
     </div>

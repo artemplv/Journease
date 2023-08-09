@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { DateRange } from 'react-date-range';
-import { useState } from "react";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './ItineraryModal.css'
-import { createItinerary, editItinerary } from "../../store/itineraries";
-import { useEffect } from "react";
+import { createItinerary, editItinerary } from '../../store/itineraries';
+
+import SearchUserInput from '../SearchUsersInput/SearchUsersInput';
+import Collaborator from "./Collaborator";
 
 export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
@@ -16,6 +18,7 @@ export default function ItineraryModal({itinerary}) {
     const [type, setType] = useState('Create');
     const [cover, setCover] = useState(null);
     const [coverUrl, setCoverUrl] = useState(null);
+    const [collaboratorsIds, setCollaboratorsIds] = useState([]);
 
     useEffect(()=> {
         if (itinerary) {
@@ -28,6 +31,7 @@ export default function ItineraryModal({itinerary}) {
                 key: 'selection'
             }]);
             setCoverUrl(itinerary.coverImageUrl);
+            setCollaboratorsIds(itinerary.collaborators);
         }
     }, [])
 
@@ -54,27 +58,35 @@ export default function ItineraryModal({itinerary}) {
         setOpenDate(!openDate)
     }
 
+    const addCollaborator = (userId) => {
+        if (!collaboratorsIds.includes(userId)) {
+            setCollaboratorsIds((ids) => [ ...ids, userId ]);
+        }
+    }
+
+    const removeCollaborator = (userId) => {
+        setCollaboratorsIds((ids) => ids.filter((id) => id !== userId));
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (type === "Create") {
             dispatch(createItinerary({
-                // owner: owner.username, 
-                // ownerId: owner._id, 
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
                 dateEnd: dates[0].endDate,
+                collaborators: collaboratorsIds,
                 cover
             }))
         } else {
             dispatch(editItinerary({
-                // owner: owner.username, 
                 id: itinerary._id, 
-                // ownerId: owner._id, 
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
                 dateEnd: dates[0].endDate,
+                collaborators: collaboratorsIds,
                 cover
             }))
         }
@@ -126,9 +138,24 @@ export default function ItineraryModal({itinerary}) {
                         <DateRange months={2} direction="horizontal" color="#D33756" minDate={new Date()} editableDateInputs={true} onChange={item => setDates([item.selection])} moveRangeOnFirstSelection={false} ranges={dates}/> 
                     </div>
                 }
-                <div>Collaborators
+                <div className="collaborators">Collaborators
                     <br/>
-                    <input type="text"/>
+                    <SearchUserInput
+                        onChange={addCollaborator}
+                    />
+                    {
+                        collaboratorsIds.length > 0 && (
+                            <p className="collaborators-subtitle">Users to be added as collaborators:</p>
+                        )
+                    }
+                    {
+                        collaboratorsIds.map((userId) => (
+                            <Collaborator
+                                userId={userId}
+                                onRemove={removeCollaborator}
+                            />
+                        ))
+                    }
                 </div>
                 <input type="submit" value="Create"/>
             </div>

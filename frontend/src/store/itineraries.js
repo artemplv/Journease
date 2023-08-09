@@ -51,16 +51,18 @@ export const deleteItinerary = (itineraryId) => async dispatch => {
 }
 
 export const createItinerary = (itinerary) => async dispatch => {
-    const { cover, title, description, dateStart, dateEnd } = itinerary;
+    const { cover, title, description, dateStart, dateEnd, collaborators } = itinerary;
     const formData = new FormData();
-    // formData.append("ownerId", ownerId);
+    
     formData.append("title", title);
     formData.append("description", description);
     formData.append("dateStart", dateStart);
     formData.append("dateEnd", dateEnd);
-    // formData.append("collaborators", collaborators);
-    // formData.append("activities", activities)
+    collaborators.forEach((userId) => {
+        formData.append('collaborators[]', userId);
+    });
     if (cover) formData.append("cover", cover);
+    
     try {
         const res = await jwtFetch('/api/itineraries', {
             method: 'POST',
@@ -78,16 +80,18 @@ export const createItinerary = (itinerary) => async dispatch => {
 }
 
 export const editItinerary = (itinerary) => async dispatch => {
-    const { cover, title, description, dateStart, dateEnd } = itinerary;
+    const { cover, title, description, dateStart, dateEnd, collaborators } = itinerary;
     const formData = new FormData();
-    // formData.append("ownerId", ownerId);
+    
     formData.append("title", title);
     formData.append("description", description);
     formData.append("dateStart", dateStart);
     formData.append("dateEnd", dateEnd);
-    // formData.append("collaborators", collaborators);
-    // formData.append("activities", activities)
+    collaborators.forEach((userId) => {
+        formData.append('collaborators[]', userId);
+    });
     if (cover) formData.append("cover", cover);
+    
     const res = await jwtFetch(`/api/itineraries/${itinerary.id}`, {
         method: 'PATCH',
         body: formData

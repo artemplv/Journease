@@ -1,7 +1,9 @@
 import jwtFetch from "./jwt";
+import { debounceThunkAction } from '../utils';
 
-export const RECEIVE_USER = "users/RECEIVE_USER";
- 
+const RECEIVE_USER = "users/RECEIVE_USER";
+// const RECEIVE_USER_ITINERARIES = "users/RECEIVE_USER_ITINERARIES";
+const RECEIVE_USERS = "users/RECEIVE_USERS";
 
 const receiveUser = (user, userItineraries, itinerariesIds) => ({
     type: RECEIVE_USER,
@@ -9,6 +11,16 @@ const receiveUser = (user, userItineraries, itinerariesIds) => ({
     userItineraries,
     itinerariesIds
 })
+
+// const receiveUserItineraries = userItineraries => ({
+//     type: RECEIVE_USER_ITINERARIES,
+//     userItineraries
+// })
+
+const receieUsers = (users) => ({
+    type: RECEIVE_USERS,
+    users,
+});
 
 export const fetchUser = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`);
@@ -31,6 +43,14 @@ export const updateUser = (image, currentUserId) => async dispatch => {
     dispatch(receiveUser(data.user));
 }
 
+export const searchUsers = (searchQuery, limit = 5, callback = () => {}) => async (dispatch) => {
+    const res = await jwtFetch(`/api/users/search?username=${searchQuery}&limit=${limit}`);
+    const data = await res.json();
+    dispatch(receieUsers(data.users.byId));
+    callback(data.users.allIds);
+}
+
+export const searchUsersDebounced = debounceThunkAction(searchUsers, 600);
 
 export default function usersReducer (state = {}, action) {
     const newState = {...state};
@@ -38,6 +58,13 @@ export default function usersReducer (state = {}, action) {
     switch(action.type) {
         case RECEIVE_USER:
             return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds} };
+        // case RECEIVE_USER_ITINERARIES:
+        //     return {...newState, userItineraries: action.userItineraries};
+        case RECEIVE_USERS:
+            return {
+                ...state,
+                ...action.users,
+            };
         default:
             return state;
     }

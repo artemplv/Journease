@@ -1,5 +1,7 @@
 import ActivityDay from "./ActivityDay";
 import './ActivityIndex.css'
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function ActivityIndex({itinerary}) {
     let start = new Date(itinerary?.dateStart)
