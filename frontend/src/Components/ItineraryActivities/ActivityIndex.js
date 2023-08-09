@@ -1,9 +1,18 @@
 import ActivityDay from "./ActivityDay";
 import './ActivityIndex.css'
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function ActivityIndex({itinerary}) {
     let start = new Date(itinerary?.dateStart)
     let end = new Date(itinerary?.dateEnd)
+    const currentUser = useSelector(state => state.session.user)
+
+    useEffect(()=> {
+        if (currentUser._id === itinerary._id) {
+            return true
+        }
+    }, [])
 
     const datesArray = () => {
         let array = []
