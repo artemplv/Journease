@@ -60,8 +60,12 @@ export default function ItineraryModal({itinerary}) {
 
     const addCollaborator = (userId) => {
         if (!collaboratorsIds.includes(userId)) {
-            setCollaboratorsIds((value) => [ ...value, userId ]);
+            setCollaboratorsIds((ids) => [ ...ids, userId ]);
         }
+    }
+
+    const removeCollaborator = (userId) => {
+        setCollaboratorsIds((ids) => ids.filter((id) => id !== userId));
     }
 
     const handleSubmit = (e) => {
@@ -146,7 +150,10 @@ export default function ItineraryModal({itinerary}) {
                     }
                     {
                         collaboratorsIds.map((userId) => (
-                            <Collaborator userId={userId} />
+                            <Collaborator
+                                userId={userId}
+                                onRemove={removeCollaborator}
+                            />
                         ))
                     }
                 </div>

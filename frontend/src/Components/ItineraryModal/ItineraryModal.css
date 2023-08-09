@@ -118,3 +118,29 @@
 .itinerary-form .collaborators .collaborator-username:not(:last-child) {
     margin-bottom: 5px;
 }
+
+.itinerary-form .collaborator-item {
+    width: 100%;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itinerary-form .collaborator-item:hover {
+    background: #bab9b966;
+}
+
+.itinerary-form .remove-collaborator-button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #F87575;
+    padding: 2px 6px;
+    font-weight: 600;
+    display: none;
+}
+
+.itinerary-form .collaborator-item:hover .remove-collaborator-button {
+   display: block;
+}

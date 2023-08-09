@@ -11,6 +11,7 @@ import { fetchUser } from '../../store/users';
 function Collaborator(props) {
   const {
     userId,
+    onRemove,
   } = props;
 
   const dispatch = useDispatch();
@@ -22,8 +23,20 @@ function Collaborator(props) {
     }
   }, [user]);
 
+  const handleRemove = () => {
+    onRemove(userId);
+  }
+
   return (
-    <p className='collaborator-username'>{user.username}</p>
+    <div className="collaborator-item">
+      <p className="collaborator-username">{user?.username || ''}</p>
+      <button
+        className="remove-collaborator-button"
+        onClick={handleRemove}
+      >
+        X
+      </button>
+    </div>
   );
 };
 
