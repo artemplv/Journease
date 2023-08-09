@@ -33,12 +33,12 @@ export default function ItineraryIndexItem({itinerary}) {
 
     return (
         <li className="itinerary-index-item">
-            <div id="itinerary-card-info">
+            <div className="itinerary-card-info">
                 <div id="index-thumbnail" onClick={redirectShow}>
                     <img src={`${itinerary.coverImageUrl}`}/>
                 </div>
                 <h1>{itinerary?.title}</h1>
-                <div id="itinerary-card-subinfo">
+                <div className="itinerary-card-subinfo">
                     <UserInfo userId={itinerary.ownerId}/>
                     <p>                            
                         <i className="fa-solid fa-heart fa-2xl" style={{color: "#FFA9A3",}}/>

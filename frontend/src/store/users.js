@@ -1,7 +1,7 @@
 import jwtFetch from "./jwt";
 import { debounceThunkAction } from '../utils';
 
-const RECEIVE_USER = "users/RECEIVE_USER";
+export const RECEIVE_USER = "users/RECEIVE_USER";
 // const RECEIVE_USER_ITINERARIES = "users/RECEIVE_USER_ITINERARIES";
 const RECEIVE_USERS = "users/RECEIVE_USERS";
 
@@ -10,6 +10,7 @@ const receiveUser = (user, userItineraries, itinerariesIds) => ({
     user,
     userItineraries,
     itinerariesIds
+    // likedItineraries
 })
 
 // const receiveUserItineraries = userItineraries => ({
@@ -17,7 +18,7 @@ const receiveUser = (user, userItineraries, itinerariesIds) => ({
 //     userItineraries
 // })
 
-const receieUsers = (users) => ({
+const receiveUsers = (users) => ({
     type: RECEIVE_USERS,
     users,
 });
@@ -46,7 +47,7 @@ export const updateUser = (image, currentUserId) => async dispatch => {
 export const searchUsers = (searchQuery, limit = 5, callback = () => {}) => async (dispatch) => {
     const res = await jwtFetch(`/api/users/search?username=${searchQuery}&limit=${limit}`);
     const data = await res.json();
-    dispatch(receieUsers(data.users.byId));
+    dispatch(receiveUsers(data.users.byId));
     callback(data.users.allIds);
 }
 

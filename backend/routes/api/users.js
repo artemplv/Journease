@@ -63,6 +63,9 @@ router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     const userItineraries = await Itinerary.find({ownerId: req.params.id});
+    // const likes = await Like.find({likerId: req.params.id});
+    // const likedItineraries = likes.map(like => (like.itineraryId));
+
     const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
     const data = {};
 
@@ -74,6 +77,7 @@ router.get('/:id', async(req, res, next) => {
       user,
       userItineraries: data,
       itinerariesIds
+      // likedItineraries
     });
   } catch(err) {
     const error = new Error('User does not exist');

@@ -17,7 +17,7 @@ export default function UserInfo ({userId}) {
     return (
         <div id="user-info">
             <img src={user?.profileImageUrl}/>
-            <h1>{user?.username}</h1>
+            <h2>{user?.username}</h2>
         </div>
     )
 }
