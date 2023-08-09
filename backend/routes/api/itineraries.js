@@ -4,6 +4,7 @@ const router = express.Router();
 const { requireUser, restoreUser } = require('../../config/passport');
 const { singleFileUpload, singleMulterUpload } = require('../../awsS3');
 const validateItineraryInput = require('../../validation/itinerary');
+const Like = mongoose.model('Like');
 const Itinerary = mongoose.model('Itinerary');
 const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
@@ -56,10 +57,16 @@ router.get('/', async (req, res) => {
 
 // SHOW ITINERARY
 router.get('/:id', async(req, res, next) => {
+    const allLikes = (await Like
+                            .find({
+                                'itineraryId': req.params.id
+                                }));
     try {
+        const itineraryLikes = allLikes.map((like) => like.likerId) 
         const foundItinerary = await Itinerary.findById(req.params.id);
         return res.json({
-            itinerary: foundItinerary
+            itinerary: foundItinerary,
+            itineraryLikerIds: itineraryLikes
         });
     } catch(err) {
         const error = new Error('Itinerary does not exist');
@@ -105,7 +112,10 @@ router.patch(
 })
 
 // DELETE ITINERARY
-router.delete('/:id', requireUser, async(req, res, next) => {
+router.delete(
+    '/:id', 
+    requireUser, 
+    async(req, res, next) => {
     try {
         const itinerary = await Itinerary.findById(req.params.id);
         if (itinerary) {
