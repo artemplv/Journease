@@ -43,17 +43,16 @@ router.get('/search', requireUser, async (req, res, next) => {
       'username email profileImageUrl'
     ).limit(limit);
 
-    const data = {
+    const usersData = users.reduce((accum, user) => {
+      accum.byId[user.id] = user;
+      accum.allIds.push(user.id);
+      return accum;
+    }, {
       byId: {},
       allIds: []
-    };
-
-    users.forEach((user) => {
-      data.byId[user.id] = user;
-      data.allIds.push(user.id);
     });
 
-    res.json({ users: data });
+    res.json({ users: usersData });
   }
   catch(err) {
     next(err);
@@ -63,22 +62,47 @@ router.get('/search', requireUser, async (req, res, next) => {
 router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    const userItineraries = await Itinerary.find({ownerId: req.params.id});
+
+    const userItineraries = await Itinerary.aggregate([
+      {
+        $match: { ownerId: req.params.id },
+      },
+      {
+          $lookup: {
+              from: 'likes',
+              localField: '_id',
+              foreignField: 'itineraryId',
+              as: 'likerIds',
+              pipeline: [
+                  {
+                      $project: {
+                          _id: 0,
+                          likerId: 1,
+                      },
+                  },
+              ],
+            },
+      },
+      {
+          $addFields: { likerIds: "$likerIds.likerId" },
+      },
+    ]);
+    
     const likes = await Like.find({likerId: req.params.id});
     const likedItineraries = likes.map(like => (like.itineraryId));
 
     const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
-    const data = {};
-
+    
+    const itinerariesData = {};
     userItineraries.forEach((itinerary) => {
-      data[itinerary.id] = itinerary
-    })
+      itinerariesData[itinerary.id] = itinerary
+    });
 
     return res.json({
       user,
-      userItineraries: data,
+      userItineraries: itinerariesData,
       itinerariesIds,
-      likedItineraries
+      likedItineraries,
     });
   } catch(err) {
     const error = new Error('User does not exist');
