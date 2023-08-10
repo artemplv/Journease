@@ -22,7 +22,7 @@ function NavBar () {
 
   const aboutPage = () => {
     history.push('/about')
-}
+  }
 
   const getLinks = () => {
     if (loggedIn) {
@@ -45,7 +45,7 @@ function NavBar () {
   }
 
   return (
-    <div id='nav-bar'>
+    <div id="nav-bar">
       <h1 onClick={redirectHome}>
         <img id="logo" src="https://journease-artemplv.s3.amazonaws.com/public/favicon.png"/></h1>
       { getLinks() }

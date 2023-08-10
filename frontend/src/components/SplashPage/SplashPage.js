@@ -53,18 +53,23 @@ const SplashPage = () => {
             }
             <div className="entire-splash-container">
                 <div className="splash-search-container">
-                    {/* <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/> */}
-                    {/* <img src="https://journease-artemplv.s3.amazonaws.com/public/final-logo.png"/> */}
-                    <img src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png"/>
-                    {/* <h1 id="search-label">Type to search for itineraries</h1> */}
-                    <input className="splash-search" placeholder='Type to search for itineraries'/>
+                    <img 
+                        src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png"/>
+                    <input 
+                        className="splash-search" 
+                        placeholder='Type to search for itineraries'/>
                     <button 
                         onClick={handleClick}
-                        className="splash-browse-all">Create an Itinerary</button>
-                    <button onClick={handleRedirect}>or Browse All</button>
+                        className="splash-create">
+                            Create an Itinerary</button>
+                    <button 
+                        className="splash-browse"
+                        onClick={handleRedirect}>
+                            or Browse All</button>
                 </div>
                 <div className="splash-img-container">
-                    <img src='https://journease-artemplv.s3.amazonaws.com/public/splash-image.jpg'/>
+                    <img 
+                        src='https://journease-artemplv.s3.amazonaws.com/public/splash-image.jpg'/>
                 </div>
             </div>
                 <ItineraryIndex/>
