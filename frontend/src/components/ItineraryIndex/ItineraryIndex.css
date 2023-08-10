@@ -9,7 +9,6 @@
     width: 80vw;
     grid-template-columns: repeat(3, 1fr);
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
     border-radius: 15px;
     padding-top: 10px;
     margin-bottom: 20px;
@@ -19,9 +18,9 @@
     align-items: center;
     height: 68vh;
     width: 25vw;
-    background-color: rgb(255, 247, 238);
+    background-color: rgb(213, 227, 203);
     margin: 15px;
-    outline: 1px solid white;
+    outline: 2px solid white;
     outline-offset: -10px;
 }
 
@@ -40,11 +39,12 @@
     color: black;
     margin: auto;
     text-align: center;
-    width: 16.5vw;
-    height: 5vh;
+    width: 17vw;
+    height: 6.5vh;
+    /* background-color: #FFA9A3; */
     background-color: white;
     transform: translateY(-3vh);
-    outline: 1px solid rgb(255, 247, 238);
+    outline: 2px solid rgb(213, 227, 203);
     outline-offset: -5px;
     padding: 5px;
 }
@@ -61,7 +61,7 @@
     margin-right: 5px;
     background-color: transparent;
     cursor: pointer;
-    color: #FFA9A3;
+    color: #dc6e7f;
 }
 
 .like-button:disabled {
@@ -69,13 +69,15 @@
 }
 
 .it-likes-num {
+    font-size: 17px;
+    font-weight: 500;
     margin-right: 10px;
 }
 
 .itinerary-subinfo-buttons {
     display: flex;
     align-items: flex-end;
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 
 
@@ -142,6 +144,7 @@
     display: flex;
     align-items: flex-end;
     height: 40px;
+
 }
 
 .update-itinerary-buttons button {
@@ -149,5 +152,6 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
+    /* color: #bb4865; */
 }
 

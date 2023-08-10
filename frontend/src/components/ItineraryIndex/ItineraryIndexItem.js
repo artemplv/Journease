@@ -68,6 +68,7 @@ export default function ItineraryIndexItem({ itinerary }) {
                 <h1>{itinerary?.title}</h1>
                 <div className="itinerary-card-subinfo">
                     <UserInfo userId={itinerary.ownerId}/>
+                    
                     <div className="itinerary-subinfo-buttons">
                         
                         <button
@@ -90,27 +91,6 @@ export default function ItineraryIndexItem({ itinerary }) {
                                 )
                             }
                         </button>
-                        
-                        {showUpdate && 
-                        <>
-                        <div className="update-itinerary-buttons">
-                            <button onClick={()=> setOpenModal(true)}>
-                                <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
-                            </button> 
-                            {openModal && 
-                                <Modal onClose={()=> setOpenModal(false)}>
-                                    <ItineraryModal
-                                        itinerary={itinerary}
-                                        closeModal={()=> setOpenModal(false)}
-                                    />
-                                </Modal>
-                            }
-                            <button onClick={remove}>
-                                <i className="fa-solid fa-trash fa-xl" style={{color: "#FFA9A3",}}/>
-                            </button>
-                        </div>
-                        </>
-                        }
                     </div>
                 </div>
             </div>

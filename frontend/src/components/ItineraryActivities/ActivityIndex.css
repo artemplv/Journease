@@ -1,11 +1,43 @@
-#show-page-daily-heading {
-    box-sizing: border-box;
-    width: 100%;
-    height: 6vh;
+.show-page-daily-heading {
+    display: flex;
+}
+
+.show-page-day {
+    margin-top: 5vw;
+    margin-left: 1vw;
+}
+
+#day-num-container{
+    width: 7vw;
+    height: 7vw;
     background-color: pink;
-    margin-bottom: 2vh;
-    border-radius: 10px;
-    padding: 1vw;
+    border-radius: 100px;
+    font-size: 23px;
+    outline: 1px solid white;
+    outline-offset: -8px;
+}
+
+#day-num {
+    margin-top: 2vw;
+    color: white;
+    text-align: center;
+    line-height: 1.1;
+}
+
+
+#date-heading {
+    margin-top: 2.8vh;
+    height: 7vh;
+    padding-top: 1.3vw;
+    padding-left: 4vw;
+    width: 83%;
+    border: 1px solid rgb(243, 106, 129);
+    outline: 1px dotted rgb(243, 106, 129);
+    outline-offset: -8px;
+    z-index: -1;
+    transform: translateX(-3vw);
+    border-radius: 5px;
+    font-size: 20px;
 }
 
 #create-activity-button {
@@ -16,27 +48,66 @@
     border: none;
     background-color: rgb(243, 243, 243);
     cursor: pointer;
+    margin-left: 6vw;
+    margin-bottom: 2vh;
+    margin-right: 2vw;
+}
+
+#create-activity-label {
+    border: 1px dotted pink;
+    padding: 1vh;
+    padding-left: 3vw;
+    z-index: -1;
+    margin-top: 0.5vh;
+    border-radius: 5px;
+    padding-right: 20vw;
 }
 
 .activity-item {
     box-sizing: border-box;
-    width: 100%;
-    height: 15vh;
+    width: 78%;
+    height: 19vh;
     background-color: rgb(251, 242, 242);
     margin-bottom: 2vh;
+    margin-left: 6vw;
     border-radius: 10px;
     padding: 1vw;
     display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+#activity-item-description {
+    padding-left: 1vw;
 }
 
 #activity-item-img img{
     object-fit: cover;
-    height: 12vh;
-    width: 12vh;
+    height: 15vh;
+    width: 18vh;
     border-radius: 15px;
 }
 
 .itinerary-show-activity-container {
-    height: 110vh;
-    overflow-y: scroll;
+    height: 120vh;
+    overflow-y: scroll;  
+    box-shadow: 10px 0px 3px #888;
+}
+
+#activity-item-heading {
+    font-size: 20px;
+    margin-bottom: 2vh;
+    width: 20vw;
+}
+
+.activity-update-buttons button{
+    border: none;
+    background-color: transparent;
+    padding: 1vh;
+    border-radius: 15px;
+}
+
+.activity-update-buttons button:hover{
+    cursor: pointer;
+    background-color: white;
 }

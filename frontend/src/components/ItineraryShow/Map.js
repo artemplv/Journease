@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Map.css'
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map({itinerary, mapOptions }) {
-  const dispatch = useDispatch()
   const mapRef = useRef(null);
   const markersRef = useRef({});
   const activityIds = useSelector(state => state.itineraries[itinerary._id].activities)
@@ -34,7 +33,9 @@ function Map({itinerary, mapOptions }) {
     })
     return unique
   }
-  const colors = allColors();
+
+  const colors = ["rgb(211,64,132)","rgb(172,222,238)", "rgb(237,106,192)","rgb(221,97,220)", "rgb(187,118,54)", "rgb(190,137,129)","rgb(86,147,92)","rgb(238,120,62)", "rgb(196,214,314)", "rgb(220,109,235)", "rgb(163,176,133)","rgb(104,153,182)","rgb(240,191,242)","rgb(161,226,141)","rgb(229,168,58)","rgb(227,73,73)","rgb(233,218,115)","rgb(227,138,107)", "rgb(93,198,222)","rgb(169,53,155)", "rgb(147,92,198)","rgb(140,148,245)","rgb(240,175,78)", "rgb(233,137,112)", "rgb(79,176,204)","rgb(188,107,124)","rgb(127,149,92)","rgb(206, 114,81)","rgb(125,75,70)","rgb(184,150,143)","rgb(218,150,143)","rgb(218, 186, 65)", "rgb(159,195,86)", "rgb(187,75,213)","rgb(180,246,122)","rgb(208,59,236)","rgb(215,240,84)",]
+  // const colors = allColors();
   const dates = uniqueDates();
 
   useEffect(() => {
@@ -43,13 +44,14 @@ function Map({itinerary, mapOptions }) {
     if (activities.length < 1) {
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: 40.71427, lng: -74.00597}, 
-        zoom: 1,
+        zoom: 10,
         ...mapOptions, 
       });
     } else if (activities.length >= 1){
+
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: activities[0].place.location.lat, lng: activities[0].place.location.lng}, 
-        zoom: 10,
+        zoom: 9,
         ...mapOptions, 
       });
 
@@ -68,13 +70,19 @@ function Map({itinerary, mapOptions }) {
           map,
           title: activity.title,
           icon: {
-            path: faLocationDot.icon[4],
-            fillColor: `#${colors[dates.indexOf(activity.date)]}`,
+            path: faLocationPin.icon[4],
+            fillColor: `${colors[dates.indexOf(activity.date)%36]}`,
             fillOpacity: 1,
             strokeWeight: 1,
             strokeColor: "#ffffff",
             scale: 0.06,
+            labelOrigin: new window.google.maps.Point(200, 200)
           },
+          label: {
+            text: `${dates.indexOf(activity.date) + 1}`,
+            fontWeight: 'bold',
+            fontSize: '13px',
+          }
         }
       );
 
@@ -98,11 +106,11 @@ function Map({itinerary, mapOptions }) {
     return () => {
       markersRef.current = {};
     };
-  }, [activities, mapOptions]);
+  }, [JSON.stringify(activities), JSON.stringify(mapOptions)]);
 
   return (
     <>
-        <div ref={mapRef} id="map" style={{ width: '100%', height: '100vh' }} />
+        <div ref={mapRef} id="map" style={{ width: '100%', height: '120vh' }} />
     </>
   )
 }

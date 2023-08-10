@@ -8,8 +8,6 @@ import { Modal } from '../../context/Modal';
 import ProfileEditForm from './ProfileEditForm';
 import { fetchItineraries } from '../../store/itineraries';
 
-
-
 export default function UserProfilePage () {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -35,6 +33,7 @@ export default function UserProfilePage () {
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
     const likedItineraries = itineraries.filter((itinerary) => user?.likedItineraries?.includes(itinerary?._id));
+
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
@@ -63,9 +62,9 @@ export default function UserProfilePage () {
                 )}
                 <h1 className="user-profile-labels">My Itineraries</h1>
                 <div className='user-itineraries'>
-                    {user?.itineraries && ItineraryList}
+                    {userItineraries && ItineraryList}
                     <div className='no-itineraries'>
-                        {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
+                        {(userItineraries.length === 0) && <p>No trips yet 😢 Create one now!</p>}
                     </div>
                 </div>
 
