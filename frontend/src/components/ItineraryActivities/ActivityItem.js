@@ -5,7 +5,7 @@ import ActivityModal from '../ActivityModal/ActivityModal';
 import './ActivityIndex.css'
 import { Modal } from '../../context/Modal';
 
-export default function ActivityItem({activity, ownerId}) {
+export default function ActivityItem({activity, ownerId, itinerary}) {
     const dispatch = useDispatch();
     const [openEdit, setOpenEdit] = useState(false)
     const currentUserId = useSelector(state => state.session.user?._id)
@@ -28,7 +28,7 @@ export default function ActivityItem({activity, ownerId}) {
                     <h2 id="activity-item-heading">{activity.title}</h2>
                     <div id="activity-item-description">{activity.description}</div>
                 </div>
-                {currentUserId=== ownerId && 
+                {(currentUserId=== ownerId || itinerary.collaborators.includes(currentUserId)) && 
                     <div className="activity-update-buttons">
                         <button onClick={edit}>
                             <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>

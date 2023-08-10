@@ -14,7 +14,7 @@ export default function ActivityDay({itinerary, date}) {
 
     useEffect(()=> {
         if (currentUser) {
-            if (currentUser._id === itinerary.ownerId) {
+            if (currentUser._id === itinerary.ownerId || itinerary.collaborators.includes(currentUser._id)) {
                 setCanEdit(true)
             }
         } else {
@@ -33,7 +33,7 @@ export default function ActivityDay({itinerary, date}) {
     return (
         <div>
             {activities && activities.map(activity => 
-                <ActivityItem activity={activity} ownerId={itinerary.ownerId}/>
+                <ActivityItem activity={activity} ownerId={itinerary.ownerId} itinerary={itinerary}/>
             )}
             {canEdit && 
                 <div id="create-activity-button-container" onClick={createActivity}>

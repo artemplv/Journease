@@ -35,9 +35,7 @@ function LoginForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(login({ email, password }));
-    closeModal();
-    history.push('/itineraries');
-    
+    closeModal();    
   }
 
   const handleDemoLogin = async (e) => {
