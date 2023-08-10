@@ -1,0 +1,37 @@
+.users-search {
+  position: relative;
+}
+
+.users-search-dropdown {
+  position: absolute;
+  background: white;
+  padding: 15px 10px;
+  box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.75);
+  z-index: 100;
+  top: 43px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.users-search-dropdown ul {
+  list-style: none;
+  padding: 0;
+}
+
+.users-search-dropdown li:hover {
+  background: #b8b8b822;
+}
+
+.users-search-dropdown li button {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.users-search-dropdown li:not(:last-child) {
+  border-bottom: 1px solid #bab9b966;
+  margin-bottom: 7px;
+}

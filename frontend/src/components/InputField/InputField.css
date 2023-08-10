@@ -1,0 +1,65 @@
+.input-field-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.input-field, input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 17px;
+  border-radius: 8px;
+  border: 1px solid rgba(29,28,29,.3);
+  transition: border 80ms ease-out,box-shadow 80ms ease-out;
+  box-sizing: border-box;
+  margin: 0 0 7px;
+  padding: 3px 12px 5px;
+  width: 100%;
+  line-height: normal;
+  outline: none;
+}
+
+.input-field:disabled {
+  cursor: not-allowed;
+}
+
+textarea.input-field {
+  padding-top: 7px;
+}
+
+.input-field.error {
+  border-color: red;
+}
+
+.input-field:focus {
+  -webkit-appearance: none;
+  appearance: none;
+  border-color: #0000;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px #fdbea3,0 0 0 5px #fdbea359;
+}
+
+.input-field.error:focus {
+  border-color: #ff47478f;
+  box-shadow: 0 0 0 1px #ff474763, 0 0 0 5px rgb(224 30 90 / 17%);
+}
+
+.input-field-alert {
+  display: flex;
+  align-items: baseline;
+  font-weight: 400;
+  color: red;
+  font-size: 13px;
+}
+
+.input-field-alert span {
+  flex: 1;
+}
+
+.input-field-alert span:first-letter {
+  text-transform: uppercase;
+}
+
+.input-field-alert .alert-icon {
+  margin-right: 4px;
+  color: #ff4747;
+}

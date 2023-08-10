@@ -1,0 +1,101 @@
+.itineraries-index {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 3vw;
+}
+
+.itinerary-index-item {
+    align-items: center;
+    height: 68vh;
+    width: 25vw;
+    /* background-color:black; */
+    margin: 15px;
+    outline: 1px solid white;
+    outline-offset: -10px;
+}
+
+.itinerary-card-info {
+    width: 100%;
+    height: 100%;
+}
+
+.itinerary-card-info h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
+    text-align: center;
+    width: 16.5vw;
+    height: 5vh;
+    /* background-color: rgb(195, 184, 169); */
+    background-color: #FFA9A3;
+    transform: translateY(-3vh);
+    outline: 1px solid white;
+    outline-offset: -5px;
+    padding: 5px;
+}
+
+.itinerary-card-info h2 {
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #a6a4a4;
+    padding: 5px;
+}
+
+.like-button {
+    border: transparent;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.itinerary-subinfo-buttons {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+
+.itinerary-card-subinfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 15px;
+    /* align-items: center; */
+    /* height: 80px; */
+}
+
+#index-thumbnail img {
+    object-fit: cover;
+    width: 25vw;
+    height: 50vh;
+    cursor: pointer;
+}
+
+#itinerary-index-page-title {
+    text-align: center;
+    font-size: 32px;
+    padding-top: 80px;
+    margin-bottom: 20px;
+}
+
+#itinerary-index-page-title img {
+    width: 500px;
+}
+
+.update-itinerary-buttons {
+    display: flex;
+    align-items: flex-end;
+    height: 40px;
+}
+
+.update-itinerary-buttons button {
+    width: 2.5vw;
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}

@@ -58,15 +58,13 @@ router.get('/', async (req, res) => {
 // SHOW ITINERARY
 router.get('/:id', async(req, res, next) => {
     const allLikes = (await Like
-                            .find({
-                                'itineraryId': req.params.id
-                                }));
+                            .find({'itineraryId': req.params.id}))
     try {
         const itineraryLikes = allLikes.map((like) => like.likerId) 
-        const foundItinerary = await Itinerary.findById(req.params.id);
+        const foundItinerary = await Itinerary.findById(req.params.id).lean();
+        foundItinerary.likerIds = itineraryLikes
         return res.json({
-            itinerary: foundItinerary,
-            itineraryLikerIds: itineraryLikes
+            itinerary: foundItinerary
         });
     } catch(err) {
         const error = new Error('Itinerary does not exist');
