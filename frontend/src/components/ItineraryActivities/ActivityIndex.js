@@ -18,8 +18,11 @@ export default function ActivityIndex({itinerary}) {
     return(
         <>
             {itinerary && (datesArray().map((date, i) => (
-                <div className="show-page-day">
-                    <div class="show-page-daily-heading" id={`day${i+1}`}>
+                <div
+                    key={date}
+                    className="show-page-day"
+                >
+                    <div className="show-page-daily-heading" id={`day${i+1}`}>
                         <div id="day-num-container">
                             <div id="day-num">DAY <br/>{i + 1}</div>
                         
