@@ -10,6 +10,7 @@ import {
 import { searchUsersDebounced } from '../../store/users';
 
 import SearchResultItem from './SearchResultItem';
+import InputField from '../InputField/InputField';
 
 import './SearchUserInput.css';
 
@@ -53,7 +54,7 @@ function SearchUserInput(props) {
 
   return (
     <div className="users-search">
-      <input
+      <InputField
         type="text"
         placeholder="Search for users by username"
         value={inputValue}

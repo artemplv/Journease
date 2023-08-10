@@ -75,7 +75,6 @@ export const createItinerary = (itinerary) => async dispatch => {
     } catch(err) {
       const res = await err.json();
       if (res.statusCode === 500) {
-        console.log(res.json())
         return res.json();
       }
     }

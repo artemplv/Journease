@@ -43,16 +43,23 @@ function NavBar () {
   return (
     <div className='nav-bar'>
       <h1 onClick={redirectHome}>
-        <img id="logo" src="https://coffeebook-dev.s3.amazonaws.com/favicon.png"/></h1>
+        <img id="logo" src="https://coffeebook-dev.s3.amazonaws.com/favicon.png"/>
+      </h1>
       { getLinks() }
       {(modalType === "signup") && (
         <Modal onClose={()=> setModalType("")}>
-          <SignupForm/>
+          <SignupForm
+            openSignInForm={login}
+            closeModal={()=> setModalType("")}
+          />
         </Modal>
       )}
       {(modalType === "login") && (
         <Modal onClose={()=> setModalType("")}>
-            <LoginForm/>
+            <LoginForm
+              openSignUpForm={signup}
+              closeModal={()=> setModalType("")}
+            />
         </Modal>
       )}
     </div>

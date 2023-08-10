@@ -1,0 +1,83 @@
+.activity-modal-container {
+    display: flex;
+}
+
+.activity-form-title {
+    height: 50px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.activity-preview-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.activity-preview-header img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 20px 20px 20px;
+}
+
+.activity-header {
+    height: 65px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+.activity-modal-container input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.activity-modal-container textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.activity-modal-container input[type="submit"] {
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 44px;
+    width: 50%;
+    min-width: 15vh;
+    max-width: 200px;
+    border-radius: 30px;
+    border: none;
+    background-color: #fdbea3;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    display: block;
+}
+
+.activity-modal-container input[type="submit"]:hover {
+    background-color: #ef9e7c;
+}
+
+.activity-modal-container h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.activity-modal-container h2 {
+    text-align: center;
+    font-size: 21px;
+}
+

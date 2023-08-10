@@ -8,7 +8,7 @@
   padding: 15px 10px;
   box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.75);
   z-index: 100;
-  top: 40px;
+  top: 43px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -19,7 +19,7 @@
 }
 
 .users-search-dropdown li:hover {
-  background: #bab9b966;
+  background: #b8b8b822;
 }
 
 .users-search-dropdown li button {

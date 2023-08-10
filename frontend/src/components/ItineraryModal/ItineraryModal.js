@@ -8,6 +8,7 @@ import { createItinerary, editItinerary } from '../../store/itineraries';
 
 import SearchUserInput from '../SearchUsersInput/SearchUsersInput';
 import Collaborator from "./Collaborator";
+import InputField from '../InputField/InputField';
 
 export default function ItineraryModal({itinerary}) {
     const dispatch = useDispatch();
@@ -111,54 +112,88 @@ export default function ItineraryModal({itinerary}) {
       }
 
     return(
-        <form className="itinerary-form" onSubmit={handleSubmit}>
-            <div className="it-photo-container">
-            <div className='label'>Image Upload</div>
-                <div className='it-photo-preview'>{preview}</div>
-                <input type="file" 
-                    accept=".jpg, .jpeg, .png" 
-                    onChange={handleFile} />
-            </div>
-            <div id="inputs">
-                <div>Title</div>
-                    <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}}/>
-                <div>Description</div>
-                    <textarea value={description} onChange={(e) => {setDescription(e.target.value)}}/>
-                <div id="dates" onClick={toggleOpenDate}>Dates
-                    <br/>
-                    <input type="text" value={dateConvert(dates[0].startDate.toLocaleDateString())}/>
-                    <label> 
-                        <i className="fa-solid fa-plane" style={{color: "#F87575",}}/>
-                        <input type="text" value={dateConvert(dates[0].endDate.toLocaleDateString())}/>
-                    </label>
-                </div>
-                {openDate && 
-                    <div id="calendar">
-                        <div id="calendarDone" onClick={toggleOpenDate}>Close</div>
-                        <DateRange months={2} direction="horizontal" color="#D33756" minDate={new Date()} editableDateInputs={true} onChange={item => setDates([item.selection])} moveRangeOnFirstSelection={false} ranges={dates}/> 
-                    </div>
-                }
-                <div className="collaborators">Collaborators
-                    <br/>
-                    <SearchUserInput
-                        onChange={addCollaborator}
-                    />
-                    {
-                        collaboratorsIds.length > 0 && (
-                            <p className="collaborators-subtitle">Users to be added as collaborators:</p>
-                        )
-                    }
-                    {
-                        collaboratorsIds.map((userId) => (
-                            <Collaborator
-                                userId={userId}
-                                onRemove={removeCollaborator}
+        <>
+            <h2 className="itinerary-form-title">New Itinerary</h2>
+            <form className="itinerary-form" onSubmit={handleSubmit}>
+                <div className="it-photo-container">
+                    <div className="it-file-upload-container">
+                        <label className="file-upload">
+                            {
+                                preview ? (
+                                    <div className='it-photo-preview'>{preview}</div>
+                                ) : (
+                                    <div className="it-upload-file-icon-wrapper">
+                                        <i className="fa-solid fa-image fa-2xl image-icon" />
+                                    </div>
+                                )
+                            }
+                            <input type="file" 
+                            accept=".jpg, .jpeg, .png" 
+                            onChange={handleFile}
                             />
-                        ))
-                    }
+                        </label>
+                        Upload itinerary cover image
+                    </div>
                 </div>
-                <input type="submit" value="Create"/>
-            </div>
-        </form>
+                
+                <div id="inputs">
+                    <InputField
+                        value={title}
+                        onChange={(e) => {setTitle(e.target.value)}}
+                        placeholder="Title"
+                    />
+                
+                    <InputField
+                        textarea
+                        value={description}
+                        onChange={(e) => {setDescription(e.target.value)}}
+                        placeholder="Description"
+                    />
+
+                    <p className="section-title">
+                        Dates
+                    </p>
+                    
+                    <div id="dates" onClick={toggleOpenDate}>
+                        <InputField
+                            value={dateConvert(dates[0].startDate.toLocaleDateString())}
+                        />
+
+                        <i className="fa-solid fa-plane" style={{color: "#F87575",}}/>
+
+                        <InputField
+                            value={dateConvert(dates[0].endDate.toLocaleDateString())}
+                        />
+                    </div>
+                    
+                    {openDate && 
+                        <div id="calendar">
+                            <div id="calendarDone" onClick={toggleOpenDate}>Close</div>
+                            <DateRange months={2} direction="horizontal" color="#D33756" minDate={new Date()} editableDateInputs={true} onChange={item => setDates([item.selection])} moveRangeOnFirstSelection={false} ranges={dates}/> 
+                        </div>
+                    }
+
+                    <p className="section-title">
+                        Collaborators
+                    </p>
+                    
+                    <div className="collaborators">
+                        <SearchUserInput
+                            onChange={addCollaborator}
+                        />
+                        {
+                            collaboratorsIds.map((userId) => (
+                                <Collaborator
+                                    userId={userId}
+                                    onRemove={removeCollaborator}
+                                />
+                            ))
+                        }
+                    </div>
+                    
+                    <input type="submit" value="Create"/>
+                </div>
+            </form>
+        </>
     )
 }

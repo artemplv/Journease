@@ -1,0 +1,112 @@
+.session-form {
+    padding: 15px 20px 15px 20px;
+
+    width: 30vw;
+    text-align: left;
+    color: rgb(100, 100, 100);
+}
+
+.session-form h2 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.session-form .input-field-wrapper:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.session-form input[type="submit"] {
+    margin: 0 auto;
+    height: 44px;
+    width: 50%;
+    min-width: 15vh;
+    max-width: 200px;
+    border-radius: 30px;
+    border: none;
+    background-color: #fdbea3;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    display: block;
+}
+
+.session-form input[type="submit"]:hover {
+    background-color: #ef9e7c;
+}
+
+.session-form input[type="submit"]:disabled {
+    cursor: not-allowed;
+    background-color: #fdbea3;
+}
+
+
+#login input[type="submit"] {
+    margin-top: 30px;
+}
+
+.photo-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.photo-preview {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.photo-preview.hidden {
+    display: none;
+}
+
+.photo-preview img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.file-upload-container {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.file-upload-container .file-icon {
+    margin-right: 5px;
+}
+
+.file-upload-container input[type="file"] {
+    display: none;
+}
+
+.file-upload-container .file-upload {
+    cursor: pointer;
+    color: #FFA9A3;
+    font-size: 16px;
+}
+
+.file-upload-container .file-upload:hover {
+    text-decoration: underline;
+}
+
+.auth-change-message {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.auth-change-message button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: inherit;
+    padding: 0;
+    color: #5c95ff;
+}
