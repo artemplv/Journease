@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { useHistory } from 'react-router-dom';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -12,6 +13,7 @@ import InputField from '../InputField/InputField';
 
 export default function ItineraryModal({ itinerary, closeModal }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [openDate, setOpenDate] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -71,14 +73,15 @@ export default function ItineraryModal({ itinerary, closeModal }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (type === "Create") {
-            await dispatch(createItinerary({
+            const itineraryData = await dispatch(createItinerary({
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
                 dateEnd: dates[0].endDate,
                 collaborators: collaboratorsIds,
                 cover
-            }))
+            }));
+            history.push(`/itineraries/${itineraryData._id}`);
         } else {
             await dispatch(editItinerary({
                 id: itinerary._id, 
