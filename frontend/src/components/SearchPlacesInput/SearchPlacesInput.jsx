@@ -1,7 +1,6 @@
 import {
   useRef,
   useEffect,
-  useState,
 } from 'react';
 
 import InputField from '../InputField/InputField';
@@ -14,23 +13,16 @@ const autocompleteOptions = {
 
 const noop = () => {};
 
-function SearchPlacesInput({activity}, props) {
+function SearchPlacesInput(props) {
   const {
     onChange,
     onError = noop,
     className = '',
+    placeholder
   } = props;
-
-  const [place, setPlace] = useState("Search for places")
 
   const autocompleteRef = useRef();
   const inputRef = useRef();
-
-  useEffect(()=> {
-    if (activity) {
-      setPlace(activity.place.name)
-    }
-  }, [activity])
 
   useEffect(() => {
     if (!window.google) {
@@ -67,7 +59,7 @@ function SearchPlacesInput({activity}, props) {
   return (
     <InputField
       ref={inputRef}
-      placeholder={place}
+      placeholder={placeholder || "Search for places"}
       className={className}
     />
   );

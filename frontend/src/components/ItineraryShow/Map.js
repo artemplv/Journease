@@ -107,7 +107,7 @@ function Map({itinerary, mapOptions }) {
 
   return (
     <>
-        <div ref={mapRef} id="map" style={{ width: '100%', height: '100vh' }} />
+        <div ref={mapRef} id="map" style={{ width: '100%', height: '150vh' }} />
     </>
   )
 }

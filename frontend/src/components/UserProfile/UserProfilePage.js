@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../store/users';
-import ItineraryIndexItem from '../itineraryIndex/ItineraryIndexItem';
+import ItineraryIndexItem from '../ItineraryIndex/ItineraryIndexItem';
 import { useHistory, Link } from 'react-router-dom';
 import './UserProfile.css';
 import { Modal } from '../../context/Modal';
 import ProfileEditForm from './ProfileEditForm';
-
-
 
 export default function UserProfilePage () {
     const dispatch = useDispatch();

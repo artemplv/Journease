@@ -41,7 +41,7 @@ export default function ActivityItem({activity, ownerId}) {
             </div>
             {openEdit && (
                 <Modal onClose={()=> setOpenEdit(false)}>
-                    <ActivityModal itineraryId={activity.itineraryId} date={activity.date} activityId={activity._id}/>
+                    <ActivityModal itineraryId={activity.itineraryId} date={activity.date} activityId={activity._id} closeModal={()=>setOpenEdit(false)}/>
                 </Modal>
             )}
         </>

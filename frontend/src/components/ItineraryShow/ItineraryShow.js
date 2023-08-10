@@ -41,36 +41,6 @@ export default function ItineraryShow () {
         <>
         {itinerary && 
             <div className="itinerary-show-page">
-                <div className="itinerary-show-header">
-                    <div id="itinerary-show-image-container">
-                        <img src={`${itinerary.coverImageUrl}`}/>
-                    </div>
-                    <div className="itinerary-show-description">
-                        <h1>{itinerary.title}</h1>
-                        <div>        
-                            <i className="fa-solid fa-user-pen" style={{color: "#F87575",}}/>
-                            {itinerary.ownerId}
-                        </div>
-                        <div>
-                            <i className="fa-solid fa-note-sticky" style={{color: "#F87575",}}/>
-                            {itinerary.description}
-                        </div>
-                        <div>
-                            <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
-                            {startDate} to {endDate}
-                        </div>
-                    </div>
-                    <div id="collaborators">
-                        <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
-                        {itinerary.collaborators}
-                    </div>
-                    <button onClick={edit}>
-                        <i className="fa-solid fa-pen" style={{color: "#F87575",}}/>
-                    </button>
-                    <button onClick={confirmRemove}>
-                        <i className="fa-solid fa-trash" style={{color: "#F87575",}}/>
-                    </button>
-                </div>
                 {confirmModal && 
                     <Modal onClose={()=> setConfirmModal(false)}>
                         <div className="confirm-delete-itinerary-modal">
@@ -82,6 +52,44 @@ export default function ItineraryShow () {
                 <div className="itinerary-show-main-body">
                     {/* <DateNav itinerary={itinerary}/> */}
                     <div className="itinerary-show-activity-container">
+                        <div className="itinerary-show-header">
+                            <div id="itinerary-show-image-container">
+                                <img src={`${itinerary.coverImageUrl}`}/>
+                            </div>
+                        <div className="itinerary-header-text-box">
+       
+                        <div className="itinerary-show-description">
+                            <h1>{itinerary.title}</h1>
+                            <div>
+                                <i className="fa-solid fa-note-sticky" style={{color: "#F87575",}}/>
+                                {itinerary.description}
+                            </div>
+                        </div>
+                        <div>
+                                <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
+                                {startDate} to {endDate}
+                            </div>
+                        <div id="collaborators">
+                            <div>        
+                                <i className="fa-solid fa-user-pen" style={{color: "#F87575",}}/>
+                                {itinerary.ownerId}
+                            </div>
+                            <div>
+                                <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
+                                {itinerary.collaborators}
+                            </div>
+                        </div>
+                        <div className="itinerary-show-edit-buttons">
+                            <button onClick={edit}>
+                                <i className="fa-solid fa-pen fa-xl" style={{color: "#F87575",}}/>
+                            </button>
+                            <button onClick={confirmRemove}>
+                                <i className="fa-solid fa-trash fa-xl" style={{color: "#F87575",}}/>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
                         <ActivityIndex itinerary={itinerary}/>
                     </div>
                     <div>

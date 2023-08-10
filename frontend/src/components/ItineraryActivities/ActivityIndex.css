@@ -11,7 +11,8 @@
 }
 
 .show-page-day {
-    margin-bottom: 2vw;
+    margin-top: 5vw;
+    margin-left: 1vw;
 }
 
 #day-num-container{
@@ -39,6 +40,8 @@
     padding-left: 4vw;
     width: 83%;
     border: 1px solid rgb(243, 106, 129);
+    outline: 1px dotted rgb(243, 106, 129);
+    outline-offset: -8px;
     z-index: -1;
     transform: translateX(-3vw);
     border-radius: 5px;
