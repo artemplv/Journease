@@ -12,7 +12,6 @@ import UserProfilePage from './components/UserProfile/UserProfilePage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import AboutPage from './components/AboutPage/AboutPage';
 
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
