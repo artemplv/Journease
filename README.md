@@ -1,4 +1,7 @@
-# Journease
+
+<p align="center">
+  <img width="500" src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png">
+</p>
 
 ## Background and Overview
 
