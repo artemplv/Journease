@@ -27,15 +27,28 @@ export default function UserProfilePage () {
         } else {
             dispatch(fetchUser(currentUser?._id));
         };
+<<<<<<< HEAD
     }, [currentUser, user?.profileImageUrl, user?.likedItineraries]);
+=======
+    }, [currentUser, user?.profileImageUrl]); 
+    // ADD user.likedItineraries to dependency array
+>>>>>>> wishlist
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
+
+    // const likedItineraries = itineraries.filter((itinerary) => itinerary?._id in user?.likedItineraries);s
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
             <ItineraryIndexItem itinerary={itinerary} />
         );
     });
+
+    // const LikedItineraryList = likedItineraries?.map(itinerary => {
+    //     return (
+    //         <ItineraryIndexItem itinerary={itinerary} />
+    //     );
+    // });
 
     return (
         <div className='user-profile-page'>
@@ -57,6 +70,7 @@ export default function UserProfilePage () {
 
             <h1>My Wishlist</h1>
             <div className='user-wishlist'>
+                {/* {user?.likedItineraries && LikedItineraryList} */}
                 <p>No Wishlist yet 😢</p>
                 <Link to="/itineraries">Browse Itineraries</Link>
             </div>
