@@ -11,6 +11,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import UserProfilePage from './components/UserProfile/UserProfilePage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import AboutPage from './components/AboutPage/AboutPage';
+import SearchResultPage from './components/SearchResultPage/SearchResultPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,8 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={SplashPage}/>
+
+          <Route exact path="/itineraries/search" component={SearchResultPage}/>
 
           <Route exact path="/profile" component={UserProfilePage} />
 

@@ -14,13 +14,9 @@ router.get(
     async (req, res, next) => {
         const { title, limit = 10 } = req.query;
         try {
-            // if (req.query) {
-                const allItineraries = await Itinerary.find(
-                    { title: { $regex: new RegExp(title, 'i')}},
-                    '').limit(limit);
-            // } else {
-                // const allItineraries = await Itinerary.find().sort({createdAt: -1})
-            // }
+            const allItineraries = await Itinerary.find(
+                { title: { $regex: new RegExp(title, 'i')}},
+                '').limit(limit);
             const data = {
                 itineraries: {}
             };
