@@ -5,13 +5,15 @@ import errors from './errors';
 import itinerariesReducer from './itineraries';
 import usersReducer from './users';
 import activitiesReducer from './activities';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   errors,
   itineraries: itinerariesReducer,
   users: usersReducer,
-  activities: activitiesReducer
+  activities: activitiesReducer,
+  search: searchReducer
 });
 let enhancer;
 

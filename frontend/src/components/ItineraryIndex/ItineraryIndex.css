@@ -102,11 +102,6 @@
     border: 1px solid #cacaca;
 }
 
-.splash-search-container input:active {
-    box-shadow: 0 1px #666;
-    transform: translateY(2px);
-}
-
 .index-browse-all {
     border: none;
     height: 35px;
