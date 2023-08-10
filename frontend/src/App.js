@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-
-
-import { AuthRoute, ProtectedRoute } from './Components/routes/Routes';
-import NavBar from './Components/navBar/NavBar';
-
+import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+import NavBar from './components/NavBar/NavBar';
 import { getCurrentUser } from './store/session';
-import ItineraryIndex from './Components/itineraryIndex/ItineraryIndex';
-import ItineraryShow from './Components/itineraryShow/ItineraryShow';
-import SplashPage from './Components/splashPage/SplashPage'; 
-import UserProfilePage from './Components/userProfile/UserProfilePage';
-import AboutPage from './Components/aboutPage/AboutPage';
+import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
+import ItineraryShow from './components/ItineraryShow/ItineraryShow';
+import SplashPage from './components/SplashPage/SplashPage'; 
+import UserProfilePage from './components/UserProfile/UserProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,8 +23,6 @@ function App() {
         <Route exact path="/" component={SplashPage}/>
 
         <Route exact path="/profile" component={UserProfilePage} />
-
-        <Route exact path="/about" component={AboutPage}/>
 
         <Route exact path="/itineraries" component={ItineraryIndex} />
 
