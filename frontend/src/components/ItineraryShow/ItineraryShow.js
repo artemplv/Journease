@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "../../context/Modal";
-import { deleteItinerary, editItinerary, fetchItinerary } from "../../store/itineraries";
+import { deleteItinerary, fetchItinerary } from "../../store/itineraries";
 import ActivityIndex from "../ItineraryActivities/ActivityIndex";
-import DateNav from "./DateNav";
 import './ItineraryShow.css'
 import MapWrapper from "./Map";
 import UserInfo from "../UserProfile/UserInfo";
-import { fetchUser } from "../../store/users";
 import ItineraryModal from "../ItineraryModal/ItineraryModal";
 
 export default function ItineraryShow () {
@@ -58,7 +56,7 @@ export default function ItineraryShow () {
     
     const CollaboratorsList = itinerary?.collaborators.map(collaborator => {
         return (
-            <UserInfo userId={collaborator} />
+            <UserInfo key={collaborator} userId={collaborator} />
         )
     })
 
@@ -77,7 +75,6 @@ export default function ItineraryShow () {
                 }
 
                 <div className="itinerary-show-main-body">
-                    {/* <DateNav itinerary={itinerary}/> */}
                     <div className="itinerary-show-activity-container">
                         <div className="itinerary-show-header">
                             <div id="itinerary-show-image-container">

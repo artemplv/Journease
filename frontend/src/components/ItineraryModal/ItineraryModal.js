@@ -188,6 +188,7 @@ export default function ItineraryModal({ itinerary, closeModal }) {
                         {
                             collaboratorsIds.map((userId) => (
                                 <Collaborator
+                                    key={userId}
                                     userId={userId}
                                     onRemove={removeCollaborator}
                                 />

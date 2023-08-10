@@ -37,13 +37,19 @@ export default function UserProfilePage () {
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
-            <ItineraryIndexItem itinerary={itinerary} />
+            <ItineraryIndexItem
+                key={itinerary?._id}
+                itinerary={itinerary}
+            />
         );
     });
 
     const LikedItineraryList = likedItineraries?.map(itinerary => {
         return (
-            <ItineraryIndexItem itinerary={itinerary} />
+            <ItineraryIndexItem
+                key={itinerary?._id}
+                itinerary={itinerary}
+            />
         );
     });
 
