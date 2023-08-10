@@ -6,7 +6,6 @@ import './UserInfo.css';
 
 export default function UserInfo ({userId}) {
     const dispatch = useDispatch();
-
     
    useEffect(() => {
     dispatch(fetchUser(userId));
