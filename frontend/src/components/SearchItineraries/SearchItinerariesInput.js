@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { searchItinerariesDebounced } from "../../store/search";
 import './SearchItinerariesInput.css'
+import InputField from "../InputField/InputField";
 
 const SearchItinerariesInput = () => {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const SearchItinerariesInput = () => {
     return (
         <div className="itineraries-search-input">
             <div id="itineraries-search">
-                <input 
+                <InputField 
                     type="text"
                     placeholder="Search by title "
                     ref={inputRef}
