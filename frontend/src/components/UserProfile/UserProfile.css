@@ -1,27 +1,42 @@
+.profile-container {
+    height: auto;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
 .user-profile-page {
+    width: 85vw;
+    background-color: rgb(245, 223, 223);
+    border-radius: 20px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
 }
 
-.user-profile-page h1 {
-    font-size: 28px;
+.user-profile-labels {
     padding: 20px;
+    font-size: 30px;
 }
 
+.username-label {
+    font-size: 25px;
+}
 
 .user-profile-info button {
     width: fit-content;
     border-radius: 30px;
-    background-color: #F87575;
+    background-color: #fdbea3;
     border: none;
     color: white;
     cursor: pointer;
     padding: 10px;
     margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
 }
-
 
 .user-profile-info {
     display:flex;
@@ -36,6 +51,8 @@
     width: 10vw;
     object-fit: cover;
     border-radius: 50%;
+    margin: 10px 0 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 .user-itineraries {
@@ -54,12 +71,12 @@
 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
-  }
+}
   
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #c9c5c5;
     border-radius: 30px;
-  }
+}
 
 
 .user-wishlist {
@@ -98,12 +115,12 @@
         width: 80vw;
 } */
 
-.itinerary-index-item {
+/* .itinerary-index-item {
     align-items: center;
-    height: 65vh;
+    height: 68vh;
     width: 25vw;
     background-color: rgb(240, 240, 240);
     margin: 15px;
     outline: 1px solid white;
     outline-offset: -10px;
-}
+} */

@@ -1,6 +1,6 @@
 .entire-splash-container {
-    width: 100vw;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
     position: relative;
     display: flex;
     justify-content: center;
@@ -22,6 +22,13 @@
     font-size: 20px;
     border: 1px solid rgb(216, 219, 232);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.splash-search::placeholder {
+    color: rgb(181, 181, 181);
 }
 
 .splash-search-container button {
@@ -35,11 +42,17 @@
     font-size: 22px;
     margin-top: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
+    cursor: pointer;
 }
 
 .splash-search-container button:hover {
     background-color: #fecab3;
     /* color: #646466; */
+}
+
+.splash-search-container button:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(2px);
 }
 
 .splash-img-container img {
@@ -61,11 +74,9 @@
 .splash-search-container img {
     width: 600px;
     margin-top: 80px;
-    padding-right: 20px;
 }
 
 #search-label {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
     font-family: 'Schibsted Grotesk', sans-serif;
     font-size: 20px;
     margin-top: 15px;

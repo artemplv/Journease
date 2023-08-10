@@ -24,7 +24,9 @@ function ItineraryIndex() {
     return (
       <>
         <div>
-          <h1 id="itinerary-index-page-title">ALL TRIPS</h1>
+          <div id="itinerary-index-page-title">
+            <img src="https://coffeebook-dev.s3.amazonaws.com/explore.png"/>
+          </div>
           <ul className="itineraries-index">
             {ItineraryList}
           </ul>
