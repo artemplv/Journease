@@ -1,7 +1,7 @@
 import './SplashPage.css';
-import ItineraryIndex from '../ItineraryIndex/ItineraryIndex';
+import ItineraryIndex from '../itineraryIndex/ItineraryIndex';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import LoginForm from '../SessionForms/LoginForm';
@@ -18,6 +18,26 @@ const SplashPage = () => {
             setModalType("itinerary")
         }
     };
+
+    const handleRedirect = () => {
+        var el = document.getElementById('itinerary-index-page-title');
+        el.scrollIntoView({behavior: 'smooth'});
+    }
+
+    // const navBar = document.getElementById('nav-bar');
+    // useEffect(() => {
+    //   if (navBar) {
+    //     window.onscroll = function () {
+    //       const scroll = window.scrollY;
+    //       if (scroll < 10) {
+    //         navBar.style.backgroundColor = 'transparent';
+    //       } else if (scroll > 30) {
+    //         navBar.style.backgroundColor = "rgb(110, 110, 110, 0.5)"
+    //         // "rgb(250, 176, 146, 0.7)";
+    //       }
+    //     }
+    //   };
+    // });
     
     return (
         <>
@@ -35,12 +55,13 @@ const SplashPage = () => {
                 <div className="splash-search-container">
                     {/* <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/> */}
                     {/* <img src="https://journease-artemplv.s3.amazonaws.com/public/final-logo.png"/> */}
-                    <img src="https://journease-artemplv.s3.amazonaws.com/public/v-final-logo.png"/>
-                    <h1 id="search-label">Type to search for itineraries</h1>
-                    <input className="splash-search"/>
+                    <img src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png"/>
+                    {/* <h1 id="search-label">Type to search for itineraries</h1> */}
+                    <input className="splash-search" placeholder='Type to search for itineraries'/>
                     <button 
                         onClick={handleClick}
-                        className="splash-browse-all">or create your own</button>
+                        className="splash-browse-all">Create an Itinerary</button>
+                    <button onClick={handleRedirect}>or Browse All</button>
                 </div>
                 <div className="splash-img-container">
                     <img src='https://coffeebook-dev.s3.amazonaws.com/photo-1520627900660-e152fd1ee167.avif'/>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../store/users';
-import ItineraryIndexItem from '../ItineraryIndex/ItineraryIndexItem';
+import ItineraryIndexItem from '../itineraryIndex/ItineraryIndexItem';
 import { useHistory, Link } from 'react-router-dom';
 import './UserProfile.css';
 import { Modal } from '../../context/Modal';
@@ -27,8 +27,7 @@ export default function UserProfilePage () {
         } else {
             dispatch(fetchUser(currentUser?._id));
         };
-    }, [currentUser, user?.profileImageUrl]); 
-    // ADD user.likedItineraries to dependency array
+    }, [currentUser, user?.profileImageUrl, user?.likedItineraries]);
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
@@ -47,28 +46,29 @@ export default function UserProfilePage () {
     // });
 
     return (
-        <div className='user-profile-page'>
-            <div className='user-profile-info'>
-                <img src={user?.profileImageUrl} />
-                <p>{user?.username}</p>
-                <button onClick={editImage}>Change Profile Picture</button>
-            </div>
-            {(modalType === 'edit-profile') && (
-                <Modal onClose={() => setModalType("")}>
-                    <ProfileEditForm currentUserId={currentUser._id} setModalType={setModalType}/>
-                </Modal>
-            )}
-            <h1>My Itineraries</h1>
-            <div className='user-itineraries'>
-                {user?.itineraries && ItineraryList}
-                {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
-            </div>
+        <div className="profile-container">
+            <div className='user-profile-page'>
+                <div className='user-profile-info'>
+                    <img src={user?.profileImageUrl} />
+                    <p className="username-label">{user?.username}</p>
+                    <button onClick={editImage}>Change Profile Picture</button>
+                </div>
+                {(modalType === 'edit-profile') && (
+                    <Modal onClose={() => setModalType("")}>
+                        <ProfileEditForm currentUserId={currentUser._id} setModalType={setModalType}/>
+                    </Modal>
+                )}
+                <h1 className="user-profile-labels">My Itineraries</h1>
+                <div className='user-itineraries'>
+                    {user?.itineraries && ItineraryList}
+                    {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
+                </div>
 
-            <h1>My Wishlist</h1>
-            <div className='user-wishlist'>
-                {/* {user?.likedItineraries && LikedItineraryList} */}
-                <p>No Wishlist yet 😢</p>
-                <Link to="/itineraries">Browse Itineraries</Link>
+                <h1 className="user-profile-labels">My Wishlist</h1>
+                <div className='user-wishlist'>
+                    <p>No Wishlist yet 😢</p>
+                    <Link to="/itineraries">Browse Itineraries</Link>
+                </div>
             </div>
         </div>
     )
