@@ -31,7 +31,7 @@ export default function UserProfilePage () {
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
-    // const likedItineraries = itineraries.filter((itinerary) => itinerary?._id in user?.likedItineraries);s
+    const likedItineraries = itineraries.filter((itinerary) => user?.likedItineraries.includes(itinerary?._id));
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
@@ -39,11 +39,11 @@ export default function UserProfilePage () {
         );
     });
 
-    // const LikedItineraryList = likedItineraries?.map(itinerary => {
-    //     return (
-    //         <ItineraryIndexItem itinerary={itinerary} />
-    //     );
-    // });
+    const LikedItineraryList = likedItineraries?.map(itinerary => {
+        return (
+            <ItineraryIndexItem itinerary={itinerary} />
+        );
+    });
 
     return (
         <div className="profile-container">
@@ -66,8 +66,11 @@ export default function UserProfilePage () {
 
                 <h1 className="user-profile-labels">My Wishlist</h1>
                 <div className='user-wishlist'>
-                    <p>No Wishlist yet 😢</p>
-                    <Link to="/itineraries">Browse Itineraries</Link>
+                    {user?.likedItineraries && LikedItineraryList}
+                    {(user?.likedItineraries.length === 0) &&
+                    (<p>No Wishlist yet 😢</p>) &&
+                    (<Link to="/itineraries">Browse Itineraries</Link>)
+                    }
                 </div>
             </div>
         </div>
