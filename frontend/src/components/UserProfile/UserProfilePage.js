@@ -27,15 +27,24 @@ export default function UserProfilePage () {
         } else {
             dispatch(fetchUser(currentUser?._id));
         };
-    }, [currentUser, user?.profileImageUrl]);
+    }, [currentUser, user?.profileImageUrl]); 
+
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
+
+    // const likedItineraries = itineraries.filter((itinerary) => itinerary?._id in user?.likedItineraries);s
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
             <ItineraryIndexItem itinerary={itinerary} />
         );
     });
+
+    // const LikedItineraryList = likedItineraries?.map(itinerary => {
+    //     return (
+    //         <ItineraryIndexItem itinerary={itinerary} />
+    //     );
+    // });
 
     return (
         <div className="profile-container">
@@ -61,6 +70,7 @@ export default function UserProfilePage () {
                     <p>No Wishlist yet 😢</p>
                     <Link to="/itineraries">Browse Itineraries</Link>
                 </div>
+
             </div>
         </div>
     )
