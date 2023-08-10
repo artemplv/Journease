@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-// const Like = mongoose.model('Like');
+const Like = mongoose.model('Like');
 const Itinerary = mongoose.model('Itinerary');
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
 const { loginUser, restoreUser, requireUser } = require('../../config/passport');
@@ -86,19 +86,23 @@ router.get('/:id', async(req, res, next) => {
       {
           $addFields: { likerIds: "$likerIds.likerId" },
       },
-  ]);
+    ]);
+    
+    const likes = await Like.find({likerId: req.params.id});
+    const likedItineraries = likes.map(like => (like.itineraryId));
 
     const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
+    
     const itinerariesData = {};
-
     userItineraries.forEach((itinerary) => {
       itinerariesData[itinerary.id] = itinerary
-    })
+    });
 
     return res.json({
       user,
       userItineraries: itinerariesData,
-      itinerariesIds
+      itinerariesIds,
+      likedItineraries,
     });
   } catch(err) {
     const error = new Error('User does not exist');
