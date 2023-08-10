@@ -28,8 +28,11 @@ export default function ProfileButton() {
             <button onClick={showPage}>My Profile</button>
             <button onClick={openModal}>Plan a Trip</button>
             {openCreate && 
-                <Modal onClose={()=> setOpenCreate(false)}>
-                    <ItineraryModal/>
+                <Modal
+                    onClose={()=> setOpenCreate(false)}
+                    ignoreOverflow
+                >
+                    <ItineraryModal />
                 </Modal>
             }
             <button onClick={logoutUser}>Logout</button>

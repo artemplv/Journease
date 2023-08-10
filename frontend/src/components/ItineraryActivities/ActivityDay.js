@@ -42,7 +42,11 @@ export default function ActivityDay({itinerary, date}) {
             }
             {modalType === "create-activity" && 
             <Modal onClose={()=> setModalType("")}>
-                <ActivityModal itineraryId={itinerary._id} date={date}/>
+                <ActivityModal
+                    itineraryId={itinerary._id}
+                    date={date}
+                    closeModal={()=> setModalType("")}
+                />
             </Modal>}
         </div>
     )
