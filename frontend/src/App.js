@@ -30,6 +30,7 @@ function App() {
 
         <Route exact path="/itineraries/:itineraryId" component={ItineraryShow} />
 
+        <Route exact path="/about" component={AboutPage} />
       </Switch>
     </>
   );
