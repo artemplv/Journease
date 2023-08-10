@@ -36,7 +36,9 @@ export default function ProfileButton() {
                     onClose={()=> setOpenCreate(false)}
                     ignoreOverflow
                 >
-                    <ItineraryModal />
+                    <ItineraryModal
+                        closeModal={()=> setOpenCreate(false)}
+                    />
                 </Modal>
             }
             <button onClick={logoutUser}>Logout</button>

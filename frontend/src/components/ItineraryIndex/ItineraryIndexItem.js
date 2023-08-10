@@ -99,7 +99,10 @@ export default function ItineraryIndexItem({ itinerary }) {
                             </button> 
                             {openModal && 
                                 <Modal onClose={()=> setOpenModal(false)}>
-                                    <ItineraryModal itinerary={itinerary}/>
+                                    <ItineraryModal
+                                        itinerary={itinerary}
+                                        closeModal={()=> setOpenModal(false)}
+                                    />
                                 </Modal>
                             }
                             <button onClick={remove}>
