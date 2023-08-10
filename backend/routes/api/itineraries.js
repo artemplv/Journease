@@ -126,7 +126,9 @@ router.patch(
         itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
         itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
         itinerary.coverImageUrl = coverImageUrl
-        itinerary.activities = req.body.activities || itinerary.activities;
+        itinerary.activities = (Array.isArray(req.body.activities) && req.body.activities.length > 0)
+            ? req.body.activities : itinerary.activities;
+        
         const updatedItinerary = await itinerary.save();
         return res.json({
             itinerary: updatedItinerary
