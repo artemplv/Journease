@@ -28,6 +28,11 @@
     background-color: #fdbea3;
     font-size: 15px;
     color: white;
+    width: fit-content;
+    border-radius: 30px;
+    background-color: #F87575;
+    border: none;
+    color: white;
     cursor: pointer;
     display: block;
 }

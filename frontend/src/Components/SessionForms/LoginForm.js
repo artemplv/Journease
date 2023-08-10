@@ -36,6 +36,12 @@ function LoginForm(props) {
     closeModal();
   }
 
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login({email: 'marco@email.com', password: 'password'}));
+    closeModal();
+  }
+    
   return (
       <form className="session-form" id="login" onSubmit={handleSubmit}>
         <h2>Log In </h2>
@@ -61,6 +67,10 @@ function LoginForm(props) {
           value="Log In"
           disabled={!email || !password}
         />
+
+        <button onClick={handleDemoLogin}>
+          Demo Login
+        </button>
 
         <p className="auth-change-message">
           Don't have an account?

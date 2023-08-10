@@ -1,7 +1,7 @@
 import jwtFetch from './jwt';
 
 const RECEIVE_ACTIVITIES = 'activities/RECEIVE_ACTIVITIES';
-const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY';
+export const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY';
 const REMOVE_ACTIVITY = 'activities/REMOVE_ACTIVITY';
 
 const receiveActivities = (activities) => ({

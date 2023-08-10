@@ -37,11 +37,12 @@ router.get('/:itineraryId/activities', async (req, res, next) => {
         const foundItinerary = await Itinerary.findById(req.params.itineraryId);
         const activities = await Activity
                                     .find()
-                                    .where({'_id': { $in: foundItinerary.activities }})
+                                    .where({ '_id': { $in: foundItinerary.activities }});
         let allActivities = {};
         activities.forEach((activity) => {
             allActivities[activity._id] = activity
         })
+        
         return res.json({
             activities: allActivities
         });

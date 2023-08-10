@@ -33,8 +33,9 @@ const SplashPage = () => {
             }
             <div className="entire-splash-container">
                 <div className="splash-search-container">
-                    <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/>
-                    {/* <img src="https://coffeebook-dev.s3.amazonaws.com/Logo.png"/> */}
+                    {/* <img src="https://coffeebook-dev.s3.amazonaws.com/logo2.png"/> */}
+                    {/* <img src="https://journease-artemplv.s3.amazonaws.com/public/final-logo.png"/> */}
+                    <img src="https://journease-artemplv.s3.amazonaws.com/public/v-final-logo.png"/>
                     <h1 id="search-label">Type to search for itineraries</h1>
                     <input className="splash-search"/>
                     <button 
@@ -42,7 +43,7 @@ const SplashPage = () => {
                         className="splash-browse-all">or create your own</button>
                 </div>
                 <div className="splash-img-container">
-                    <img src='https://coffeebook-dev.s3.amazonaws.com/cristina-gottardi-9TaYFMMapbA-unsplash.jpg'/>
+                    <img src='https://coffeebook-dev.s3.amazonaws.com/photo-1520627900660-e152fd1ee167.avif'/>
                 </div>
             </div>
                 <ItineraryIndex/>
