@@ -43,17 +43,16 @@ router.get('/search', requireUser, async (req, res, next) => {
       'username email profileImageUrl'
     ).limit(limit);
 
-    const data = {
+    const usersData = users.reduce((accum, user) => {
+      accum.byId[user.id] = user;
+      accum.allIds.push(user.id);
+      return accum;
+    }, {
       byId: {},
       allIds: []
-    };
-
-    users.forEach((user) => {
-      data.byId[user.id] = user;
-      data.allIds.push(user.id);
     });
 
-    res.json({ users: data });
+    res.json({ users: usersData });
   }
   catch(err) {
     next(err);
