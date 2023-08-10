@@ -6,7 +6,7 @@ import ActivityIndex from "../ItineraryActivities/ActivityIndex";
 import DateNav from "./DateNav";
 import './ItineraryShow.css'
 import MapWrapper from "./Map";
-import UserInfo from "../UserProfile/UserInfo";
+import UserInfo from "../userProfile/UserInfo";
 
 export default function ItineraryShow () {
     const dispatch = useDispatch();
