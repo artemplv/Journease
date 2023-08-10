@@ -7,7 +7,7 @@ import NavBar from './Components/navBar/NavBar';
 
 import { getCurrentUser } from './store/session';
 import ItineraryIndex from './Components/itineraryIndex/ItineraryIndex';
-import ItineraryShow from './components/itineraryShow/ItineraryShow';
+import ItineraryShow from './Components/itineraryShow/ItineraryShow';
 import SplashPage from './Components/splashPage/SplashPage'; 
 import UserProfilePage from './Components/userProfile/UserProfilePage';
 import AboutPage from './Components/aboutPage/AboutPage';
