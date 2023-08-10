@@ -6,6 +6,7 @@ import { useHistory, Link } from 'react-router-dom';
 import './UserProfile.css';
 import { Modal } from '../../context/Modal';
 import ProfileEditForm from './ProfileEditForm';
+import { fetchItineraries } from '../../store/itineraries';
 
 
 
@@ -26,12 +27,13 @@ export default function UserProfilePage () {
             history.push('/itineraries');
         } else {
             dispatch(fetchUser(currentUser?._id));
+            dispatch(fetchItineraries());
         };
     }, [currentUser, user?.profileImageUrl]);
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
-    const likedItineraries = itineraries.filter((itinerary) => user?.likedItineraries.includes(itinerary?._id));
+    const likedItineraries = itineraries.filter((itinerary) => user?.likedItineraries?.includes(itinerary?._id));
 
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
@@ -61,15 +63,19 @@ export default function UserProfilePage () {
                 <h1 className="user-profile-labels">My Itineraries</h1>
                 <div className='user-itineraries'>
                     {user?.itineraries && ItineraryList}
-                    {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
+                    <div className='no-itineraries'>
+                        {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
+                    </div>
                 </div>
 
                 <h1 className="user-profile-labels">My Wishlist</h1>
                 <div className='user-wishlist'>
                     {user?.likedItineraries && LikedItineraryList}
-                    {(user?.likedItineraries.length === 0) &&
-                    (<p>No Wishlist yet 😢</p>) &&
-                    (<Link to="/itineraries">Browse Itineraries</Link>)
+                    {(user?.likedItineraries?.length === 0) &&
+                    <div className='no-wishlist'>
+                        <p>No Wishlist yet 😢</p>
+                        <Link to="/itineraries">Browse Itineraries</Link>
+                    </div>
                     }
                 </div>
             </div>
