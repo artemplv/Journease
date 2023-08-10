@@ -8,6 +8,8 @@ const RECEIVE_ITINERARIES = "itineraries/RECEIVE_ITINERARIES";
 const RECEIVE_ITINERARY = "itineraries/RECEIVE_ITINERARY";
 const REMOVE_ITINERARY = "itineraries/REMOVE_ITINERARY";
 const UPDATE_ITINERARY = "itineraries/UPDATE_ITINERARY";
+const RECEIVE_ITINERARY_LIKE = "itineraries/RECEIVE_ITINERARY_LIKE";
+const REMOVE_ITINERARY_LIKE = "itineraries/REMOVE_ITINERARY_LIKE";
 
 
 const receiveItineraries = (itineraries) => ({
@@ -26,12 +28,15 @@ const removeItinerary = (itineraryId) => ({
     itineraryId
 })
 
-// const updateItinerary = (itineraryId, itinerary) =>({
-//     type: UPDATE_ITINERARY,
-//     itineraryId,
-//     itinerary
-// })
+const receiveItineraryLike = (like) => ({
+    type: RECEIVE_ITINERARY_LIKE,
+    like
+})
 
+const removeItineraryLike = (like) => ({
+    type: REMOVE_ITINERARY_LIKE,
+    like,
+})
 
 export const fetchItineraries = () => async dispatch => {
     const res = await jwtFetch('/api/itineraries');
@@ -50,6 +55,32 @@ export const deleteItinerary = (itineraryId) => async dispatch => {
         method: 'DELETE'
     });
     dispatch(removeItinerary(itineraryId));
+}
+
+export const likeItinerary = (itineraryId) => async dispatch => {
+    const payload = {
+        itineraryId,
+    };
+
+    const res = await jwtFetch('/api/likes', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    dispatch(receiveItineraryLike(data.like));
+}
+
+export const unlikeItinerary = (itineraryId) => async dispatch => {
+    const payload = {
+        itineraryId,
+    };
+
+    const res = await jwtFetch('/api/likes', {
+        method: 'DELETE',
+        body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    dispatch(removeItineraryLike(data.like));
 }
 
 export const createItinerary = (itinerary) => async dispatch => {
@@ -125,6 +156,27 @@ export default function itinerariesReducer (state = {}, action) {
             }
         case RECEIVE_USER:
             return {...state, ...action.userItineraries};
+        case RECEIVE_ITINERARY_LIKE:
+            const currentLikers = state[action.like.itineraryId].likerIds || [];
+            
+            return {
+                ...state,
+                [action.like.itineraryId]: {
+                    ...state[action.like.itineraryId],
+                    likerIds: [...currentLikers, action.like.likerId],
+                },
+            };
+        case REMOVE_ITINERARY_LIKE:
+            const newLikers = state[action.like.itineraryId].likerIds
+                .filter((likerId) => likerId !== action.like.likerId);
+            
+            return {
+                ...state,
+                [action.like.itineraryId]: {
+                    ...state[action.like.itineraryId],
+                    likerIds: newLikers,
+                },
+            };
         default:
             return state;
     };

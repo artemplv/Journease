@@ -1,14 +1,21 @@
-import './ItineraryIndex.css';
+import {
+    useState,
+    useEffect,
+    useMemo,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
-import { deleteItinerary } from '../../store/itineraries';
+import {
+    deleteItinerary,
+    likeItinerary,
+    unlikeItinerary,
+} from '../../store/itineraries';
 import { useHistory } from 'react-router-dom';
 import UserInfo from '../UserProfile/UserInfo';
+import './ItineraryIndex.css';
 
-export default function ItineraryIndexItem({itinerary}) {
+export default function ItineraryIndexItem({ itinerary }) {
     const currentUser = useSelector(state => state.session.user)
     const [showUpdate, setShowUpdate] = useState(false) 
     const [openModal, setOpenModal] = useState(false)
@@ -31,6 +38,27 @@ export default function ItineraryIndexItem({itinerary}) {
         history.push(`/itineraries/${itinerary._id}`)
     }
 
+    const likedByCurrentUser = useMemo(() => {
+        if (!currentUser || !itinerary || !itinerary.likerIds) {
+            return false;
+        }
+        return itinerary.likerIds.includes(currentUser._id);
+    }, [
+        currentUser,
+        currentUser?._id,
+        itinerary,
+    ]);
+
+    const handleLike = () => {
+        if (likedByCurrentUser) {
+            dispatch(unlikeItinerary(itinerary._id));
+        } else {
+           dispatch(likeItinerary(itinerary._id));
+        }
+    }
+
+    const numOfLikes = itinerary?.likerIds?.length || 0;
+
     return (
         <li className="itinerary-index-item">
             <div className="itinerary-card-info">
@@ -40,27 +68,29 @@ export default function ItineraryIndexItem({itinerary}) {
                 <h1>{itinerary?.title}</h1>
                 <div className="itinerary-card-subinfo">
                     <UserInfo userId={itinerary.ownerId}/>
+                    
                     <div className="itinerary-subinfo-buttons">
-                        <button className="like-button">                            
-                            <i className="fa-solid fa-heart fa-2xl" style={{color: "#FFA9A3",}}/>
-                        </button>
-                        {showUpdate && 
-                        <>
-                        <div className="update-itinerary-buttons">
-                            <button onClick={()=> setOpenModal(true)}>
-                                <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
-                            </button> 
-                            {openModal && 
-                                <Modal onClose={()=> setOpenModal(false)}>
-                                    <ItineraryModal itinerary={itinerary}/>
-                                </Modal>
+                        
+                        <button
+                            className="like-button"
+                            onClick={handleLike}
+                            disabled={!currentUser}
+                        > 
+                            {
+                                numOfLikes > 0 && (
+                                    <span className="it-likes-num">
+                                        {numOfLikes}
+                                    </span>
+                                )
                             }
-                            <button onClick={remove}>
-                                <i className="fa-solid fa-trash fa-xl" style={{color: "#FFA9A3",}}/>
-                            </button>
-                        </div>
-                        </>
-                        }
+                            {
+                                likedByCurrentUser ? (
+                                    <i className="fa-solid fa-heart fa-2xl" />
+                                ) : (
+                                    <i className="fa-regular fa-heart fa-2xl" />
+                                )
+                            }
+                        </button>
                     </div>
                 </div>
             </div>

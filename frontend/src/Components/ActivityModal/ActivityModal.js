@@ -1,25 +1,45 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createActivity } from "../../store/activities";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createActivity, fetchActivity, updateActivity } from "../../store/activities";
 import SearchPlacesInput from "../SearchPlacesInput/SearchPlacesInput";
 import './ActivityModal.css'
 
 import InputField from '../InputField/InputField';
 
-const ActivityModal = ({itineraryId, date, closeModal}) => {
+const ActivityModal = ({itineraryId, date, activityId, closeModal}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [place, setPlace] = useState(null);
     const [description, setDescription] = useState("");
+    const activity = useSelector(state => state.activities[activityId])
+    const dateString = new Date(date).toDateString().slice(4) 
     
+    useEffect(()=> {
+        if (activity) {
+            setTitle(activity.title)
+            setPlace(activity.place)
+            setDescription(activity.description)
+        }
+    }, [activity])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(createActivity(itineraryId, {
-            title,
-            description,
-            date,
-            place
-        }));
+        if (activity) {
+            await dispatch(updateActivity(itineraryId, {
+                _id: activity._id,
+                title,
+                description,
+                date,
+                place
+            }))
+        } else {
+            await dispatch(createActivity(itineraryId, {
+                title,
+                description,
+                date,
+                place
+            }));
+        }
         closeModal();
     }
 
@@ -46,11 +66,11 @@ const ActivityModal = ({itineraryId, date, closeModal}) => {
 
                     <InputField
                         value=""
-                        placeholder={date}
+                        placeholder={dateString}
                         disabled
                     />
                     
-                    <SearchPlacesInput onChange={setPlace}/>
+                    <SearchPlacesInput onChange={setPlace} placeholder={activity?.place.name}/>
 
                     <InputField
                         textarea

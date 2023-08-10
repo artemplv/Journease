@@ -51,4 +51,29 @@ router.get('/:itineraryId/activities', async (req, res, next) => {
     };
 });
 
+// UPDATE ACTIVITY
+router.patch('/:itineraryId/activities/:id', async (req, res, next) => {
+    try {
+        const foundActivity = await Activity.findById(req.params.id);
+        if (!foundActivity) {
+            const err = new Error("Activity does not exist.");
+            err.statusCode = 404;
+            err.errors = { activity: "Activity does not exist."};
+            return next(err);
+        }
+        foundActivity.title = req.body.title || foundActivity.title
+        foundActivity.description = req.body.description || foundActivity.description
+        foundActivity.place = req.body.place || foundActivity.place
+        foundActivity.date = req.body.date || foundActivity.date
+        const updatedActivity = await foundActivity.save();
+
+        return res.json({
+            activity: updatedActivity
+        });
+    } catch(err) {
+        next(err);
+    };
+});
+
+
 module.exports = router;

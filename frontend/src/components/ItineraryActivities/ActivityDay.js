@@ -8,16 +8,19 @@ import ActivityItem from "./ActivityItem";
 export default function ActivityDay({itinerary, date}) {
     const [modalType, setModalType] = useState("");
     const dispatch = useDispatch()
-    const activities = useSelector(state => Object.values(state.activities).filter(activity => new Date(activity.date).toString() === new Date(date).toString()))
+    const activities = useSelector(state => Object.values(state.activities).filter(activity => (new Date(activity.date).toString() === new Date(date).toString() && activity.itineraryId === itinerary._id)))
     const currentUser = useSelector(state => state.session.user)
     const [canEdit, setCanEdit] = useState(false)
+
     useEffect(()=> {
         if (currentUser) {
             if (currentUser._id === itinerary.ownerId) {
                 setCanEdit(true)
             }
+        } else {
+            setCanEdit(false)
         }
-    }, [])
+    }, [currentUser])
     
     useEffect(()=> {
         dispatch(fetchActivities(itinerary._id))
@@ -30,14 +33,18 @@ export default function ActivityDay({itinerary, date}) {
     return (
         <div>
             {activities && activities.map(activity => 
-                <ActivityItem activity={activity}/>
+                <ActivityItem
+                    key={activity?._id}
+                    activity={activity}
+                    ownerId={itinerary.ownerId}
+                />
             )}
             {canEdit && 
-                    <div>
-                    <button id="create-activity-button" onClick={createActivity}> 
+                <div id="create-activity-button-container" onClick={createActivity}>
+                    <button id="create-activity-button"> 
                         <i className="fa-solid fa-plus" style={{color: "#FFA9A3",}}/>
                     </button>
-                    Create Activity
+                    <span id="create-activity-label">Create Activity</span>
                 </div>
             }
             {modalType === "create-activity" && 

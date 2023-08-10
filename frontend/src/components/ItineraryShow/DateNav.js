@@ -16,16 +16,20 @@ export default function DateNav({itinerary}) {
 
     const numDays = getNumDays()
 
+    const jumpToDay = (dayNum) => {
+        document.getElementById(`day${dayNum}`).scrollIntoView(
+            { behavior: 'smooth', block: 'center'}
+        );
+    }
+
     return (
         <>
         {itinerary && 
             <div className="itinerary-show-dates-container">
-                {/* <div id="dates-header">
-                    <h2>{numDays} Days </h2>
-                </div> */}
                 <div id="dates-nav">
+                    Scroll To
                     {[...Array(numDays)].map((item, i) => 
-                        <div id="date-nav-h2-container">
+                        <div id="date-nav-h2-container" onClick={()=>jumpToDay(i+1)}>
                             <h2>Day {i+1}</h2>
                         </div>
                     )}

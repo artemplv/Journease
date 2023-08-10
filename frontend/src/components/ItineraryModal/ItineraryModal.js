@@ -10,12 +10,11 @@ import SearchUserInput from '../SearchUsersInput/SearchUsersInput';
 import Collaborator from "./Collaborator";
 import InputField from '../InputField/InputField';
 
-export default function ItineraryModal({itinerary}) {
+export default function ItineraryModal({ itinerary, closeModal }) {
     const dispatch = useDispatch();
     const [openDate, setOpenDate] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const owner = useSelector(state => state.session.user);
     const [type, setType] = useState('Create');
     const [cover, setCover] = useState(null);
     const [coverUrl, setCoverUrl] = useState(null);
@@ -69,10 +68,10 @@ export default function ItineraryModal({itinerary}) {
         setCollaboratorsIds((ids) => ids.filter((id) => id !== userId));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (type === "Create") {
-            dispatch(createItinerary({
+            await dispatch(createItinerary({
                 title: title, 
                 description: description, 
                 dateStart: dates[0].startDate, 
@@ -81,7 +80,7 @@ export default function ItineraryModal({itinerary}) {
                 cover
             }))
         } else {
-            dispatch(editItinerary({
+            await dispatch(editItinerary({
                 id: itinerary._id, 
                 title: title, 
                 description: description, 
@@ -91,6 +90,7 @@ export default function ItineraryModal({itinerary}) {
                 cover
             }))
         }
+        closeModal();
     }
 
     const handleFile = ({currentTarget}) => {
@@ -113,7 +113,11 @@ export default function ItineraryModal({itinerary}) {
 
     return(
         <>
-            <h2 className="itinerary-form-title">New Itinerary</h2>
+            <h2 className="itinerary-form-title">
+                {
+                    type === 'Edit' ? 'Edit Itinerary' : 'New Itinerary'
+                }
+            </h2>
             <form className="itinerary-form" onSubmit={handleSubmit}>
                 <div className="it-photo-container">
                     <div className="it-file-upload-container">
@@ -184,6 +188,7 @@ export default function ItineraryModal({itinerary}) {
                         {
                             collaboratorsIds.map((userId) => (
                                 <Collaborator
+                                    key={userId}
                                     userId={userId}
                                     onRemove={removeCollaborator}
                                 />
@@ -191,7 +196,12 @@ export default function ItineraryModal({itinerary}) {
                         }
                     </div>
                     
-                    <input type="submit" value="Create"/>
+                    <input
+                        type="submit"
+                        value={
+                            type === 'Edit' ? 'Update' : 'Create'
+                        }
+                    />
                 </div>
             </form>
         </>

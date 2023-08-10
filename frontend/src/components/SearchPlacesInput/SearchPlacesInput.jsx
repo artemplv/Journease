@@ -18,6 +18,7 @@ function SearchPlacesInput(props) {
     onChange,
     onError = noop,
     className = '',
+    placeholder
   } = props;
 
   const autocompleteRef = useRef();
@@ -58,7 +59,7 @@ function SearchPlacesInput(props) {
   return (
     <InputField
       ref={inputRef}
-      placeholder="Search for places"
+      placeholder={placeholder || "Search for places"}
       className={className}
     />
   );

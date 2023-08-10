@@ -64,7 +64,7 @@ const SplashPage = () => {
                     <button 
                         className="splash-browse"
                         onClick={handleRedirect}>
-                            or Browse All</button>
+                            Browse All</button>
                 </div>
                 <div className="splash-img-container">
                     <img 

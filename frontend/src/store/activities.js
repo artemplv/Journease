@@ -25,6 +25,12 @@ export const fetchActivities = (itineraryId) => async (dispatch) => {
     dispatch(receiveActivities(data.activities));
 };
 
+export const fetchActivity = (itineraryId, activityId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/itineraries/${itineraryId}/activities/${activityId}`);
+    const data = await res.json();
+    dispatch(receiveActivities(data.activities));
+};
+
 export const createActivity = (itineraryId, activity) => async(dispatch) => {
     const res = await jwtFetch(`/api/itineraries/${itineraryId}/activities`, {
         method: 'POST',
@@ -33,6 +39,15 @@ export const createActivity = (itineraryId, activity) => async(dispatch) => {
     const data = await res.json();
     dispatch(receiveActivity(data.activity));
 };
+
+export const updateActivity = (itineraryId, activity) => async dispatch =>{
+    const res = await jwtFetch(`/api/itineraries/${itineraryId}/activities/${activity._id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(activity)
+    });
+    const data = await res.json();
+    dispatch(receiveActivity(data.activity));
+}
 
 export const deleteActivity = (activityId) => async (dispatch) => {
     await jwtFetch(`/api/activities/${activityId}`, {
