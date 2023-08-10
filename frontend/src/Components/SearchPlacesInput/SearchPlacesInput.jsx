@@ -3,6 +3,8 @@ import {
   useEffect,
 } from 'react';
 
+import InputField from '../InputField/InputField';
+
 import './SearchPlacesInput.css';
 
 const autocompleteOptions = {
@@ -54,8 +56,7 @@ function SearchPlacesInput(props) {
   }, []);
 
   return (
-    <input
-      type="text"
+    <InputField
       ref={inputRef}
       placeholder="Search for places"
       className={className}

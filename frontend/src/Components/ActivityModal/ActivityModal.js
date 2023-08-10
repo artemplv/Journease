@@ -4,28 +4,31 @@ import { createActivity } from "../../store/activities";
 import SearchPlacesInput from "../SearchPlacesInput/SearchPlacesInput";
 import './ActivityModal.css'
 
+import InputField from '../InputField/InputField';
 
-const ActivityModal = ({itineraryId, date}) => {
+const ActivityModal = ({itineraryId, date, closeModal}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [place, setPlace] = useState(null);
     const [description, setDescription] = useState("");
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createActivity(itineraryId, {
+        await dispatch(createActivity(itineraryId, {
             title,
             description,
             date,
             place
-        }))
+        }));
+        closeModal();
     }
 
     return (
-            <form className="activity-modal-container">
+            <form className="activity-modal-container" onSubmit={handleSubmit}>
                 {place && 
                 <div className="activity-preview-header">
                     <div className="activity-header">
-                        <h1>{place.name}</h1>
+                        <h2>{place.name}</h2>
                     </div>
                     <div className="activity-preview-image">
                         <img src={place.photo}/>
@@ -33,23 +36,30 @@ const ActivityModal = ({itineraryId, date}) => {
                 </div>
                 }
                 <div className="activity-details">
-                    <div className="activity-form-title">Add an activity</div>
-                    <label>Title<br></br>
-                        <input 
-                            type="text"
-                            className="activity-title"
-                            onChange={((e) => {setTitle(e.target.value)})}/>
-                    </label>
-                    <label>Date<br></br>
-                        <input placeholder={date} disabled/>
-                    </label>
-                    <label>Place<br></br>
-                        <SearchPlacesInput onChange={setPlace}/>
-                    </label>
-                    <label>Description<br></br>
-                      <input type="text" onChange={(e) => setDescription(e.target.value)}/>
-                </label>
-                    <button onClick={handleSubmit}>Submit</button>
+                    <h1>Add an activity</h1>
+
+                    <InputField
+                        value={title}
+                        onChange={(e) => {setTitle(e.target.value)}}
+                        placeholder="Title"
+                    />
+
+                    <InputField
+                        value=""
+                        placeholder={date}
+                        disabled
+                    />
+                    
+                    <SearchPlacesInput onChange={setPlace}/>
+
+                    <InputField
+                        textarea
+                        value={description}
+                        onChange={(e) => {setDescription(e.target.value)}}
+                        placeholder="Description"
+                    />
+                    
+                    <input type="submit" value="Submit"/>
                 </div>
             </form>
     )
