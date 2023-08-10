@@ -1,23 +1,36 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createActivity } from "../../store/activities";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createActivity, updateActivity } from "../../store/activities";
 import SearchPlacesInput from "../SearchPlacesInput/SearchPlacesInput";
 import './ActivityModal.css'
 
-
-const ActivityModal = ({itineraryId, date}) => {
+const ActivityModal = ({itineraryId, date, activityId}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [place, setPlace] = useState(null);
     const [description, setDescription] = useState("");
+    const activity = useSelector(state => state.activities[activityId])
+
+    useEffect(()=> {
+        if (activity) {
+            setTitle(activity.title);
+            setPlace(activity.place);
+            setDescription(activity.description)
+        }
+    }, [])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createActivity(itineraryId, {
-            title,
-            description,
-            date,
-            place
-        }))
+        if (activity) {
+            dispatch(updateActivity(itineraryId, {_id: activity._id, title, description, date, place}))
+        } else {
+            dispatch(createActivity(itineraryId, {
+                title,
+                description,
+                date,
+                place
+            }))
+        }
     }
 
     return (
@@ -38,16 +51,17 @@ const ActivityModal = ({itineraryId, date}) => {
                         <input 
                             type="text"
                             className="activity-title"
+                            value={title}
                             onChange={((e) => {setTitle(e.target.value)})}/>
                     </label>
                     <label>Date<br></br>
-                        <input placeholder={date} disabled/>
+                        <input placeholder={new Date(date).toDateString().slice(4)} disabled/>
                     </label>
                     <label>Place<br></br>
-                        <SearchPlacesInput onChange={setPlace}/>
+                        <SearchPlacesInput onChange={setPlace} value={place} activity={activity}/>
                     </label>
                     <label>Description<br></br>
-                      <input type="text" onChange={(e) => setDescription(e.target.value)}/>
+                      <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
                 </label>
                     <button onClick={handleSubmit}>Submit</button>
                 </div>

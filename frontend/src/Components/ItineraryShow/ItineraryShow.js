@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchItinerary } from "../../store/itineraries";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Modal } from "../../context/Modal";
+import { deleteItinerary, editItinerary, fetchItinerary } from "../../store/itineraries";
 import ActivityIndex from "../ItineraryActivities/ActivityIndex";
 import DateNav from "./DateNav";
 import './ItineraryShow.css'
@@ -10,7 +12,9 @@ import MapWrapper from "./Map";
 export default function ItineraryShow () {
     const dispatch = useDispatch();
     const itineraryId = useParams().itineraryId;
-   
+    const [confirmModal, setConfirmModal] = useState(false)
+    const history = useHistory()
+
     useEffect(() => {
         dispatch(fetchItinerary(itineraryId));
     }, [itineraryId]);
@@ -18,6 +22,20 @@ export default function ItineraryShow () {
     const itinerary = useSelector(state => state.itineraries[itineraryId]);
     const startDate = new Date(itinerary?.dateStart).toDateString().slice(4)
     const endDate = new Date(itinerary?.dateEnd).toDateString().slice(4)
+
+    const edit = () => {
+        dispatch(editItinerary)
+    }
+
+    const confirmRemove = () => {
+        setConfirmModal(true)
+    }
+
+    const remove = () => {
+        history.push('/itineraries')
+        dispatch(deleteItinerary(itineraryId))
+        setConfirmModal(false)
+    }
 
     return (
         <>
@@ -41,14 +59,28 @@ export default function ItineraryShow () {
                             <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
                             {startDate} to {endDate}
                         </div>
-                        <div>
-                            <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
-                            {itinerary.collaborators}
-                        </div>
                     </div>
+                    <div id="collaborators">
+                        <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
+                        {itinerary.collaborators}
+                    </div>
+                    <button onClick={edit}>
+                        <i className="fa-solid fa-pen" style={{color: "#F87575",}}/>
+                    </button>
+                    <button onClick={confirmRemove}>
+                        <i className="fa-solid fa-trash" style={{color: "#F87575",}}/>
+                    </button>
                 </div>
+                {confirmModal && 
+                    <Modal onClose={()=> setConfirmModal(false)}>
+                        <div className="confirm-delete-itinerary-modal">
+                            <div>Are you sure you would like to delete this itinerary?</div>
+                            <button onClick={remove}>Delete</button>
+                        </div>
+                    </Modal>
+                }
                 <div className="itinerary-show-main-body">
-                    <DateNav itinerary={itinerary}/>
+                    {/* <DateNav itinerary={itinerary}/> */}
                     <div className="itinerary-show-activity-container">
                         <ActivityIndex itinerary={itinerary}/>
                     </div>

@@ -1,7 +1,5 @@
 import ActivityDay from "./ActivityDay";
 import './ActivityIndex.css'
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function ActivityIndex({itinerary}) {
     let start = new Date(itinerary?.dateStart)
@@ -21,8 +19,12 @@ export default function ActivityIndex({itinerary}) {
         <>
             {itinerary && (datesArray().map((date, i) => (
                 <div className="show-page-day">
-                    <div id="show-page-daily-heading">
-                        Day {i + 1} : {date}
+                    <div class="show-page-daily-heading" id={`day${i+1}`}>
+                        <div id="day-num-container">
+                            <div id="day-num">DAY <br/>{i + 1}</div>
+                        
+                        </div>
+                        <div id="date-heading">{date}</div>
                     </div>
                     <ActivityDay itinerary={itinerary} date={date}/>
                 </div>

@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Map.css'
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faLocationPin } from "@fortawesome/free-solid-svg-icons";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map({itinerary, mapOptions }) {
-  const dispatch = useDispatch()
   const mapRef = useRef(null);
   const markersRef = useRef({});
   const activityIds = useSelector(state => state.itineraries[itinerary._id].activities)
@@ -43,13 +42,13 @@ function Map({itinerary, mapOptions }) {
     if (activities.length < 1) {
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: 40.71427, lng: -74.00597}, 
-        zoom: 1,
+        zoom: 10,
         ...mapOptions, 
       });
     } else if (activities.length >= 1){
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: activities[0].place.location.lat, lng: activities[0].place.location.lng}, 
-        zoom: 10,
+        zoom: 9,
         ...mapOptions, 
       });
 
@@ -68,13 +67,19 @@ function Map({itinerary, mapOptions }) {
           map,
           title: activity.title,
           icon: {
-            path: faLocationDot.icon[4],
+            path: faLocationPin.icon[4],
             fillColor: `#${colors[dates.indexOf(activity.date)]}`,
             fillOpacity: 1,
             strokeWeight: 1,
             strokeColor: "#ffffff",
             scale: 0.06,
+            labelOrigin: new window.google.maps.Point(200, 200)
           },
+          label: {
+            text: `${dates.indexOf(activity.date) + 1}`,
+            fontWeight: 'bold',
+            fontSize: '13px',
+          }
         }
       );
 

@@ -9,3 +9,7 @@
     object-fit: cover;
 }
 
+.activity-update-buttons {
+    display: flex;
+    flex-direction: column;
+}

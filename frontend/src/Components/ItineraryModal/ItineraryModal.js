@@ -14,7 +14,6 @@ export default function ItineraryModal({itinerary}) {
     const [openDate, setOpenDate] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const owner = useSelector(state => state.session.user);
     const [type, setType] = useState('Create');
     const [cover, setCover] = useState(null);
     const [coverUrl, setCoverUrl] = useState(null);
