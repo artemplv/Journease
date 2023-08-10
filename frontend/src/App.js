@@ -4,12 +4,12 @@ import { Switch, Route } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
-
 import { getCurrentUser } from './store/session';
 import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
 import ItineraryShow from './components/ItineraryShow/ItineraryShow';
 import SplashPage from './components/SplashPage/SplashPage'; 
 import UserProfilePage from './components/UserProfile/UserProfilePage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +30,7 @@ function App() {
 
         <Route exact path="/itineraries/:itineraryId" component={ItineraryShow} />
 
+        <Route exact path="/about" component={AboutPage} />
       </Switch>
     </>
   );
