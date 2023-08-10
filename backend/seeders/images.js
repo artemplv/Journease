@@ -9,7 +9,6 @@ const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/pho
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log('Connected to MongoDB successfully');
     initializeImages();
   })
   .catch(err => {
@@ -18,12 +17,8 @@ mongoose
   });
 
 const initializeImages = async () => {
-  console.log("Initializing profile avatars...");
   await User.updateMany({}, { profileImageUrl: DEFAULT_PROFILE_IMAGE_URL });
-    
-  console.log("Initializing itinerary image URLs...");
   await Itinerary.updateMany({}, { coverImageUrl: DEFAULT_COVER_IMAGE_URL });
 
-  console.log("Done!");
   mongoose.disconnect();
 }
