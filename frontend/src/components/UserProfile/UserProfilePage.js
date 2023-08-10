@@ -27,12 +27,8 @@ export default function UserProfilePage () {
         } else {
             dispatch(fetchUser(currentUser?._id));
         };
-<<<<<<< HEAD
-    }, [currentUser, user?.profileImageUrl, user?.likedItineraries]);
-=======
     }, [currentUser, user?.profileImageUrl]); 
     // ADD user.likedItineraries to dependency array
->>>>>>> wishlist
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
