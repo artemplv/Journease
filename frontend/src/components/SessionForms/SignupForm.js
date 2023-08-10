@@ -59,8 +59,10 @@ function SignupForm (props) {
       image
     };
 
-    await dispatch(signup(user));
-    closeModal();
+    const res = await dispatch(signup(user));
+    if (res.ok) {
+      closeModal();
+    }
   }
 
   const handleFile = ({currentTarget}) => {

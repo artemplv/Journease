@@ -34,10 +34,11 @@ function LoginForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(login({ email, password }));
-    closeModal();
-    history.push('/itineraries');
-    
+    const res = await dispatch(login({ email, password }));
+    if (res.ok) {
+      closeModal();
+      history.push('/itineraries');
+    }
   }
 
   const handleDemoLogin = async (e) => {
