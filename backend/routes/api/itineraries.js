@@ -39,19 +39,42 @@ router.post(
 });
 
 // INDEX ITINERARY
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
-        const allItineraries = (await Itinerary.find()
-                                                .sort({ createdAt: -1 }));
-        let itineraries = {};
-        allItineraries.forEach((itinerary) => {
-            itineraries[itinerary._id] = itinerary;
+        const itinerariesList = await Itinerary.aggregate([
+            {
+                $lookup: {
+                    from: 'likes',
+                    localField: '_id',
+                    foreignField: 'itineraryId',
+                    as: 'likerIds',
+                    pipeline: [
+                        {
+                            $project: {
+                                _id: 0,
+                                likerId: 1,
+                            },
+                        },
+                    ],
+                  },
+            },
+            {
+                $addFields: { likerIds: "$likerIds.likerId" },
+            },
+        ]);
+        // TODO: add sorting, pass array of itineraries ids along with itineraries object
+        // .sort({ createdAt: -1 });
+        
+        const itineraries = itinerariesList.reduce((accum, itinerary) => {
+            accum[itinerary._id] = itinerary;
+            return accum;
+        }, {});
+        
+        res.json({
+            itineraries,
         });
-        return res.json(
-            itineraries = {itineraries}
-        );
     } catch(err) {
-        return res.json([]);
+        next(err);
     };
 });
 
