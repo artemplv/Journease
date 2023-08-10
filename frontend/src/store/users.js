@@ -2,22 +2,15 @@ import jwtFetch from "./jwt";
 import { debounceThunkAction } from '../utils';
 
 export const RECEIVE_USER = "users/RECEIVE_USER";
-// const RECEIVE_USER_ITINERARIES = "users/RECEIVE_USER_ITINERARIES";
 const RECEIVE_USERS = "users/RECEIVE_USERS";
 
-// ADD LIKED ITINERARIES TO ARGS!!!
-const receiveUser = (user, userItineraries, itinerariesIds) => ({
+const receiveUser = (user, userItineraries, itinerariesIds, likedItineraries) => ({
     type: RECEIVE_USER,
     user,
     userItineraries,
-    itinerariesIds
-    // likedItineraries
+    itinerariesIds,
+    likedItineraries
 })
-
-// const receiveUserItineraries = userItineraries => ({
-//     type: RECEIVE_USER_ITINERARIES,
-//     userItineraries
-// })
 
 const receiveUsers = (users) => ({
     type: RECEIVE_USERS,
@@ -27,7 +20,7 @@ const receiveUsers = (users) => ({
 export const fetchUser = (userId) => async dispatch => {
     const res = await jwtFetch(`/api/users/${userId}`);
     const data = await res.json();
-    dispatch(receiveUser(data.user, data.userItineraries, data.itinerariesIds));
+    dispatch(receiveUser(data.user, data.userItineraries, data.itinerariesIds, data.likedItineraries));
 }
 
 export const updateUser = (image, currentUserId) => async dispatch => {
@@ -60,8 +53,6 @@ export default function usersReducer (state = {}, action) {
     switch(action.type) {
         case RECEIVE_USER:
             return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
-        // case RECEIVE_USER_ITINERARIES:
-        //     return {...newState, userItineraries: action.userItineraries};
         case RECEIVE_USERS:
             return {
                 ...state,

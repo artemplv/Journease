@@ -19,17 +19,20 @@ router.post(
         const coverImageUrl = req.file ? 
             await singleFileUpload({ file: req.file, public: true }) :
             DEFAULT_COVER_IMAGE_URL;
-        const newItinerary = new Itinerary({
-            ownerId: req.user._id,
-            title: req.body.title,
-            description: req.body.description,
-            dateStart: req.body.dateStart,
-            dateEnd: req.body.dateEnd,
-            collaborators: req.body.collaborators,
-            activities: req.body.activities,
-            coverImageUrl
-        });
+        
+            const newItinerary = new Itinerary({
+                ownerId: req.user._id,
+                title: req.body.title,
+                description: req.body.description,
+                dateStart: req.body.dateStart,
+                dateEnd: req.body.dateEnd,
+                collaborators: req.body.collaborators,
+                activities: req.body.activities,
+                coverImageUrl
+            });
+        
         const itinerary = await newItinerary.save();
+                
         return res.json({
             itinerary: itinerary
         });
@@ -39,27 +42,51 @@ router.post(
 });
 
 // INDEX ITINERARY
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
-        const allItineraries = (await Itinerary.find()
-                                                .sort({ createdAt: -1 }));
-        let itineraries = {};
-        allItineraries.forEach((itinerary) => {
-            itineraries[itinerary._id] = itinerary;
+        const itinerariesList = await Itinerary.aggregate([
+            {
+                $lookup: {
+                    from: 'likes',
+                    localField: '_id',
+                    foreignField: 'itineraryId',
+                    as: 'likerIds',
+                    pipeline: [
+                        {
+                            $project: {
+                                _id: 0,
+                                likerId: 1,
+                            },
+                        },
+                    ],
+                  },
+            },
+            {
+                $addFields: { likerIds: "$likerIds.likerId" },
+            },
+        ]);
+        // TODO: add sorting, pass array of itineraries ids along with itineraries object
+        // .sort({ createdAt: -1 });
+        
+        const itineraries = itinerariesList.reduce((accum, itinerary) => {
+            accum[itinerary._id] = itinerary;
+            return accum;
+        }, {});
+        
+        res.json({
+            itineraries,
         });
-        return res.json(
-            itineraries = {itineraries}
-        );
     } catch(err) {
-        return res.json([]);
+        next(err);
     };
 });
 
 // SHOW ITINERARY
 router.get('/:id', async(req, res, next) => {
-    const allLikes = (await Like
-                            .find({'itineraryId': req.params.id}))
     try {
+        const allLikes = (await Like
+            .find({'itineraryId': req.params.id}));
+
         const itineraryLikes = allLikes.map((like) => like.likerId) 
         const foundItinerary = await Itinerary.findById(req.params.id).lean();
         foundItinerary.likerIds = itineraryLikes
@@ -99,7 +126,9 @@ router.patch(
         itinerary.dateEnd = req.body.dateEnd || itinerary.dateEnd;
         itinerary.collaborators = req.body.collaborators || itinerary.collaborators;
         itinerary.coverImageUrl = coverImageUrl
-        itinerary.activities = req.body.activities || itinerary.activities;
+        itinerary.activities = (Array.isArray(req.body.activities) && req.body.activities.length > 0)
+            ? req.body.activities : itinerary.activities;
+        
         const updatedItinerary = await itinerary.save();
         return res.json({
             itinerary: updatedItinerary

@@ -61,6 +61,16 @@
     height: 50px;
     margin-right: 5px;
     background-color: transparent;
+    cursor: pointer;
+    color: #FFA9A3;
+}
+
+.like-button:disabled {
+    cursor: not-allowed;
+}
+
+.it-likes-num {
+    margin-right: 10px;
 }
 
 .itinerary-subinfo-buttons {

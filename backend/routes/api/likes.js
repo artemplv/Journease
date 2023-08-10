@@ -47,7 +47,10 @@ router.delete(
                                         'itineraryId': req.body.itineraryId}));
             if (like) {
                 like.deleteOne();
-                return res.json({ message: "Like has been removed." });
+                return res.json({
+                    message: "Like has been removed.",
+                    like,
+                });
             } else {
                 return res.json({ message: "Like does not exist." });
             }
