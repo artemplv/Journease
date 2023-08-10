@@ -19,17 +19,20 @@ router.post(
         const coverImageUrl = req.file ? 
             await singleFileUpload({ file: req.file, public: true }) :
             DEFAULT_COVER_IMAGE_URL;
-        const newItinerary = new Itinerary({
-            ownerId: req.user._id,
-            title: req.body.title,
-            description: req.body.description,
-            dateStart: req.body.dateStart,
-            dateEnd: req.body.dateEnd,
-            collaborators: req.body.collaborators,
-            activities: req.body.activities,
-            coverImageUrl
-        });
+        
+            const newItinerary = new Itinerary({
+                ownerId: req.user._id,
+                title: req.body.title,
+                description: req.body.description,
+                dateStart: req.body.dateStart,
+                dateEnd: req.body.dateEnd,
+                collaborators: req.body.collaborators,
+                activities: req.body.activities,
+                coverImageUrl
+            });
+        
         const itinerary = await newItinerary.save();
+                
         return res.json({
             itinerary: itinerary
         });
@@ -80,9 +83,10 @@ router.get('/', async (req, res, next) => {
 
 // SHOW ITINERARY
 router.get('/:id', async(req, res, next) => {
-    const allLikes = (await Like
-                            .find({'itineraryId': req.params.id}))
     try {
+        const allLikes = (await Like
+            .find({'itineraryId': req.params.id}));
+
         const itineraryLikes = allLikes.map((like) => like.likerId) 
         const foundItinerary = await Itinerary.findById(req.params.id).lean();
         foundItinerary.likerIds = itineraryLikes

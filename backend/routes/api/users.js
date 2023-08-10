@@ -62,22 +62,43 @@ router.get('/search', requireUser, async (req, res, next) => {
 router.get('/:id', async(req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    const userItineraries = await Itinerary.find({ownerId: req.params.id});
-    // const likes = await Like.find({likerId: req.params.id});
-    // const likedItineraries = likes.map(like => (like.itineraryId));
+
+    const userItineraries = await Itinerary.aggregate([
+      {
+        $match: { ownerId: req.params.id },
+      },
+      {
+          $lookup: {
+              from: 'likes',
+              localField: '_id',
+              foreignField: 'itineraryId',
+              as: 'likerIds',
+              pipeline: [
+                  {
+                      $project: {
+                          _id: 0,
+                          likerId: 1,
+                      },
+                  },
+              ],
+            },
+      },
+      {
+          $addFields: { likerIds: "$likerIds.likerId" },
+      },
+  ]);
 
     const itinerariesIds = userItineraries.map(itinerary => (itinerary._id));
-    const data = {};
+    const itinerariesData = {};
 
     userItineraries.forEach((itinerary) => {
-      data[itinerary.id] = itinerary
+      itinerariesData[itinerary.id] = itinerary
     })
 
     return res.json({
       user,
-      userItineraries: data,
+      userItineraries: itinerariesData,
       itinerariesIds
-      // likedItineraries
     });
   } catch(err) {
     const error = new Error('User does not exist');
