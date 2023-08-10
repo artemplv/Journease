@@ -34,6 +34,7 @@ export default function UserProfilePage () {
 
     const likedItineraries = itineraries.filter((itinerary) => user?.likedItineraries?.includes(itinerary?._id));
 
+
     const ItineraryList = userItineraries?.map(itinerary => {
         return (
             <ItineraryIndexItem itinerary={itinerary} />
@@ -61,9 +62,9 @@ export default function UserProfilePage () {
                 )}
                 <h1 className="user-profile-labels">My Itineraries</h1>
                 <div className='user-itineraries'>
-                    {user?.itineraries && ItineraryList}
+                    {userItineraries && ItineraryList}
                     <div className='no-itineraries'>
-                        {(user?.itineraries?.length === 0) && <p>No trips yet 😢 Create one now!</p>}
+                        {(userItineraries.length === 0) && <p>No trips yet 😢 Create one now!</p>}
                     </div>
                 </div>
 

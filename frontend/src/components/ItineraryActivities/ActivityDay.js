@@ -11,13 +11,16 @@ export default function ActivityDay({itinerary, date}) {
     const activities = useSelector(state => Object.values(state.activities).filter(activity => (new Date(activity.date).toString() === new Date(date).toString() && activity.itineraryId === itinerary._id)))
     const currentUser = useSelector(state => state.session.user)
     const [canEdit, setCanEdit] = useState(false)
+
     useEffect(()=> {
         if (currentUser) {
             if (currentUser._id === itinerary.ownerId) {
                 setCanEdit(true)
             }
+        } else {
+            setCanEdit(false)
         }
-    }, [])
+    }, [currentUser])
     
     useEffect(()=> {
         dispatch(fetchActivities(itinerary._id))

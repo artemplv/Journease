@@ -33,6 +33,8 @@ export default function ItineraryShow () {
             if (currentUser._id === itinerary.ownerId || itinerary.collaborators?.includes(currentUser._id)) {
                 setCanEdit(true)
             }
+        } else {
+            setCanEdit(false)
         }
     }, [itinerary, currentUser])
 
@@ -126,7 +128,7 @@ export default function ItineraryShow () {
                     </div>
                     {openEditModal && 
                         <Modal onClose={()=>setOpenEditModal(false)}>
-                            <ItineraryModal itinerary={itinerary}/>
+                            <ItineraryModal itinerary={itinerary} closeModal={()=> setOpenEditModal(false)}/>
                         </Modal>
                     }
                 </div>

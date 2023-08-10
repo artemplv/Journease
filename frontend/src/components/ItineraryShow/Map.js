@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import { useSelector } from 'react-redux';
 import './Map.css'
-import { faLocationDot, faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -33,7 +33,9 @@ function Map({itinerary, mapOptions }) {
     })
     return unique
   }
-  const colors = allColors();
+
+  const colors = ["rgb(211,64,132)","rgb(172,222,238)", "rgb(237,106,192)","rgb(221,97,220)", "rgb(187,118,54)", "rgb(190,137,129)","rgb(86,147,92)","rgb(238,120,62)", "rgb(196,214,314)", "rgb(220,109,235)", "rgb(163,176,133)","rgb(104,153,182)","rgb(240,191,242)","rgb(161,226,141)","rgb(229,168,58)","rgb(227,73,73)","rgb(233,218,115)","rgb(227,138,107)", "rgb(93,198,222)","rgb(169,53,155)", "rgb(147,92,198)","rgb(140,148,245)","rgb(240,175,78)", "rgb(233,137,112)", "rgb(79,176,204)","rgb(188,107,124)","rgb(127,149,92)","rgb(206, 114,81)","rgb(125,75,70)","rgb(184,150,143)","rgb(218,150,143)","rgb(218, 186, 65)", "rgb(159,195,86)", "rgb(187,75,213)","rgb(180,246,122)","rgb(208,59,236)","rgb(215,240,84)",]
+  // const colors = allColors();
   const dates = uniqueDates();
 
   useEffect(() => {
@@ -46,7 +48,6 @@ function Map({itinerary, mapOptions }) {
         ...mapOptions, 
       });
     } else if (activities.length >= 1){
-      debugger
 
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: activities[0].place.location.lat, lng: activities[0].place.location.lng}, 
@@ -70,7 +71,7 @@ function Map({itinerary, mapOptions }) {
           title: activity.title,
           icon: {
             path: faLocationPin.icon[4],
-            fillColor: `#${colors[dates.indexOf(activity.date)]}`,
+            fillColor: `${colors[dates.indexOf(activity.date)%36]}`,
             fillOpacity: 1,
             strokeWeight: 1,
             strokeColor: "#ffffff",
@@ -105,11 +106,11 @@ function Map({itinerary, mapOptions }) {
     return () => {
       markersRef.current = {};
     };
-  }, [activities, mapOptions]);
+  }, [JSON.stringify(activities), JSON.stringify(mapOptions)]);
 
   return (
     <>
-        <div ref={mapRef} id="map" style={{ width: '100%', height: '150vh' }} />
+        <div ref={mapRef} id="map" style={{ width: '100%', height: '120vh' }} />
     </>
   )
 }

@@ -1,19 +1,12 @@
 .itinerary-show-page {
-    padding-top: 7.9vh;
+    padding-top: 7vh;
 }
 
 .itinerary-show-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
     height: 20vh;
-    /* background: linear-gradient(90deg, rgba(148,187,233,1)  0%,  rgba(238,174,202,1)100%); */
-    /* background-color: rgb(245, 195, 203); */
-    /* background-color: rgb(250, 221, 232); */
-    /* outline: 1px solid white;
-    outline-offset: -10px; */
-    /* border: 1px solid rgb(215, 187, 142); */
 }
 
 #itinerary-show-image-container img {
@@ -21,8 +14,6 @@
     height: 20vh;
     width: 50vw;
     object-position: 25% 75%;
-    /* border-radius: 15px; */
-    /* margin-left: 1vw; */
 }
 
 .itinerary-show-description {
@@ -31,8 +22,6 @@
     height: 100%;
     padding: 2vw;
     padding-top: 0px;
-    /* background-color: rgb(254, 215, 221); */
-    /* border-top-right-radius: 15px; */
     line-height: 1.7;
 }
 
@@ -47,7 +36,6 @@
 .itinerary-show-main-body {
     display: grid;
     grid-template-columns: 4fr 4fr;
-    /* margin-top: 10vh; */
 }
 
 #dates-nav {
@@ -55,12 +43,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    /* padding: 0.5vw; */
 }
 
 #date-nav-h2-container {
-    /* background-color: rgb(249, 249, 247);
-    padding: 1vw; */
+
     margin-bottom: 1vh;
 }
 
@@ -70,11 +56,6 @@
     height: 5vh;
     font-size: 17px;
     text-align: left;
-    /* margin-top: 2vh; */
-    /* padding-top: 1vh;
-    padding-bottom: 1vh;
-    border-radius: 10px;
-    background-color: rgb(247, 233, 235) ; */
 }
 
 .itinerary-show-dates-container h2{
@@ -83,7 +64,6 @@
 
 .itinerary-show-edit-buttons {
     height: 12vw;
-    /* width: 20vw; */
 }
 
 .itinerary-show-edit-buttons button{
@@ -95,19 +75,15 @@
 }
 
 .itinerary-header-text-box {
-    /* border: 3px solid pink; */
     background-color: white;
     width: 43vw;
-    /* width: 80%; */
     transform: translateY(-6.5vw);
     height: 10vw;
     justify-content: center;
-    /* margin-top: 8vw; */
     border-radius: 15px;
     padding: 10px;
-    /* outline: 2px dotted pink; */
     outline-offset: -10px;
-    box-shadow: 0 0 0 3px #ef90ab59;
+    box-shadow: 0 0 0 3px rgba(213, 227, 203, 0.706);
 }
 
 .itinerary-header-text-box-description {

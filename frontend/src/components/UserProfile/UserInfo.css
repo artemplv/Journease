@@ -7,8 +7,8 @@
 
 #user-info img {
     /* position: absolute; */
-    width: 4.5vw;
-    height: 4.5vw;
+    width: 3vw;
+    height: 3vw;
     margin: 0 10px 0 10px;
     border-radius: 50%;
     object-fit: cover;
@@ -16,5 +16,5 @@
 }
 
 #user-info h2 {
-    font-size: 20px;
+    font-size: 18px;
 }
