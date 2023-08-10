@@ -46,6 +46,8 @@ function Map({itinerary, mapOptions }) {
         ...mapOptions, 
       });
     } else if (activities.length >= 1){
+      debugger
+
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: activities[0].place.location.lat, lng: activities[0].place.location.lng}, 
         zoom: 9,

@@ -1,15 +1,25 @@
+.itineraries-index-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;  
+}
+
 .itineraries-index {
     display: grid;
-    width: 100vw;
+    width: 80vw;
     grid-template-columns: repeat(3, 1fr);
-    margin-left: 3vw;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
+    border-radius: 15px;
+    padding-top: 10px;
+    margin-bottom: 20px;
 }
 
 .itinerary-index-item {
     align-items: center;
     height: 68vh;
     width: 25vw;
-    /* background-color:black; */
+    background-color: rgb(255, 247, 238);
     margin: 15px;
     outline: 1px solid white;
     outline-offset: -10px;
@@ -27,24 +37,22 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
     margin: auto;
     text-align: center;
     width: 16.5vw;
     height: 5vh;
-    /* background-color: rgb(195, 184, 169); */
-    background-color: #FFA9A3;
+    /* background-color: #FFA9A3; */
+    background-color: white;
     transform: translateY(-3vh);
-    outline: 1px solid white;
+    outline: 1px solid rgb(255, 247, 238);
     outline-offset: -5px;
     padding: 5px;
 }
 
 .itinerary-card-info h2 {
     font-size: 14px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #a6a4a4;
+    color: black;
     padding: 5px;
 }
 
@@ -52,6 +60,7 @@
     border: transparent;
     height: 50px;
     margin-right: 5px;
+    background-color: transparent;
 }
 
 .itinerary-subinfo-buttons {
@@ -77,14 +86,47 @@
 }
 
 #itinerary-index-page-title {
-    text-align: center;
     font-size: 32px;
-    padding-top: 80px;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-#itinerary-index-page-title img {
-    width: 500px;
+.index-search {
+    width: 19vw;
+    height: 5vh;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 25px;
+    margin: 10px 0 0 0;
+    border: 1px solid #cacaca;
+}
+
+.splash-search-container input:active {
+    box-shadow: 0 1px #666;
+    transform: translateY(2px);
+}
+
+.index-browse-all {
+    border: none;
+    height: 35px;
+    width: 110px;
+    border-radius: 15px;
+    background-color: transparent;
+    margin-bottom: 40px
+}
+
+.explore-itineraries-text {
+    margin: 150px 0 20px 0;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.label-recent-itineraries {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 3vw 0 20px 11vw;
 }
 
 .update-itinerary-buttons {
@@ -95,7 +137,8 @@
 
 .update-itinerary-buttons button {
     width: 2.5vw;
-    background-color: none;
     border: none;
     cursor: pointer;
+    background-color: transparent;
 }
+
