@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import LoginForm from '../SessionForms/LoginForm';
+import SearchItinerariesInput from '../SearchItineraries/SearchItinerariesInput';
 
 const SplashPage = () => {
     const currentUser = useSelector(state => state.session.user);
@@ -55,9 +56,7 @@ const SplashPage = () => {
                 <div className="splash-search-container">
                     <img 
                         src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png"/>
-                    <input 
-                        className="splash-search" 
-                        placeholder='Type to search for itineraries'/>
+                        <SearchItinerariesInput/>
                     <button 
                         onClick={handleClick}
                         className="splash-create">

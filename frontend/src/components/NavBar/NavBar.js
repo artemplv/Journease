@@ -32,9 +32,9 @@ function NavBar () {
     } else {
       return (
         <div className="links-auth">
+          <button onClick={aboutPage}>About</button>
           <button onClick={signup}>Sign Up</button>
           <button onClick={login}>Log In</button>
-          <button onClick={aboutPage}>About</button>
         </div>
       );
     }
