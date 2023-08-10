@@ -36,9 +36,8 @@ export default function ItineraryShow () {
                     </div>
                     <div className="itinerary-show-description">
                         <h1>{itinerary.title}</h1>
-                        <div>        
+                        <div className="owner-info">        
                             <i className="fa-solid fa-user-pen" style={{color: "#F87575",}}/>
-                            {/* {itinerary.ownerId} */}
                             <UserInfo userId={itinerary.ownerId}/>
                         </div>
                         <div>
@@ -49,9 +48,8 @@ export default function ItineraryShow () {
                             <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
                             {startDate} to {endDate}
                         </div>
-                        <div>
+                        <div className="collabs-info">
                             <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
-                            {/* {itinerary.collaborators} */}
                             {CollaboratorsList}
                         </div>
                     </div>

@@ -29,7 +29,8 @@ export default function UserProfilePage () {
             dispatch(fetchUser(currentUser?._id));
             dispatch(fetchItineraries());
         };
-    }, [currentUser, user?.profileImageUrl]);
+    }, [currentUser, user?.profileImageUrl]); 
+
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 

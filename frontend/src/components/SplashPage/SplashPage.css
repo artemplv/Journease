@@ -35,8 +35,8 @@
     background-color: #fdbea3;
     color: white;
     font-family: 'Schibsted Grotesk', sans-serif;
-    height: 65px;
-    width: 270px;
+    height: 60px;
+    width: 240px;
     border-radius: 40px;
     border: transparent;
     font-size: 22px;
@@ -68,12 +68,12 @@
     align-items: center;
     width: 100vw;
     height: 90%;
-    margin-top: 60px;
+    margin-top: 100px;
 }
 
 .splash-search-container img {
     width: 600px;
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 #search-label {

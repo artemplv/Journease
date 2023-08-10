@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 70px 20px 20px 20px;
     width: 70vw;
     text-align: center;
     line-height: 2;
@@ -23,10 +23,14 @@
 
 .about-page h1 {
     font-size: 32px;
-    color: gray;
+    color: black;
     padding: 20px;
     font-weight: 700;
     text-align: center;
+}
+
+.about-page p {
+    font-size: 17.5px;
 }
 
 #individual-info {
