@@ -6,7 +6,7 @@ import { Modal } from '../../context/Modal';
 import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import { deleteItinerary } from '../../store/itineraries';
 import { useHistory } from 'react-router-dom';
-import UserInfo from '../userProfile/UserInfo';
+import UserInfo from '../UserProfile/UserInfo';
 
 export default function ItineraryIndexItem({itinerary}) {
     const currentUser = useSelector(state => state.session.user)
