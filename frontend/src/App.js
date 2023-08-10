@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 import { getCurrentUser } from './store/session';
@@ -8,6 +9,7 @@ import ItineraryIndex from './components/ItineraryIndex/ItineraryIndex';
 import ItineraryShow from './components/ItineraryShow/ItineraryShow';
 import SplashPage from './components/SplashPage/SplashPage'; 
 import UserProfilePage from './components/UserProfile/UserProfilePage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
