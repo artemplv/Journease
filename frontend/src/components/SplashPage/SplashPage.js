@@ -56,9 +56,6 @@ const SplashPage = () => {
                 <div className="splash-search-container">
                     <img 
                         src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png"/>
-                    {/* <input 
-                        className="splash-search" 
-                        placeholder='Type to search for itineraries'/> */}
                         <SearchItinerariesInput/>
                     <button 
                         onClick={handleClick}

@@ -12,7 +12,7 @@ const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/pho
 router.get(
     '/search',
     async (req, res, next) => {
-        const { title, limit = 10 } = req.query;
+        const { title, limit = 5 } = req.query;
         try {
             const allItineraries = await Itinerary.find(
                 { title: { $regex: new RegExp(title, 'i')}},
