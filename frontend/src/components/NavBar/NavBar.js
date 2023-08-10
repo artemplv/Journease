@@ -1,4 +1,3 @@
-
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { useState } from 'react';
@@ -43,14 +42,13 @@ function NavBar () {
   }
 
   const redirectHome = () => {
-    history.push('/itineraries')
+    history.push('/')
   }
 
   return (
-    <div className='nav-bar'>
+    <div id='nav-bar'>
       <h1 onClick={redirectHome}>
-        <img id="logo" src="https://coffeebook-dev.s3.amazonaws.com/favicon.png"/>
-      </h1>
+        <img id="logo" src="https://journease-artemplv.s3.amazonaws.com/public/favicon.png"/></h1>
       { getLinks() }
       {(modalType === "signup") && (
         <Modal onClose={()=> setModalType("")}>
@@ -72,4 +70,4 @@ function NavBar () {
   );
 }
 
-export default NavBar;
+export default NavBar
