@@ -20,6 +20,10 @@ function NavBar () {
     setModalType("login")
   }
 
+  const aboutPage = () => {
+    history.push('/about')
+}
+
   const getLinks = () => {
     if (loggedIn) {
       return (
@@ -30,6 +34,7 @@ function NavBar () {
         <div className="links-auth">
           <button onClick={signup}>Sign Up</button>
           <button onClick={login}>Log In</button>
+          <button onClick={aboutPage}>About</button>
         </div>
       );
     }

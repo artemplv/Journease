@@ -25,11 +25,16 @@ function ItineraryIndex() {
       <>
         <div>
           <div id="itinerary-index-page-title">
-            <img src="https://coffeebook-dev.s3.amazonaws.com/explore.png"/>
+            <h1 className="explore-itineraries-text">Explore itineraries</h1>
+            <input className="index-search" placeholder="Search by title"/>
+            <button className="index-browse-all">or browse all...</button>
           </div>
-          <ul className="itineraries-index">
-            {ItineraryList}
-          </ul>
+          <h1 className="label-recent-itineraries">Recent itineraries</h1>
+          <div className="itineraries-index-container">
+            <ul className="itineraries-index">
+              {ItineraryList}
+            </ul>
+          </div>
         </div>
         <footer>
           Copyright &copy; 2023 Journease

@@ -17,7 +17,8 @@
     margin-bottom: 15px;
 }
 
-.session-form input[type="submit"] {
+.session-form input[type="submit"],
+#demo-button {
     margin: 0 auto;
     height: 44px;
     width: 50%;
@@ -32,7 +33,12 @@
     display: block;
 }
 
-.session-form input[type="submit"]:hover {
+#demo-button {
+    margin-top: 10px;
+}
+
+.session-form input[type="submit"]:hover,
+#demo-button:hover {
     background-color: #ef9e7c;
 }
 
