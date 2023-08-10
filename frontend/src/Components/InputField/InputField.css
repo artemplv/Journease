@@ -18,6 +18,10 @@
   outline: none;
 }
 
+.input-field:disabled {
+  cursor: not-allowed;
+}
+
 textarea.input-field {
   padding-top: 7px;
 }

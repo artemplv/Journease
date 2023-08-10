@@ -34,35 +34,50 @@
 .activity-details {
     display: flex;
     flex-direction: column;
-    background-color: #eaeaea;
-    border-radius: 8px;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
+    width: 400px;
 }
 
 .activity-modal-container input {
-    border-radius: 5px;
-    border: 1px solid #aaaaaa;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.activity-modal-container textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.activity-modal-container input[type="submit"] {
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 44px;
+    width: 50%;
+    min-width: 15vh;
+    max-width: 200px;
+    border-radius: 30px;
+    border: none;
+    background-color: #fdbea3;
     font-size: 15px;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-    width: 23vw;
-    height: 3vh;
-    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+    display: block;
 }
 
-.activity-modal-container button {
-    border-radius: 5px;
-    width: 23vw;
-    height: 3.5vh;
-    margin: 20px 0 20px 0;
-    border: 1px solid #aaaaaa;
+.activity-modal-container input[type="submit"]:hover {
+    background-color: #ef9e7c;
 }
 
-.activity-modal-container label {
-    text-align: left;
-    margin: 10px;
+.activity-modal-container h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
+.activity-modal-container h2 {
+    text-align: center;
+    font-size: 21px;
+}
 

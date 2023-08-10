@@ -7,13 +7,14 @@ const noop = () => {};
 const InputField = forwardRef(function InputField(props, ref) {
   const {
     value,
-    onChange,
+    onChange = noop,
     onBlur = noop,
     onFocus = noop,
     error = null,
     className = '',
     type = 'text',
     placeholder = '',
+    disabled,
     textarea,
   } = props;
 
@@ -27,6 +28,7 @@ const InputField = forwardRef(function InputField(props, ref) {
           onBlur={onBlur}
           onFocus={onFocus}
           placeholder={placeholder}
+          disabled={disabled}
           ref={ref}
         />
         {
@@ -51,6 +53,7 @@ const InputField = forwardRef(function InputField(props, ref) {
         onBlur={onBlur}
         onFocus={onFocus}
         placeholder={placeholder}
+        disabled={disabled}
         ref={ref}
       />
       {
