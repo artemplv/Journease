@@ -64,7 +64,7 @@ const SplashPage = () => {
                     <button onClick={handleRedirect}>or Browse All</button>
                 </div>
                 <div className="splash-img-container">
-                    <img src='https://coffeebook-dev.s3.amazonaws.com/photo-1520627900660-e152fd1ee167.avif'/>
+                    <img src='https://journease-artemplv.s3.amazonaws.com/public/splash-image.jpg'/>
                 </div>
             </div>
                 <ItineraryIndex/>
