@@ -27,7 +27,7 @@ export default function UserProfilePage () {
         } else {
             dispatch(fetchUser(currentUser?._id));
         };
-    }, [currentUser, user?.profileImageUrl, user?.likedItineraries]);
+    }, [currentUser, user?.profileImageUrl]);
 
     const userItineraries = itineraries.filter((itinerary) => itinerary?.ownerId == user?._id);
 
