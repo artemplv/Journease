@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../store/users';
-import ItineraryIndexItem from '../ItineraryIndex/ItineraryIndexItem';
+import ItineraryIndexItem from '../itineraryIndex/ItineraryIndexItem';
 import { useHistory, Link } from 'react-router-dom';
 import './UserProfile.css';
 import { Modal } from '../../context/Modal';

@@ -1,5 +1,5 @@
 import './SplashPage.css';
-import ItineraryIndex from '../ItineraryIndex/ItineraryIndex';
+import ItineraryIndex from '../itineraryIndex/ItineraryIndex';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
