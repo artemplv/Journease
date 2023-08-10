@@ -18,7 +18,7 @@ export default function AboutPage () {
                     <img className="tim" src="/tim.png"/>
                     <div id="individual-subinfo">
                         <h2>Artem Polevoy</h2>
-                        <p>Team Lead 👑</p>
+                        <p>Team Lead 👨‍💻</p>
                         <div id="social-links">
                             <a href="https://github.com/artemplv"><i class="fa-brands fa-github fa-2xl" style={{color: "#919397"}}></i></a>
                             <a href="https://www.linkedin.com/in/artemplv/"><i class="fa-brands fa-linkedin fa-2xl" style={{color: "#919397"}}></i></a>
@@ -39,7 +39,7 @@ export default function AboutPage () {
                 </div>
 
                 <div id="individual-info">
-                    <img className="michelle" src=""/>
+                    <img className="michelle" src="/michelle.png"/>
                     <div id="individual-subinfo">
                         <h2>Michelle Li</h2>
                         <p>Frontend Lead 👩‍💻</p>
