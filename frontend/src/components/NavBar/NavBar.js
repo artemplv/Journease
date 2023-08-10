@@ -20,10 +20,9 @@ function NavBar () {
     setModalType("login")
   }
 
-   const aboutPage = () => {
-        history.push('/about')
-    }
-
+  const aboutPage = () => {
+    history.push('/about')
+}
 
   const getLinks = () => {
     if (loggedIn) {
