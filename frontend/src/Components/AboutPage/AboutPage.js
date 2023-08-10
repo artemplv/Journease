@@ -6,8 +6,8 @@ export default function AboutPage () {
         <div className="about-page">
             <div className="app-info">
                 <h1>About the App</h1>
-                <p>Inspired by our collective love of travel, organization, and all things cute we set out to create a trip planning application like no other -
-                    featuring a social media-esque blend of likes, collaborators, and innovative use of the Google Maps Api, Journease can ease your travel woes!</p>
+                <p>Inspired by our team's collective love of travel and organization we set out to create a trip planning application like no other. With Journease, users can create detailed travel itineraries for various destinations and occasions with ease. 
+                    The platform promotes collaborative planning, allowing multiple users to contribute and refine trip plans together. Furthermore, users can openly share their curated itineraries, providing insights and inspiration to the Journease community.</p>
             </div>
 
             <h1>About the Team</h1>
