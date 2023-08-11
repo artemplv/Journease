@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchItineraries } from "../../store/itineraries";
 import ItineraryIndexItem from "./ItineraryIndexItem";
 import './ItineraryIndex.css';
+import image from '/Users/michelleli/Desktop/Journease/frontend/src/assets/tree.png'
 
 function ItineraryIndex() {
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ function ItineraryIndex() {
       <>
         <div>
           <div id="itinerary-index-page-title">
-            <h1 className="explore-itineraries-text">Explore itineraries</h1>
-            <input className="index-search" placeholder="Search by title"/>
-            <button className="index-browse-all">or browse all...</button>
+              <h1 className="explore-itineraries-text">Explore itineraries</h1>
+              <input className="index-search" placeholder="Search by title"/>
+              <button className="index-browse-all">or browse all...</button>
           </div>
           <h1 className="label-recent-itineraries">Recent itineraries</h1>
           <div className="itineraries-index-container">

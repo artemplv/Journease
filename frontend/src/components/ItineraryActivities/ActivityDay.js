@@ -14,7 +14,7 @@ export default function ActivityDay({itinerary, date}) {
 
     useEffect(()=> {
         if (currentUser) {
-            if (currentUser._id === itinerary.ownerId) {
+            if (currentUser._id === itinerary.ownerId || itinerary.collaborators.includes(currentUser._id)) {
                 setCanEdit(true)
             }
         } else {
