@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchItineraries } from "../../store/itineraries";
 import ItineraryIndexItem from "./ItineraryIndexItem";
 import './ItineraryIndex.css';
-import image from '/Users/michelleli/Desktop/Journease/frontend/src/assets/tree.png'
 
 function ItineraryIndex() {
   const dispatch = useDispatch();

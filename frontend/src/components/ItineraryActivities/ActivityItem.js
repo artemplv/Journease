@@ -26,9 +26,11 @@ export default function ActivityItem({activity, ownerId, itinerary}) {
                 </div>
                 <div id="activity-item-header">
                     <h2 id="activity-item-heading">{activity.title}</h2>
-                    <div id="activity-item-description">{activity.description}</div>
+                    {activity.description &&
+                        <div id="activity-item-description">{activity.description}</div>
+                    }
                 </div>
-                {(currentUserId=== ownerId || itinerary.collaborators.includes(currentUserId)) && 
+                {(currentUserId=== ownerId || itinerary?.collaborators?.includes(currentUserId)) && 
                     <div className="activity-update-buttons">
                         <button onClick={edit}>
                             <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
@@ -39,6 +41,7 @@ export default function ActivityItem({activity, ownerId, itinerary}) {
                     </div>
                 }
             </div>
+        
             {openEdit && (
                 <Modal onClose={()=> setOpenEdit(false)}>
                     <ActivityModal itineraryId={activity.itineraryId} date={activity.date} activityId={activity._id} closeModal={()=>setOpenEdit(false)}/>

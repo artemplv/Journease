@@ -52,7 +52,7 @@ export default function usersReducer (state = {}, action) {
 
     switch(action.type) {
         case RECEIVE_USER:
-            return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
+            return {...newState, [action.user?._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
         case RECEIVE_USERS:
             return {
                 ...state,
