@@ -33,10 +33,10 @@ export default function ActivityItem({activity, ownerId, itinerary}) {
                 {(currentUserId=== ownerId || itinerary?.collaborators?.includes(currentUserId)) && 
                     <div className="activity-update-buttons">
                         <button onClick={edit}>
-                            <i className="fa-solid fa-pen fa-xl" style={{color: "#FFA9A3",}}/>
+                            <i className="fa-solid fa-pen fa-xl" style={{color: "#afc6bd",}}/>
                         </button>
                         <button onClick={remove}>
-                            <i className="fa-solid fa-trash fa-xl" style={{color: "#FFA9A3",}}/>
+                            <i className="fa-solid fa-trash fa-xl" style={{color: "#afc6bd",}}/>
                         </button>
                     </div>
                 }

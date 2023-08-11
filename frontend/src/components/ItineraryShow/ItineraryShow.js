@@ -87,21 +87,21 @@ export default function ItineraryShow () {
                                     <div className="itinerary-show-description">
                                         <h1>{itinerary.title}</h1>
                                             <div>
-                                                <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
+                                                <i className="fa-solid fa-calendar" style={{color: "#afc6bd",}}/>
                                                 {startDate} to {endDate}
                                             </div>
                                             <div className="it-desc">
-                                                {/* <i className="fa-solid fa-note-sticky" style={{color: "#F87575",}}/> */}
+                                                <i className="fa-solid fa-note-sticky" style={{color: "#afc6bd",}}/>
                                                 {itinerary.description}
                                             </div>
                                     </div>
                                     <div id="collaborators">
                                         <div id="collaborators-container">        
-                                            <i className="fa-solid fa-user-pen" style={{color: "#F87575",}}/>
+                                            <i className="fa-solid fa-user-pen" style={{color: "#afc6bd",}}/>
                                             <UserInfo userId={itinerary.ownerId} />
                                         </div>
                                         <div className="authors-container">
-                                            <i className="fa-solid fa-users" style={{color: "#F87575",}}/>
+                                            <i className="fa-solid fa-users" style={{color: "#afc6bd",}}/>
                                             <div id="collaborators-only">
                                                 {CollaboratorsList}
                                             </div>
@@ -110,10 +110,10 @@ export default function ItineraryShow () {
                                     {canEdit && 
                                     <div className="itinerary-show-edit-buttons">
                                         <button onClick={edit}>
-                                            <i className="fa-solid fa-pen fa-xl" style={{color: "#F87575",}}/>
+                                            <i className="fa-solid fa-pen fa-xl" style={{color: "#afc6bd",}}/>
                                         </button>
                                         <button onClick={confirmRemove}>
-                                            <i className="fa-solid fa-trash fa-xl" style={{color: "#F87575",}}/>
+                                            <i className="fa-solid fa-trash fa-xl" style={{color: "#afc6bd",}}/>
                                         </button>
                                     </div>
                                     }
