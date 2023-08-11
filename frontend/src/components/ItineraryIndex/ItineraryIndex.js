@@ -14,7 +14,7 @@ function ItineraryIndex() {
   }, [currentUser]);
 
 
-  const ItineraryList = itineraries.map(itinerary => {
+  const ItineraryList = itineraries.reverse().map(itinerary => {
     return (
       <ItineraryIndexItem
         key={itinerary?._id}

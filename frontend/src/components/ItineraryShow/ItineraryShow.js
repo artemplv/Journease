@@ -68,8 +68,10 @@ export default function ItineraryShow () {
                     <Modal onClose={()=> setConfirmModal(false)}>
                         <div className="confirm-delete-itinerary-modal">
                             <h1>Are you sure you would like to delete this itinerary?</h1>
-                            <button id="delete-itinerary-button" onClick={remove}>Delete</button>
-                            <button id="cancel-button" onClick={cancel}>Cancel</button>
+                            <div className="delete-container">
+                                <button id="delete-itinerary-button" onClick={remove}>Delete</button>
+                                <button id="cancel-button" onClick={cancel}>Cancel</button>
+                            </div>
                         </div>
                     </Modal>
                 }
@@ -84,14 +86,14 @@ export default function ItineraryShow () {
                                 <div className="itinerary-header-text-box-description">
                                     <div className="itinerary-show-description">
                                         <h1>{itinerary.title}</h1>
-                                        <div>
                                             <div>
                                                 <i className="fa-solid fa-calendar" style={{color: "#F87575",}}/>
                                                 {startDate} to {endDate}
                                             </div>
-                                            <i className="fa-solid fa-note-sticky" style={{color: "#F87575",}}/>
-                                            {itinerary.description}
-                                        </div>
+                                            <div className="it-desc">
+                                                {/* <i className="fa-solid fa-note-sticky" style={{color: "#F87575",}}/> */}
+                                                {itinerary.description}
+                                            </div>
                                     </div>
                                     <div id="collaborators">
                                         <div id="collaborators-container">        
