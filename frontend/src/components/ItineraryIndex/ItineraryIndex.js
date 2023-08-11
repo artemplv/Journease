@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItineraries } from "../../store/itineraries";
 import ItineraryIndexItem from "./ItineraryIndexItem";
+import SearchItinerariesInput from "../SearchItineraries/SearchItinerariesInput";
 import './ItineraryIndex.css';
 
 function ItineraryIndex() {
@@ -29,7 +30,7 @@ function ItineraryIndex() {
         <div>
           <div id="itinerary-index-page-title">
               <h1 className="explore-itineraries-text">Explore itineraries</h1>
-              <input className="index-search" placeholder="Search by title"/>
+              <SearchItinerariesInput/>
               <button className="index-browse-all">or browse all...</button>
           </div>
           <h1 className="label-recent-itineraries">Recent itineraries</h1>

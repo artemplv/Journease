@@ -7,7 +7,7 @@
 
 .user-profile-page {
     width: 85vw;
-    background-color: rgb(245, 223, 223, 0.8);
+    background-color: rgba(245, 254, 237, 0.8);
     border-radius: 20px;
     margin-top: 100px;
     display: flex;
@@ -29,7 +29,7 @@
 .user-profile-info button {
     width: fit-content;
     border-radius: 30px;
-    background-color: #fdbea3;
+    background-color: #79a68c;
     border: none;
     color: white;
     cursor: pointer;
