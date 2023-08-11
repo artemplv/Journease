@@ -29,6 +29,7 @@ export default function ProfileButton() {
 
     return (
         <div className="links-nav">
+            <button onClick={aboutPage}>About</button>
             <button onClick={showPage}>My Profile</button>
             <button onClick={openModal}>Plan a Trip</button>
             {openCreate && 
@@ -42,7 +43,6 @@ export default function ProfileButton() {
                 </Modal>
             }
             <button onClick={logoutUser}>Logout</button>
-            <button onClick={aboutPage}>About</button>
         </div>
     )
 }

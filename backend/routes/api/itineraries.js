@@ -8,6 +8,28 @@ const Like = mongoose.model('Like');
 const Itinerary = mongoose.model('Itinerary');
 const DEFAULT_COVER_IMAGE_URL = 'https://journease-artemplv.s3.amazonaws.com/photo-1512100356356-de1b84283e18.jpg';
 
+
+router.get(
+    '/search',
+    async (req, res, next) => {
+        const { title, limit = 5 } = req.query;
+        try {
+            const allItineraries = await Itinerary.find(
+                { title: { $regex: new RegExp(title, 'i')}},
+                '').limit(limit);
+            const data = {
+                itineraries: {}
+            };
+            allItineraries.forEach((itinerary) => {
+                data.itineraries[itinerary.id] = itinerary;
+            })
+            res.json(data)
+        } catch(err) {
+            next(err);
+        }
+    }
+);
+
 // CREATE ITINERARY
 router.post(
     '/', 

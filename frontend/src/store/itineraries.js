@@ -103,6 +103,7 @@ export const createItinerary = (itinerary) => async dispatch => {
         });
         const data = await res.json();
         dispatch(receiveItinerary(data.itinerary));
+        return data.itinerary;
     } catch(err) {
       const res = await err.json();
       if (res.statusCode === 500) {

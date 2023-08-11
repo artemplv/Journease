@@ -42,11 +42,13 @@ const startSession = (userInfo, route) => async dispatch => {
     });
     const { user, token } = await res.json();
     localStorage.setItem('jwtToken', token);
-    return dispatch(receiveCurrentUser(user));
+    dispatch(receiveCurrentUser(user));
+    return res;
   } catch(err) {
     const res = await err.json();
     if (res.statusCode === 400) {
-      return dispatch(receiveErrors(res.errors));
+      dispatch(receiveErrors(res.errors));
+      return res;
     }
   }
 };

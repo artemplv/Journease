@@ -17,7 +17,10 @@ function ItineraryIndex() {
 
   const ItineraryList = itineraries.map(itinerary => {
     return (
-      <ItineraryIndexItem itinerary={itinerary} />
+      <ItineraryIndexItem
+        key={itinerary?._id}
+        itinerary={itinerary}
+      />
     );
 
   });

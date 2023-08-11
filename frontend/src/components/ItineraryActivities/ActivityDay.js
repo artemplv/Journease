@@ -33,7 +33,11 @@ export default function ActivityDay({itinerary, date}) {
     return (
         <div>
             {activities && activities.map(activity => 
-                <ActivityItem activity={activity} ownerId={itinerary.ownerId} itinerary={itinerary}/>
+                <ActivityItem
+                    key={activity?._id}
+                    activity={activity}
+                    ownerId={itinerary.ownerId}
+                />
             )}
             {canEdit && 
                 <div id="create-activity-button-container" onClick={createActivity}>
