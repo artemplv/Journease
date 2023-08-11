@@ -2,8 +2,8 @@ import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { searchItinerariesDebounced } from "../../store/search";
-import './SearchItinerariesInput.css'
 import InputField from "../InputField/InputField";
+import './SearchItinerariesInput.css'
 
 const SearchItinerariesInput = () => {
     const dispatch = useDispatch();
