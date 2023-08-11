@@ -37,7 +37,6 @@ function LoginForm(props) {
     const res = await dispatch(login({ email, password }));
     if (res.ok) {
       closeModal();
-      history.push('/itineraries');
     }
   }
 

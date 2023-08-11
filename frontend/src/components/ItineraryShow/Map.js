@@ -45,9 +45,10 @@ function Map({itinerary, mapOptions }) {
         
       });
       
+      const markers = []
+      const bounds = new window.google.maps.LatLngBounds();
 
       for (const activity of activities) {
-
         let contentString = document.createElement('div')
         contentString.innerHTML = `<img id="infowindow-image" src=${activity.place.photo}></img>
         <h3> ${activity.title} </h3>`
@@ -74,8 +75,11 @@ function Map({itinerary, mapOptions }) {
             fontWeight: 'bold',
             fontSize: '13px',
           }
-        }
+        }        
       );
+      markers.push(marker)
+      bounds.extend(marker.getPosition()) 
+      map.fitBounds(bounds);
 
       marker.addListener("click", () => {
         if (currentWindow != null) {

@@ -4,12 +4,13 @@
 
 .show-page-day {
     margin-left: 1vw;
+    margin-bottom: 1vw;
 }
 
 #day-num-container{
     width: 7vw;
     height: 7vw;
-    background-color: pink;
+    background-color: rgb(167, 188, 174);
     border-radius: 100px;
     font-size: 23px;
     outline: 1px solid white;
@@ -30,8 +31,10 @@
     padding-top: 1.3vw;
     padding-left: 4vw;
     width: 83%;
-    border: 1px solid rgb(243, 106, 129);
-    outline: 1px dotted rgb(243, 106, 129);
+    border: 1px solid rgb(167, 188, 174);
+    outline: 1px dotted rgb(153, 191, 166);
+    /* border: 1px solid rgb(243, 106, 129);
+    outline: 1px dotted rgb(243, 106, 129); */
     outline-offset: -8px;
     z-index: -1;
     transform: translateX(-3vw);
@@ -71,7 +74,7 @@
     box-sizing: border-box;
     width: 78%;
     height: 19vh;
-    background-color: rgb(251, 242, 242);
+    background-color: rgb(235, 240, 240);
     margin-bottom: 2vh;
     margin-left: 6vw;
     border-radius: 10px;
