@@ -139,7 +139,7 @@ router.patch(
         }
         const coverImageUrl = req.file ? 
         await singleFileUpload({ file: req.file, public: true }) :
-        DEFAULT_COVER_IMAGE_URL;
+        itinerary.coverImageUrl;
 
         itinerary.ownerId = itinerary.ownerId;
         itinerary.title = req.body.title || itinerary.title;
