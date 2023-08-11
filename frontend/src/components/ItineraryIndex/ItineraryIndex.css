@@ -150,7 +150,7 @@
 }
 
 #itinerary-index-page-title {
-    background-image: url('../../../src/assets/tree.png');
+    background-image: url('../../../public/tree.png');
     /* background-image: url('/Users/michelleli/Desktop/Journease/frontend/src/assets/tree.png'); */
     background-position: 50%;
     height: 60vh;
