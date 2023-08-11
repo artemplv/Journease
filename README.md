@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="500" src="https://journease-artemplv.s3.amazonaws.com/public/vv-final-logo.png">
+  <img width="800" src="https://github.com/artemplv/Journease/assets/132113558/0bc6f372-ca77-409e-a91d-e03de9b5c1f2">
 </p>
 
 ## Background and Overview
