@@ -1,6 +1,5 @@
 .session-form {
     padding: 15px 20px 15px 20px;
-
     width: 30vw;
     text-align: left;
     color: rgb(100, 100, 100);
@@ -46,7 +45,6 @@
     cursor: not-allowed;
     background-color: #fdbea3;
 }
-
 
 #login input[type="submit"] {
     margin-top: 30px;

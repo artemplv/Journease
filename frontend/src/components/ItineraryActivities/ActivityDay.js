@@ -42,7 +42,7 @@ export default function ActivityDay({itinerary, date}) {
             {canEdit && 
                 <div id="create-activity-button-container" onClick={createActivity}>
                     <button id="create-activity-button"> 
-                        <i className="fa-solid fa-plus" style={{color: "#FFA9A3",}}/>
+                        <i className="fa-solid fa-plus" style={{color: "#FFA9A3" }}/>
                     </button>
                     <span id="create-activity-label">Create Activity</span>
                 </div>

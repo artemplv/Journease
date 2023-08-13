@@ -8,7 +8,7 @@
     z-index: 99;
 }
 
-#calendarDone{
+#calendarDone {
     text-align: right;
     margin-right: 1vw;
     font-size: 17px;
@@ -199,4 +199,3 @@
     cursor: not-allowed;
     background-color: #fdbea3;
 }
-

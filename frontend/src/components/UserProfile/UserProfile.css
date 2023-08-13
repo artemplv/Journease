@@ -78,7 +78,6 @@
     border-radius: 30px;
 }
 
-
 .no-wishlist {
     display: flex;
     flex-direction: column;
@@ -115,22 +114,11 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .1);
 }
 
-
 .user-wishlist {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        margin: auto;
-        padding: 20px;
-        width: 80vw;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    margin: auto;
+    padding: 20px;
+    width: 80vw;
 }
-
-/* .itinerary-index-item {
-    align-items: center;
-    height: 68vh;
-    width: 25vw;
-    background-color: rgb(240, 240, 240);
-    margin: 15px;
-    outline: 1px solid white;
-    outline-offset: -10px;
-} */

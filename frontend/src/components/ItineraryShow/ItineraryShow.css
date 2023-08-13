@@ -55,7 +55,6 @@
 }
 
 #date-nav-h2-container {
-
     margin-bottom: 1vh;
 }
 
@@ -159,7 +158,6 @@
 #delete-itinerary-button:hover, #cancel-button:hover {
     background-color:  rgb(255, 230, 234);
     color: rgb(210, 105, 122);
-
 }
 
 .confirm-delete-itinerary-modal {
