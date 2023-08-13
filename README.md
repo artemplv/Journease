@@ -44,7 +44,7 @@ Journease is built with the MERN stack: MongoDB, Express, React, and Node. Addit
   - Users are able to like and unlike itineraries which will automatically add that itinerary to the user's wishlist, allowing them to go back and revisit trips they liked in the past and use them as inspiration for future travels.
 
 ### Coming Soon:
-  - An interactive map for each user where they can mark off coutnries they've visited
+  - An interactive map for each user where they can mark off countries they've visited
   - AI generated suggestions for itineraries
 
 
