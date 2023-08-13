@@ -1,100 +1,62 @@
 
 <p align="center">
-  <img width="800" src="https://github.com/artemplv/Journease/assets/132113558/0bc6f372-ca77-409e-a91d-e03de9b5c1f2">
+  <img width="800" src="https://github.com/artemplv/Journease/assets/132113558/0bc6f372-ca77-409e-a91d-e03de9b5c1f2" style="background-color:black">
 </p>
 
 ## Background and Overview
 
-Journease is a comprehensive trip planning web application. It allows users to create detailed travel itineraries for various destinations and occasions with ease. The platform promotes collaborative planning, allowing multiple users to contribute and refine trip plans together. Furthermore, users can openly share their curated itineraries, providing insights and inspiration to the community. Journease invites users to explore a wide range of travel experiences by accessing plans created by fellow users.
+[Journease](https://journease.onrender.com) is a comprehensive trip planning web application. It allows users to create detailed travel itineraries for various destinations and occasions with ease. The platform promotes collaborative planning, allowing multiple users to contribute and refine trip plans together. Furthermore, users can openly share their curated itineraries, providing insights and inspiration to the community. Journease invites users to explore a wide range of travel experiences by accessing plans created by fellow users.
 
-Journease is built with the MERN stack: MongoDB, Express, React, and Node.
+Journease is built with the MERN stack: MongoDB, Express, React, and Node. Additional technologies used include Google Maps API and AWS S3 Storage for image hosting.
 
-## Functionality and MVP
+![ezgif com-video-to-gif](https://github.com/artemplv/Journease/assets/131270949/c7f36a7b-f073-46fd-9fc4-8bf1b862f54e)
 
-- ### User Auth
-  - Sign up, log in, and log out
-  - Auth protected routes
-  - Demo user login
 
-- ### Itineraries
-  - CRUD operations
-  - Collaborators
-  - Images
+## Features
 
-- ### Activities
-  - CRUD operations
-  - Predefined categories
-  - Activities for each day of the trip
+### User Authentication
+  - Users are able to browse and search itineraries, as well as view a specific itinerary's show pages without being logged in but must log in or create an account in order to create itineraries. A Demo Login option is available for users to test the site's features.
 
-- ### Places
-  - Search for places with Google Maps API
-  - Map with places pinned on it
+### Itineraries
+  - Users can create itineraries and add collaborators to their itineraries. All collaborators are able to edit the itinerary itself as well as its activities. The creator of the itinerary can add or remove collaborators.
+ 
+![ezgif com-video-to-gif](https://github.com/artemplv/Journease/assets/131270949/9a61b950-8b7f-4d6c-8eb2-fd0d78d3e269)
 
-- ### Likes / wishlist
-  - Ability to like other users' itineraries and save them to a wishlist
-  - Display wishlist on user's profile page
 
-- ### Production README
+  - Searching all users for collaborators in the itinerary modal was handled using a number of interconnected React functional components (as well as backend support) which all came together in the search users input field as follows:
 
-- ### Bonus
-  - Interactive globe map on a user's profile page showing countries they visited
+
+<img width="574" alt="Screenshot 2023-08-13 at 5 11 09 PM" src="https://github.com/artemplv/Journease/assets/131270949/b33593f6-64d2-4fca-85b0-c6390779a5eb">
+
+
+### Activities
+  - Users and collaborators can create activities for each day of the trip. Utilizing Google Maps API, users are also able to search for specific places which will pin that location on the map allowing the user to visualize their trip. Pins are color coded and numbered by day for easy visualization of which activities will be done on what days. When selecting a place, an image is also automatically generated via Google Maps to showcase that activity. 
+
+    
+![ezgif com-video-to-gif](https://github.com/artemplv/Journease/assets/131270949/ad7a8c43-15b0-4802-ad11-8690b911ca36)
+
+  - The code snippet below showcases handling of place input for the activities:
+
+<img width="416" alt="Screenshot 2023-08-13 at 5 25 41 PM" src="https://github.com/artemplv/Journease/assets/131270949/55a20ee8-caaa-4e35-b350-cec399108aeb">
+
+
+### Likes and Wishlist
+  - Users are able to like and unlike itineraries which will automatically add that itinerary to the user's wishlist, allowing them to go back and revisit trips they liked in the past and use them as inspiration for future travels.
+
+### Coming Soon:
+  - An interactive map for each user where they can mark off countries they've visited
   - AI generated suggestions for itineraries
 
 
-## Technologies and Technical Challenges
-The app uses MERN stack and additionaly utilizes following technologies:
+## Group Members
 
-- ### Google Maps API
-It's used for searching for places for itinerary activities and displaying them on a map after saving the retrived information to a database.
+**Team Leader:** Artem Polevoy
 
-- ### AWS S3 Storage
-It allows users to upload images for their itineraries.
+**Front-end Lead:** Michelle Li
 
-## Wireframe
+**Back-end Lead:** Ashley Kim
 
-![Journease](https://github.com/artemplv/Journease/assets/132113558/14b9fd47-0a99-40c8-8ce9-26fa4b8ba720)
+**Flex Lead:** Viktoria Czaran
 
-## Group Members and Work Breakdown
-Team Leader: Artem Polevoy
 
-Front-end Lead: Michelle Li
-
-Back-end Lead: Ashley Kim
-
-Flex Lead: Viktoria Czaran
-
-### Day 0
-- Decide on the exact features, views and app workflow for mvp — All
-- Plan database schema — All
-- Create wireframes and styling guidelines — Ashley
-- Setup basics for the project, plan features implementation timeline — Artem
-- Implement user auth on backend, create database — Viktoria
-- Implement user auth on frontend, create header and modals — Michelle
-
-### Day 1
-- Finish day 0 work, discuss design suggestions, discuss features implementation plan, overview auth work and git workflow – All
-- Implement itinerary creation modal with calendar and collaborators — Michelle
-- Implement itinerary backend routes, db Model — Ashley
-- Research AWS and add images to itinerary on backend — Ashley
-- Create itinerary index page, itinerary cards — Viktoria
-- Research Google Maps API and implement search field — Artem
-
-### Day 2
-- Finish previous day work, have a standup — All
-- Create itinerary show page
-- Create categories on backend
-- Implement activities backend
-- Research map and show saved places on it
-
-### Day 3
-- Implement activity creation modal, use places search field from Day 1
-- Implement activity card and show them on itinerary show page
-- Add map from Day 3 to itinerary show page
-- Add edit modals
-
-### Day 4
-- create user profile page
-- add likes
-- display wishlist
-- Deploy
-
+Check out the About page on [Journease](https://journease.onrender.com) for more information on our incredible team!
