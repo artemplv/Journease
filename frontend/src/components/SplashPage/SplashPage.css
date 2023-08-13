@@ -47,12 +47,10 @@
 
 .splash-search-container button:hover {
     background-color: #fecab3;
-    /* color: #646466; */
 }
 
 .splash-search-container input:active {
     border-color: 1px solid #fecab3;
-
 }
 
 .splash-img-container img {

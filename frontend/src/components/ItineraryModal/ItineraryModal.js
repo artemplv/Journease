@@ -166,7 +166,7 @@ export default function ItineraryModal({ itinerary, closeModal }) {
                             value={dateConvert(dates[0].startDate.toLocaleDateString())}
                         />
 
-                        <i className="fa-solid fa-plane" style={{color: "#F87575",}}/>
+                        <i className="fa-solid fa-plane" style={{color: "#F87575" }}/>
 
                         <InputField
                             value={dateConvert(dates[0].endDate.toLocaleDateString())}
