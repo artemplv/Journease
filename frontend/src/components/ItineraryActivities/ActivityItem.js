@@ -5,10 +5,14 @@ import ActivityModal from '../ActivityModal/ActivityModal';
 import './ActivityIndex.css'
 import { Modal } from '../../context/Modal';
 
+import useGooglePlaceImage from '../../hooks/useGooglePlaceImage';
+
 export default function ActivityItem({activity, ownerId, itinerary}) {
     const dispatch = useDispatch();
     const [openEdit, setOpenEdit] = useState(false)
     const currentUserId = useSelector(state => state.session.user?._id)
+
+    const imageSrc = useGooglePlaceImage(activity.place.placeId);
 
     const remove = () => {
         dispatch(deleteActivity(activity._id))
@@ -22,7 +26,10 @@ export default function ActivityItem({activity, ownerId, itinerary}) {
         <>
             <div className="activity-item">
                 <div id="activity-item-img">
-                    <img src={activity.place.photo}/>
+                    <img
+                        src={imageSrc}
+                        alt=""
+                    />
                 </div>
                 <div id="activity-item-header">
                     <h2 id="activity-item-heading">{activity.title}</h2>
