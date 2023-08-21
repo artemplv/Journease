@@ -1,4 +1,42 @@
 .not-found-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 10px;
+    margin-top: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.not-found-page h1 {
+    font-size: 32px;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.not-found-page p {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.not-found-page a {
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+    padding: 15px;
+    margin: 30px;
+    border-radius: 30px;
+    border: none;
+    background-color: #fdbea3;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.not-found-page a:hover {
+    background-color: #ef9e7c;
 }

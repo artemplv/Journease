@@ -39,7 +39,7 @@ function App() {
 
           <Route exact path="/about" component={AboutPage} />
 
-          <Route path="*" component={NotFoundPage} />
+          <Route exact path="*" component={NotFoundPage} />
         </Switch>
     </>
   );
