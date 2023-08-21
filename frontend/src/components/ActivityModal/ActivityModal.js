@@ -79,7 +79,12 @@ const ActivityModal = ({itineraryId, date, activityId, closeModal}) => {
                         placeholder="Description"
                     />
                     
-                    <input type="submit" value="Submit"/>
+                    { title === '' || place === null ?
+                        <input type="submit" value="Submit" disabled="disabled"/>
+                        :
+                        <input type="submit" value="Submit"/> 
+
+                    }
                 </div>
             </form>
     )
