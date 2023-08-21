@@ -1,15 +1,11 @@
 import {
-    useState,
-    useEffect,
     useMemo,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal } from '../../context/Modal';
-import ItineraryModal from '../ItineraryModal/ItineraryModal';
 import {
     deleteItinerary,
-    likeItinerary,
-    unlikeItinerary,
+    likeItineraryDebounced,
+    unlikeItineraryDebounced,
 } from '../../store/itineraries';
 import { useHistory } from 'react-router-dom';
 import UserInfo from '../UserProfile/UserInfo';
@@ -17,18 +13,8 @@ import './ItineraryIndex.css';
 
 export default function ItineraryIndexItem({ itinerary }) {
     const currentUser = useSelector(state => state.session.user)
-    const [showUpdate, setShowUpdate] = useState(false) 
-    const [openModal, setOpenModal] = useState(false)
     const history = useHistory()
     const dispatch = useDispatch();
-
-    useEffect(()=> {
-        if (currentUser && itinerary.ownerId === currentUser._id) {
-                setShowUpdate(true)
-        }  else {
-            setShowUpdate(false)
-        }
-    }, [itinerary, itinerary.photoUrl])
 
     const remove = () => {
         dispatch(deleteItinerary(itinerary._id))
@@ -51,9 +37,9 @@ export default function ItineraryIndexItem({ itinerary }) {
 
     const handleLike = () => {
         if (likedByCurrentUser) {
-            dispatch(unlikeItinerary(itinerary._id));
+            dispatch(unlikeItineraryDebounced(itinerary._id));
         } else {
-           dispatch(likeItinerary(itinerary._id));
+           dispatch(likeItineraryDebounced(itinerary._id));
         }
     }
 

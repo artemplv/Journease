@@ -52,7 +52,10 @@ router.delete(
                     like,
                 });
             } else {
-                return res.json({ message: "Like does not exist." });
+                const err = new Error("Like does not exist");
+                err.statusCode = 404;
+                err.errors = { Likes: "Like does not exist." };
+                next(err);
             }
         } catch(err) {
             return next(err);

@@ -1,4 +1,5 @@
 import jwtFetch from './jwt';
+import { debounceThunkAction } from '../utils';
 
 import { RECEIVE_ACTIVITY } from './activities';
 import { RECEIVE_USER } from './users';
@@ -62,12 +63,15 @@ export const likeItinerary = (itineraryId) => async dispatch => {
         itineraryId,
     };
 
-    const res = await jwtFetch('/api/likes', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-    });
-    const data = await res.json();
-    dispatch(receiveItineraryLike(data.like));
+    try {
+        const res = await jwtFetch('/api/likes', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        dispatch(receiveItineraryLike(data.like));
+    } catch(err) {
+    }
 }
 
 export const unlikeItinerary = (itineraryId) => async dispatch => {
@@ -75,13 +79,19 @@ export const unlikeItinerary = (itineraryId) => async dispatch => {
         itineraryId,
     };
 
-    const res = await jwtFetch('/api/likes', {
-        method: 'DELETE',
-        body: JSON.stringify(payload),
-    });
-    const data = await res.json();
-    dispatch(removeItineraryLike(data.like));
+    try {
+        const res = await jwtFetch('/api/likes', {
+            method: 'DELETE',
+            body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        dispatch(removeItineraryLike(data.like));
+    } catch(err) {
+    }
 }
+
+export const likeItineraryDebounced = debounceThunkAction(likeItinerary, 400);
+export const unlikeItineraryDebounced = debounceThunkAction(unlikeItinerary, 400);
 
 export const createItinerary = (itinerary) => async dispatch => {
     const { cover, title, description, dateStart, dateEnd, collaborators } = itinerary;
