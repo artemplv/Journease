@@ -1,3 +1,4 @@
+
 .show-page-daily-heading {
     display: flex;
 }
@@ -95,7 +96,7 @@
 }
 
 .itinerary-show-activity-container {
-    height: 100vh;
+    height: 92vh;
     overflow-y: scroll;  
     box-shadow: 10px 0px 3px #888;
 }

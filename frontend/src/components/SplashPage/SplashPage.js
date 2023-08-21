@@ -24,27 +24,12 @@ const SplashPage = () => {
         var el = document.getElementById('itinerary-index-page-title');
         el.scrollIntoView({behavior: 'smooth'});
     }
-
-    // const navBar = document.getElementById('nav-bar');
-    // useEffect(() => {
-    //   if (navBar) {
-    //     window.onscroll = function () {
-    //       const scroll = window.scrollY;
-    //       if (scroll < 10) {
-    //         navBar.style.backgroundColor = 'transparent';
-    //       } else if (scroll > 30) {
-    //         navBar.style.backgroundColor = "rgb(110, 110, 110, 0.5)"
-    //         // "rgb(250, 176, 146, 0.7)";
-    //       }
-    //     }
-    //   };
-    // });
     
     return (
         <>
             {(modalType === "login") && (
             <Modal onClose={()=> setModalType("")}>
-                <LoginForm/>
+                <LoginForm closeModal={() => setModalType("")}/>
             </Modal>
             )}
             {(modalType === "itinerary") && 

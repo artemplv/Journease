@@ -6,7 +6,6 @@ import './SessionForm.css';
 import { login, clearSessionErrors } from '../../store/session';
 
 import InputField from '../InputField/InputField';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function LoginForm(props) {
   const {
@@ -18,8 +17,6 @@ function LoginForm(props) {
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.session.user)
-  const history = useHistory();
 
   useEffect(() => {
     return () => {
