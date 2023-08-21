@@ -142,14 +142,14 @@ router.post(
   validateRegisterInput, 
   async (req, res, next) => {
     const user = await User.findOne({
-      $or: [{ email: req.body.email }, { username: req.body.username }]
+      $or: [{ email: req.body.email.toLowerCase() }, { username: req.body.username }]
     });    
     
     if (user) {
       const err = new Error("Validation Error");
       err.statusCode = 400;
       const errors = {};
-      if (user.email === req.body.email) {
+      if (user.email.toLowerCase() === req.body.email.toLowerCase()) {
         errors.email = "A user has already registered with this email";
       }
       if (user.username === req.body.username) {
