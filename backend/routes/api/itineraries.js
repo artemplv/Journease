@@ -13,10 +13,16 @@ router.get(
     '/search',
     async (req, res, next) => {
         const { title, limit = 5 } = req.query;
+        let allItineraries;
         try {
-            const allItineraries = await Itinerary.find(
-                { title: { $regex: new RegExp(title, 'i')}},
-                '').limit(limit);
+            if (req.query.title === "") {
+                allItineraries = await Itinerary.find()
+                                                .sort({createdAt: -1})
+            } else {
+                allItineraries = await Itinerary.find(
+                    { title: { $regex: new RegExp(title, 'i')}},
+                    '').limit(limit);
+            }
             const data = {
                 itineraries: {}
             };

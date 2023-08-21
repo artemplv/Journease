@@ -7,21 +7,22 @@ import './SearchItinerariesInput.css'
 
 const SearchItinerariesInput = () => {
     const dispatch = useDispatch();
-    const [searchText, setSearchText] = useState("");
-    const searchResults = useSelector(state => Object.values(state.search));
-    const [inputFocused, setInputFocused] = useState(false);
     const history = useHistory();
     const inputRef = useRef(null); 
+    const [searchText, setSearchText] = useState("");
+    const [inputFocused, setInputFocused] = useState(false);
+    const searchResults = useSelector(state => Object.values(state.search));
 
     const handleChange = (e) => {
         setSearchText(e.target.value);
-        if (e.target.value.trim()) {
+        if (e.target.value) {
           dispatch(searchItinerariesDebounced(e.target.value));
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(searchItinerariesDebounced(searchText));
         history.push(`/itineraries/search?title=${searchText}`)
     }
 
@@ -33,11 +34,17 @@ const SearchItinerariesInput = () => {
 
     const handleFocus = () => {
         setInputFocused(true);
-      };
+    };
     
-      const handleBlur = () => {
+    const handleBlur = () => {
         setInputFocused(false);
-      };
+    };
+
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter'){
+            handleSubmit(e)
+        }
+    };
 
     return (
         <div className="itineraries-search-input">
@@ -49,13 +56,14 @@ const SearchItinerariesInput = () => {
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={searchText}
-                    onChange={handleChange}/>
+                    onChange={handleChange}
+                    onKeyDown={handleEnterKey}/>
                 <i 
                     id="plane-submit"
                     class="fa-regular fa-paper-plane" 
                     onClick={handleSubmit}/>
             </div>
-            { searchText && searchResults && inputFocused &&
+            { searchResults && inputFocused &&
                 <ul id="search-dropdown">
                     {searchResults.map((result) => {
                         return(
