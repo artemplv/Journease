@@ -60,7 +60,7 @@ const SearchItinerariesInput = () => {
                     onKeyDown={handleEnterKey}/>
                 <i 
                     id="plane-submit"
-                    class="fa-regular fa-paper-plane" 
+                    className="fa-regular fa-paper-plane" 
                     onClick={handleSubmit}/>
             </div>
             { searchResults && inputFocused &&
