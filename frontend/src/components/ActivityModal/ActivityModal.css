@@ -69,6 +69,12 @@
     background-color: #ef9e7c;
 }
 
+.activity-modal-container input[type="submit"]:disabled {
+    cursor: not-allowed;
+    background-color: #fdbea3;
+}
+
+
 .activity-modal-container h1 {
     text-align: center;
     margin-top: 0px;
