@@ -198,13 +198,21 @@ export default function ItineraryModal({ itinerary, closeModal }) {
                             ))
                         }
                     </div>
-                    
-                    <input
-                        type="submit"
-                        value={
-                            type === 'Edit' ? 'Update' : 'Create'
-                        }
-                    />
+                    { title !== "" ?
+                        <input
+                            type="submit"
+                            value={
+                                type === 'Edit' ? 'Update' : 'Create'
+                            }
+                        />
+                    : <input 
+                            type="submit"
+                            disabled="disabled"
+                            value={
+                                type === 'Edit' ? 'Update' : 'Create'
+                            }
+                        />
+                    }
                 </div>
             </form>
         </>
