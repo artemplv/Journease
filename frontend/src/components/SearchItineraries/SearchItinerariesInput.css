@@ -3,8 +3,10 @@
 }
 
 .itineraries-search-input input {
-    width: 500px;
-    height: 50px;
+    width: 35vw;
+    height: 7vh;
+    /* width: 500px;
+    height: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
