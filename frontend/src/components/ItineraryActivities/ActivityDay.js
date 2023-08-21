@@ -30,8 +30,6 @@ export default function ActivityDay({itinerary, date}) {
         setModalType("create-activity")
     }
 
-    debugger
-
     return (
         <div>
             {activities && activities.map(activity => 
