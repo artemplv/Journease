@@ -23,7 +23,15 @@ export default function ItineraryShow () {
     const [canEdit, setCanEdit] = useState(false)
 
     useEffect(() => {
-        dispatch(fetchItinerary(itineraryId));
+        const getItinerary = async () => {
+            try {
+                await dispatch(fetchItinerary(itineraryId));
+            } catch(err) {
+                history.push('/itineraries');
+            }
+        };
+
+        getItinerary();
     }, [itineraryId]);
 
     useEffect(()=> {
