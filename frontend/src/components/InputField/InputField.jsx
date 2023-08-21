@@ -10,6 +10,7 @@ const InputField = forwardRef(function InputField(props, ref) {
     onChange = noop,
     onBlur = noop,
     onFocus = noop,
+    onKeyDown = noop,
     error = null,
     className = '',
     type = 'text',
@@ -54,6 +55,7 @@ const InputField = forwardRef(function InputField(props, ref) {
         onFocus={onFocus}
         placeholder={placeholder}
         disabled={disabled}
+        onKeyDown={onKeyDown}
         ref={ref}
       />
       {
