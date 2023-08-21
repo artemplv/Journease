@@ -50,7 +50,7 @@ Journease is built with the MERN stack: MongoDB, Express, React, and Node. Addit
 
 ## Group Members
 
-**Team Leader:** Artem Polevoy
+**Team Lead:** Artem Polevoy
 
 **Front-end Lead:** Michelle Li
 
