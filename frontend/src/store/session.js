@@ -32,7 +32,7 @@ const startSession = (userInfo, route) => async dispatch => {
   const formData = new FormData();
   formData.append("username", username);
   formData.append("password", password);
-  formData.append("email", email);
+  formData.append("email", email.toLowerCase());
   if (image) formData.append("image", image);
 
   try {  
