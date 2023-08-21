@@ -34,7 +34,7 @@ const SplashPage = () => {
             )}
             {(modalType === "itinerary") && 
                 <Modal onClose={()=> setModalType("")}>
-                    <ItineraryModal/>
+                    <ItineraryModal closeModal={() => setModalType("")}/>
                 </Modal>
             }
             <div className="entire-splash-container">
