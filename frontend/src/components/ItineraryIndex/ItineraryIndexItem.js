@@ -1,24 +1,22 @@
 import {
     useMemo,
+    useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    deleteItinerary,
-    likeItineraryDebounced,
-    unlikeItineraryDebounced,
+    likeItinerary,
+    unlikeItinerary,
 } from '../../store/itineraries';
 import { useHistory } from 'react-router-dom';
 import UserInfo from '../UserProfile/UserInfo';
 import './ItineraryIndex.css';
 
 export default function ItineraryIndexItem({ itinerary }) {
-    const currentUser = useSelector(state => state.session.user)
+    const currentUser = useSelector(state => state.session.user);
     const history = useHistory()
     const dispatch = useDispatch();
 
-    const remove = () => {
-        dispatch(deleteItinerary(itinerary._id))
-    }
+    const [likePending, setLikePending] = useState(false);
 
     const redirectShow = () => {
         history.push(`/itineraries/${itinerary._id}`)
@@ -35,12 +33,20 @@ export default function ItineraryIndexItem({ itinerary }) {
         itinerary,
     ]);
 
-    const handleLike = () => {
-        if (likedByCurrentUser) {
-            dispatch(unlikeItineraryDebounced(itinerary._id));
-        } else {
-           dispatch(likeItineraryDebounced(itinerary._id));
+    const handleLike = async () => {
+        if (likePending) {
+            return;
         }
+        
+        setLikePending(true);
+
+        if (likedByCurrentUser) {
+            await dispatch(unlikeItinerary(itinerary._id));
+        } else {
+            await dispatch(likeItinerary(itinerary._id));
+        }
+        
+        setLikePending(false);
     }
 
     const numOfLikes = itinerary?.likerIds?.length || 0;

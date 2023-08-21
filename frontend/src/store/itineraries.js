@@ -1,5 +1,4 @@
 import jwtFetch from './jwt';
-import { debounceThunkAction } from '../utils';
 
 import { RECEIVE_ACTIVITY } from './activities';
 import { RECEIVE_USER } from './users';
@@ -89,9 +88,6 @@ export const unlikeItinerary = (itineraryId) => async dispatch => {
     } catch(err) {
     }
 }
-
-export const likeItineraryDebounced = debounceThunkAction(likeItinerary, 400);
-export const unlikeItineraryDebounced = debounceThunkAction(unlikeItinerary, 400);
 
 export const createItinerary = (itinerary) => async dispatch => {
     const { cover, title, description, dateStart, dateEnd, collaborators } = itinerary;
