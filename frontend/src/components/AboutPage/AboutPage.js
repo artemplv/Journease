@@ -33,7 +33,7 @@ export default function AboutPage () {
                         <p>Backend Lead 👩‍💻</p>
                         <div id="social-links">
                             <a href="https://github.com/ashleyjek"><i className="fa-brands fa-github fa-2xl" style={{color: "#000000"}}></i></a>
-                            <a href=""><i className="fa-brands fa-linkedin fa-2xl" style={{color: "#0a66c2"}}></i></a>
+                            <a href="https://www.linkedin.com/in/ashleyjek/"><i className="fa-brands fa-linkedin fa-2xl" style={{color: "#0a66c2"}}></i></a>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ export default function AboutPage () {
                         <p>Frontend Lead 👩‍💻</p>
                         <div id="social-links">
                             <a href="https://github.com/michelleeli"><i className="fa-brands fa-github fa-2xl" style={{color: "#000000"}}></i></a>
-                            <a href=""><i className="fa-brands fa-linkedin fa-2xl" style={{color: "#0a66c2"}}></i></a>
+                            <a href="https://www.linkedin.com/in/michelle-li-040922288/"><i className="fa-brands fa-linkedin fa-2xl" style={{color: "#0a66c2"}}></i></a>
                         </div>
                     </div>
                 </div>
