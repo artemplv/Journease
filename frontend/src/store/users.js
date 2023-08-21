@@ -18,24 +18,30 @@ const receiveUsers = (users) => ({
 });
 
 export const fetchUser = (userId) => async dispatch => {
-    const res = await jwtFetch(`/api/users/${userId}`);
-    const data = await res.json();
-    dispatch(receiveUser(data.user, data.userItineraries, data.itinerariesIds, data.likedItineraries));
+    try {
+        const res = await jwtFetch(`/api/users/${userId}`);
+        const data = await res.json();
+        dispatch(receiveUser(data.user, data.userItineraries, data.itinerariesIds, data.likedItineraries));
+    } catch(err) {
+    }
 }
 
 export const updateUser = (image, currentUserId) => async dispatch => {
-   const formData = new FormData();
-
-   formData.append("image", image);
-
-    const res = await jwtFetch(`/api/users/${currentUserId}`, {
-        method: 'PATCH',
-        body: formData
-    })
-  
-    const data = await res.json();
-  
-    dispatch(receiveUser(data.user));
+    try {
+        const formData = new FormData();
+     
+        formData.append("image", image);
+     
+         const res = await jwtFetch(`/api/users/${currentUserId}`, {
+             method: 'PATCH',
+             body: formData
+         })
+       
+         const data = await res.json();
+       
+         dispatch(receiveUser(data.user));
+    } catch(err) {
+    }
 }
 
 export const searchUsers = (searchQuery, limit = 5, callback = () => {}) => async (dispatch) => {
@@ -52,7 +58,7 @@ export default function usersReducer (state = {}, action) {
 
     switch(action.type) {
         case RECEIVE_USER:
-            return {...newState, [action.user?._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
+            return {...newState, [action.user._id]: {...action.user, itineraries: action.itinerariesIds, likedItineraries: action.likedItineraries} };
         case RECEIVE_USERS:
             return {
                 ...state,
