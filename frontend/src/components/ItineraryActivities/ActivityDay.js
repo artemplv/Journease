@@ -8,7 +8,7 @@ import ActivityItem from "./ActivityItem";
 export default function ActivityDay({itinerary, date}) {
     const [modalType, setModalType] = useState("");
     const dispatch = useDispatch()
-    const activities = useSelector(state => Object.values(state.activities).filter(activity => (new Date(activity.date).toString() === new Date(date).toString() && activity.itineraryId === itinerary._id)))
+    const activities = useSelector(state => Object.values(state.activities).filter(activity => (new Date(activity.date.replace(/-/g, '\/').replace(/T.+/, '')).toString() === new Date(date).toString() && activity.itineraryId === itinerary._id)))
     const currentUser = useSelector(state => state.session.user)
     const [canEdit, setCanEdit] = useState(false)
 
@@ -29,6 +29,8 @@ export default function ActivityDay({itinerary, date}) {
     const createActivity = () => {
         setModalType("create-activity")
     }
+
+    debugger
 
     return (
         <div>
