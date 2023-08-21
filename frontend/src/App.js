@@ -12,6 +12,7 @@ import UserProfilePage from './components/UserProfile/UserProfilePage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import AboutPage from './components/AboutPage/AboutPage';
 import SearchResultPage from './components/SearchResultPage/SearchResultPage';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,8 @@ function App() {
           <Route exact path="/itineraries/:itineraryId" component={ItineraryShow} />
 
           <Route exact path="/about" component={AboutPage} />
+
+          <Route path="*" component={NotFoundPage} />
         </Switch>
     </>
   );
