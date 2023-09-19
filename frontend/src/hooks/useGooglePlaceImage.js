@@ -25,7 +25,7 @@ const useGooglePlaceImage = (placeId) => {
     }
 
     const placeCallback = (place, status) => {
-      if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+      if (status === 'OK') {
         const photoUrl = Array.isArray(place.photos) && place.photos.length > 0
         ? place.photos[0].getUrl()
         : '';

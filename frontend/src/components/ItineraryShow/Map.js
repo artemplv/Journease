@@ -50,8 +50,7 @@ function Map({itinerary, mapOptions }) {
 
       for (const activity of activities) {
         let contentString = document.createElement('div')
-        contentString.innerHTML = `<img id="infowindow-image" src=${activity.place.photo}></img>
-        <h3> ${activity.title} </h3>`
+        contentString.innerHTML = `<h3> ${activity.title} </h3><p> ${activity.place.formattedAddress} </p>`
 
         const infowindow = new window.google.maps.InfoWindow({
           content: contentString,
