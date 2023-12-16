@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
+import { deleteActivity } from './store/activities';
 
 let store = configureStore({});
 
